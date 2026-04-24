@@ -1,0 +1,133 @@
+{
+  "0": {
+    "title": "Samenwerken met gevarieerde groep lokale bewoners",
+    "mechanisms": [
+      { "label": "Doelen", "text": "Gezamenlijk doelen formuleren" },
+      { "label": "Taken", "text": "Taken en verantwoordelijkheden vaststellen" },
+      { "label": "Bijeenkomen", "text": "Regelmatig bijeenkomen om kennis uit te wisselen en implementatie aan te sturen" },
+      { "label": "Coordineren", "text": "Coordineren van aanpak en netwerk door programma-manager" },
+      { "label": "Beleid", "text": "Lokaal beleid integraal vormgeven" },
+      { "label": "Samenwerking", "text": "Samenwerking op operationeel niveau faciliteren en stimuleren" }
+    ],
+    "factors": [
+      { "label": "Relaties", "text": "Goede onderlinge relaties", "type": "plus" },
+      { "label": "Taken", "text": "Taken en verantwoordelijkheden sluiten aan bij bij doelen en bestaande structuren van organisaties", "type": "plus" },
+      { "label": "Infrastructuur", "text": "Lokale infrastructuur sluit en afhankelijkheidsrelaties", "type": "plus" },
+      { "label": "Middelen", "text": "Financiele middelen voor coordinatie door programmamanager beschikbaar", "type": "plus" },
+      { "label": "Wetten", "text": "Wetten die integraal beleid stimuleren (bv. Jeugdwet, Omgevingswet)", "type": "plus" },
+      { "label": "Professionals", "text": "Professionals op operationeel gebied koppelen aan gebied/wijk", "type": "plus" },
+      { "label": "Doelstellingen", "text": "Overlap in doelstellingen van betrokken organisaties", "type": "plus" }
+    ]
+  },
+  "1": {
+    "title": "Draagvlak op ieder niveau; strategisch, tactisch en operationeel",
+    "mechanisms": [
+      { "label": "Wethouders", "text": "Regelmatig met betrokken wethouders aan tafel" },
+      { "label": "Aanpak", "text": "Aanpak laten aansluiten bij dagelijkse werkzaamheden van professionals" },
+      { "label": "Aandachtsfunctionaris", "text": "Aandachtsfunctionaris aanwijzen binnen betrokken organisaties voor coordinatie" },
+      { "label": "Duidelijk", "text": "Duidelijk maken dat gezondheids-bevordering domein-overstijgend is en het voltallige college achter de aanpak moet staan" },
+      { "label": "Communiceren", "text": "Goed communiceren (intern en extern) en successen samen vieren" },
+      { "label": "Positief", "text": "Positief framen van de aanpak" },
+      { "label": "Brug", "text": "Professionals aanwijzen als brug tussen tactisch en operationeel niveau" }
+    ],
+    "factors": [
+      { "label": "Wethouder", "text": "Wethouder omarmt aanpak", "type": "plus" },
+      { "label": "Middelen", "text": "Financiele middelen beschikbaar voor brugfunctie", "type": "plus" },
+      { "label": "Afspraken", "text": "Prestatieafspraken tussen uitvoerende partijen en gemeente sluiten aan bij aanpak", "type": "plus" },
+      { "label": "Intern", "text": "Financiele middelen voor interne coordinatie beschikbaar", "type": "plus" },
+      { "label": "Bevlogen", "text": "Bevlogen wethouder", "type": "plus" },
+      { "label": "Monitor", "text": "Monitoring en evaluatie", "type": "plus" },
+      { "label": "Kosten", "text": "Kosten-batenanalyse van preventie is lastig", "type": "min" }
+    ]
+  },
+  "2": {
+    "title": "Communicatie en coordinatie",
+    "mechanisms": [
+      { "label": "Manager", "text": "Programmamanager benoemen om netwerk van betrokken organisaties te coordineren" },
+      { "label": "Professionals", "text": "Professionals aanstellen die als brug functioneren tussen tactisch en operationeel niveau" },
+      { "label": "Coordinators", "text": "Interne coordinators aanstellen bij betrokken organisatie" }
+    ],
+    "factors": [
+      { "label": "Financieel", "text": "Financiele middelen beschikbaar voor programmamanager", "type": "plus" },
+      { "label": "Locatie", "text": "Programmamanager werkt bij gemeente en is fysiek aanwezig op stadskantoor", "type": "plus" },
+      { "label": "GGD", "text": "Programmamanager werkt bij GGD", "type": "plus" },
+      { "label": "Brug", "text": "Financiele middelen beschikbaar voor professionals met brugfunctie", "type": "plus" },
+      { "label": "Interne", "text": "Financiele middelen beschikbaar voor interne coordinators", "type": "plus" }
+    ]
+  },
+  "3": {
+    "title": "Borgen van aanpak in beleid en processen van organisaties",
+    "mechanisms": [
+      { "label": "Thema", "text": "Integreren thema van Zwolle Gezonde Stad in algemene activiteiten van betrokken organisaties" },
+      { "label": "Organisaties", "text": "Betrokken organisaties nemen het thema 'gezonde leefstijl' op in hun beleid en uitvoerings-programma's" }
+    ],
+    "factors": [
+      { "label": "Betrokken", "text": "Betrokken organisaties zien gezondheid als iets wat niet hoort bij hun corebusiness", "type": "min" }
+    ]
+  },
+  "4": {
+    "title": "Samenwerken met private organisaties",
+    "mechanisms": [
+      { "label": "Samen", "text": "Samen met betrokken organisaties op zoek gaan naar hun rol" },
+      { "label": "Vragen", "text": "Private organisaties vragen voor een specifiek doel of taak" },
+      { "label": "Organisaties", "text": "Samenwerken met lokale private organisaties" }
+    ],
+    "factors": [
+      { "label": "Lokaal", "text": "Lokale organisaties voelen zich betrokken bij hun wijk", "type": "plus" },
+      { "label": "Verschillen", "text": "Verschillen in cultuur, taal en belangen tussen publieke en private organisaties", "type": "min" }
+    ]
+  },
+  "5": {
+    "title": "Samenwerken met bewoners",
+    "mechanisms": [
+      { "label": "Bewoners", "text": "Bewoners verantwoordelijkheden geven" },
+      { "label": "Betrekken", "text": "Bewoners betrekken vanaf de start van een project/activiteit" },
+      { "label": "Investeren", "text": "Investeren in vertrouwen en tijd nemen om te luisteren naar de mening van bewoners" },
+      { "label": "Gebruik", "text": "Gebruik maken van bestaande sociale structuren in de wijk" },
+      { "label": "Aanbod", "text": "Het aanbod waarin bewoners kunnen participeren toegankelijk en makkelijk aanbieden" }
+    ],
+    "factors": [
+      { "label": "Prof", "text": "Professionals krijgen uren voor coordinatie, financiele middelen beschikbaar", "type": "plus" },
+      { "label": "Welzijn", "text": "Welzijnswerk is goed georganiseerd, bestaande infrastructuur", "type": "plus" },
+      { "label": "Vertrouwen", "text": "(Oudere) bewoners vinden vertrouwen belangrijk en verandering lastig", "type": "min" },
+      { "label": "Laag", "text": "Mensen met lage sociaal-economische positie (SEP) zijn moeilijker te betrekken", "type": "min" },
+      { "label": "Doelgroep", "text": "Doelgroep heeft meer moeite met begrip (bijvoorbeeld vanwege migratieachtergrond/taalachterstand/cultuurverschil)", "type": "min" }
+    ]
+  },
+  "6": {
+    "title": "Profileren van de aanpak",
+    "mechanisms": [
+      { "label": "Resultaten", "text": "Resultaten die betrokken organisaties behalen koppelen aan Zwolle Gezonde Stad" },
+      { "label": "Boegbeeld", "text": "Boegbeeld of ambassadeur inzetten om ambitie van ZGS te verspreiden" }
+    ],
+    "factors": [
+      { "label": "BN", "text": "Lokale BN'ers inzetten als boegbeeld of ambassadeur", "type": "plus" },
+      { "label": "Aanpak", "text": "Aanpak wordt door betrokken organisaties gezien als 'ingebed in eigen organisatie'", "type": "min" }
+    ]
+  },
+  "7": {
+    "title": "Meebewegen met en gebruik maken van mogelijkheden en kansen",
+    "mechanisms": [
+      { "label": "Subsidie", "text": "Gebruik maken van landelijke subsidiestromen" },
+      { "label": "Voortbouwen", "text": "Voortbouwen op wat er al is" }
+    ],
+    "factors": [
+      { "label": "Aandacht", "text": "Landelijk aandacht voor thema (bv. 'Gezonde School', 'Alles is gezondheid')", "type": "plus" },
+      { "label": "Samen", "text": "'Samen is gezond' liep al in Zwolle", "type": "plus" }
+    ]
+  },
+  "8": {
+    "title": "Doorlopend monitoren van proces en effect; acties verbinden aan bevindingen",
+    "mechanisms": [
+      { "label": "Zichtbaar", "text": "Resultaten en conclusies zichtbaar maken en communiceren naar betrokken organisaties" },
+      { "label": "Bestaand", "text": "Bestaande gegevens gebruiken om aanpak te evalueren" },
+      { "label": "Conclusies", "text": "Conclusies trekken uit onderzoek en aanpak op basis daarvan aanpassen" }
+    ],
+    "factors": [
+      { "label": "Gemeente", "text": "Onderzoeksinsituut aanwezig in gemeente", "type": "plus" },
+      { "label": "GGD", "text": "Gemeente en GGD hebben data beschikbaar op buurt- en wijkniveau", "type": "plus" },
+      { "label": "Kloof", "text": "Kloof tussen onderzoek en uitvoerende partijen", "type": "min" },
+      { "label": "Organisaties", "text": "Betrokken organisaties spreken elkaar niet aan op uitkomsten van de evaluatie", "type": "min" }
+    ]
+  }
+}

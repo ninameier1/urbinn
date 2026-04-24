@@ -1,0 +1,32 @@
+.circleButton {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: 
+    translate(-50%, -50%)
+    rotate(var(--angle))
+    translate(25vmin);
+  transition: transform 0.2s ease-in-out;
+  filter: drop-shadow(0 0 0.5rem rgba(0, 0, 0, 0.2));
+}
+.circleButton:hover {
+  transform: 
+    translate(-50%, -50%)
+    rotate(var(--angle))
+    translate(25vmin)
+    scale(1.2);
+}
+.buttonTitle {
+  transform: translate(-50%, -50%) rotate(calc(-1 * var(--angle)));
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes counterspin {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+.logoSpin { animation: spin 30s linear infinite; }
+.buttonSpin { animation: counterspin 20s linear infinite; }
