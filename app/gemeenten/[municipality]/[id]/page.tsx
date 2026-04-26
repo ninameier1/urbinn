@@ -10,6 +10,8 @@ import Gear from '@/components/Gear/Gear';
 import ElementBar from '@/components/ElementBar/ElementBar';
 import styles from './CoreElement.module.css';
 
+export const revalidate = 60;
+
 interface CoreElementProps {
   params: Promise<{ 
     municipality: string; 

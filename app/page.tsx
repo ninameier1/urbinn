@@ -1,6 +1,9 @@
 import Link from 'next/link';
 import Image from "next/image";
+
 import { prisma } from "@/lib/prisma";
+
+import Button from "@/components/Button"
 import MunicipalityCard from "@/components/MunicipalityCard";
 
 export const revalidate = 60;
@@ -37,20 +40,20 @@ export default async function HomePage() {
 
       <div className="py-16 bg-primary">
         <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="bg-white p-6 rounded-xl shadow">
+          <div className="bg-background p-6 rounded-xl shadow">
             <h3 className="text-xl font-bold mb-4">Wat is Urban Innovation?</h3>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
           </div>
-          <div className="bg-white p-6 rounded-xl shadow">
+          <div className="bg-background p-6 rounded-xl shadow">
             <h3 className="text-xl font-bold mb-4">Onze onderzoeken</h3>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
           </div>
         </div>
       </div>
 
-      <div className="py-16 bg-gray-100 bg-background">
+      <div className="py-16 bg-background">
         <div className="max-w-full">
-          <h2 className="text-3xl font-bold text-center text-text mb-12">
+          <h2 className="text-3xl font-bold text-center mb-12">
             Uitgelichte gemeenten
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-8">
@@ -63,13 +66,10 @@ export default async function HomePage() {
               />
             ))}
           </div>
-                    <div className="text-center mt-10">
-            <Link
-              href="/gemeenten"
-              className="inline-block bg-primary text-white px-6 py-3 rounded-xl font-semibold hover:opacity-90 transition"
-            >
+          <div className="text-center mt-10">
+            <Button href="/gemeenten" variant="primary">
               Bekijk alle gemeenten →
-            </Link>
+            </Button>
           </div>
         </div>
       </div>

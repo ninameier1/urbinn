@@ -1,24 +1,13 @@
-import Link from 'next/link';
+import NavLink from "./NavLink";
 
 const MainNav = () => {
-    return (
-        <nav>
-            <Link
-                href="/gemeenten"
-                passHref
-                className="hover:text-background px-2 transition duration-300"
-            >
-                Gemeenten
-            </Link>
-            <Link
-                href="/information"
-                passHref
-                className="hover:text-background px-2 transition duration-300"
-            >
-            Informatie
-            </Link>
-        </nav>
-    );
+  return (
+    <nav>
+        <NavLink href="/">Home</NavLink>
+        <NavLink href="/gemeenten">Gemeenten</NavLink>
+        <NavLink href="/information">Informatie</NavLink>
+    </nav>
+  );
 };
 
 export default MainNav;

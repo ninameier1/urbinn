@@ -11,15 +11,15 @@ const PageHeader = () => {
                             <Image
                             src="/assets/images/inno.png"
                             alt="Urban Innovation Logo"
-                            width={200}
+                            width={48}
                             height={48}
-                            className="object-contain h-16 w-auto p-1"
+                            className="object-contain h-14 w-auto p-1"
                             unoptimized={true}
                             priority
                             />
-                            <p className="text-2xl text-white p-4">
+                            {/* <p className="text-2xl text-white p-4">
                                 URBAN INNOVATION
-                            </p>
+                            </p> */}
                         </div>
                     </Link>
                 <MainNav />

@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma";
+
 import MunicipalityCard from '@/components/MunicipalityCard';
 
 export const revalidate = 60;
