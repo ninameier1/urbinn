@@ -1,13 +1,11 @@
 import NavLink from "./NavLink";
 
-const MainNav = () => {
+export default function MainNav() {
   return (
-    <nav>
-        <NavLink href="/">Home</NavLink>
+    <nav className="flex items-center gap-2">
         <NavLink href="/gemeenten">Gemeenten</NavLink>
-        <NavLink href="/information">Informatie</NavLink>
+        <NavLink href="/urban-innovation">Urban Innovation</NavLink>
+        <NavLink href="/onderzoeken">Onderzoeken</NavLink>
     </nav>
   );
-};
-
-export default MainNav;
+}

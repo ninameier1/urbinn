@@ -1,9 +1,9 @@
-import Link from 'next/link';
 import Image from "next/image";
 
 import { prisma } from "@/lib/prisma";
 
 import Button from "@/components/Button"
+import Tag from "@/components/Tag"
 import MunicipalityCard from "@/components/MunicipalityCard";
 
 export const revalidate = 60;
@@ -16,17 +16,19 @@ export default async function HomePage() {
 
   return (
     <>
-      <div className="relative h-[40vh]">
+      <div className="relative h-[55vh] min-h-[400px] -mt-12">
         <Image
           src="/assets/images/header.jpg"
           alt="Urban Innovation"
           fill
           sizes="100vw"
-          className="object-cover z-0"
+          className="object-cover"
           unoptimized={true}
           priority
         />
-        <div className="absolute inset-0 bg-black/50 z-10">
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10" />
+
+        <div className="absolute inset-0 z-10">
           <Image
             src="/assets/images/urbinntextw.png"
             alt="Overlay"
@@ -38,24 +40,46 @@ export default async function HomePage() {
         </div>
       </div>
 
-      <div className="py-16 bg-primary">
-        <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="bg-background p-6 rounded-xl shadow">
-            <h3 className="text-xl font-bold mb-4">Wat is Urban Innovation?</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      <div className="py-20 bg-primary">
+        <div className="mx-auto px-6 grid grid-cols-1 md:grid-cols-5 gap-6 items-start">
+
+          <div className="md:col-span-3 bg-background rounded-2xl p-8 shadow-lg">
+            <Tag label="Over ons" href="/over-ons" />
+            <h3 className="text-2xl font-semibold mb-4 leading-snug">
+              Wie zijn wij?
+            </h3>
+            <p className="leading-relaxed">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
           </div>
-          <div className="bg-background p-6 rounded-xl shadow">
-            <h3 className="text-xl font-bold mb-4">Onze onderzoeken</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+
+          <div className="md:col-span-2 bg-background rounded-2xl p-8 shadow-lg">
+            <Tag label="Urban Innovation" href="/urban-innovation" />
+            <h3 className="text-xl font-semibold mb-4 leading-snug">
+              Wat doen wij?
+            </h3>
+            <p className="leading-relaxed">
+              Onderzoek naar inclusieve, veilige en duurzame steden in Flevoland.
+            </p>
           </div>
+
         </div>
       </div>
 
-      <div className="py-16 bg-background">
+      <div className="py-20 bg-background">
         <div className="max-w-full">
-          <h2 className="text-3xl font-bold text-center mb-12">
-            Uitgelichte gemeenten
-          </h2>
+          
+          <div className="flex flex-col items-center mb-12 gap-3">
+            <Tag label="Gemeenten" href="/gemeenten" />
+            <h2 className="text-3xl font-semibold text-center">
+              Uitgelichte Gemeenten
+            </h2>
+            <p className="text-muted-foreground text-center max-w-md">
+              Bekijk de meest recente dashboards van deelnemende gemeenten.
+            </p>
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-8">
             {municipalities.map((municipality) => (
               <MunicipalityCard

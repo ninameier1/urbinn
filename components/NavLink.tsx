@@ -1,5 +1,7 @@
 "use client";
+
 import Link from "next/link";
+
 import { usePathname } from "next/navigation";
 
 type NavLinkProps = {
@@ -9,14 +11,16 @@ type NavLinkProps = {
 
 export default function NavLink({ href, children }: NavLinkProps) {
   const pathname = usePathname();
-  const isActive = pathname === href;
+  const isActive = pathname === href || pathname.startsWith(href + "/");
 
   return (
     <Link
       href={href}
-      className={`px-2 text-background border-b-2  ${
-        isActive ? "font-semibold border-secondary" : "border-transparent hover:text-secondary hover:border-accent"
-      }`}
+      className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200
+        ${isActive
+          ? "bg-white/20 text-secondary"
+          : "text-white hover:text-secondary hover:bg-white/20"
+        }`}
     >
       {children}
     </Link>
