@@ -16,7 +16,7 @@ export default async function HomePage() {
 
   return (
     <>
-      <div className="relative h-[55vh] min-h-[400px] -mt-12">
+      <div className="relative h-[55vh] min-h-[400px] -mt-10">
         <Image
           src="/assets/images/header.jpg"
           alt="Urban Innovation"
@@ -30,11 +30,11 @@ export default async function HomePage() {
 
         <div className="absolute inset-0 z-10">
           <Image
-            src="/assets/images/urbinntextw.png"
+            src="/assets/images/tree.png"
             alt="Overlay"
             fill
             sizes="100vw"
-            className="object-contain object-left px-6 z-20"
+            className="object-contain object-left px-46 z-20"
             unoptimized={true}
           />
         </div>
@@ -43,15 +43,15 @@ export default async function HomePage() {
       <div className="py-12 bg-primary/80">
         <div className="mx-auto max-w-7xl px-6 text-start">
 
-          <h2 className="text-9xl md:text-6xl font-semibold mb-6 text-white/80 leading-tight">
+          <h2 className="text-9xl md:text-6xl font-semibold mb-6 text-white/80 tracking-tight">
             GEZONDE LEEFOMGEVING
           </h2>
           
-          <h2 className="text-4xl md:text-2xl font-semibold text-white/60 mb-2 leading-tight">
+          <h2 className="text-4xl md:text-2xl font-semibold text-white/60 mb-2 tracking-tight">
             Inclusieve en duurzame stadsontwikkeling
           </h2>
 
-          <p className="text-lg md:text-l text-white/50 leading-relaxed">
+          <p className="text-lg md:text-l text-white/50 tracking-normal">
             In de stad en de stedelijke regio liggen de grote uitdagingen van de toekomst. 
             Er spelen economische en sociale vraagstukken en tegelijkertijd staan de steden voor grote opgaven op het gebied van bouwen en duurzaamheid.  
             De onderzoekers van het lectoraat Urban Innovation werken in fieldlabs en leergemeenschappen samen met bedrijven, regionale organisaties, inwoners en studenten aan praktijkgerichte onderzoeksvragen. 

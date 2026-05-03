@@ -26,17 +26,20 @@ export default function PageHeader() {
           : "bg-primary"
         }`}
     >
-      <div className="mx-auto flex justify-between items-center px-6 h-14">
-        <Link href="/" className="flex items-center gap-3 group">
+      <div className="mx-auto flex justify-between items-end h-16">
+        <Link href="/" className="flex items-end group ">
           <Image
-            src="/assets/images/inno.png"
+            src="/assets/images/tree.png"
             alt="Urban Innovation Logo"
-            width={48}
-            height={48}
-            className="object-contain h-10 w-auto transition-opacity group-hover:opacity-80"
+            width={64}
+            height={64}
+            className="object-contain h-16  px-4 w-auto hover:opacity-50 transition-opacity"
             unoptimized={true}
             priority
           />
+          {/* <p className="text-white/80 text-sm tracking-tight py-1">
+            GEZONDE LEEFOMGEVING
+          </p> */}
         </Link>
         <MainNav />
       </div>
