@@ -16,7 +16,7 @@ export default function NavLink({ href, children }: NavLinkProps) {
   return (
     <Link
       href={href}
-      className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200
+      className={`px-4 h-full flex items-center text-sm uppercase font-medium transition-all duration-300
         ${isActive
           ? "bg-white/20 text-text"
           : "text-white hover:text-text hover:bg-white/20"

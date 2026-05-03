@@ -52,7 +52,7 @@ useEffect(() => {
           <span key={href} className="flex items-center gap-2">
             <span>/</span>
             {isLast ? (
-              <span className="text-accent font-medium">{label}</span>
+              <span className="text-text font-medium">{label}</span>
             ) : (
               <Link href={href} className="hover:text-accent transition-colors">
                 {label}
