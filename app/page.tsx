@@ -34,34 +34,29 @@ export default async function HomePage() {
             alt="Overlay"
             fill
             sizes="100vw"
-            className="object-contain z-20"
+            className="object-contain object-left px-6 z-20"
             unoptimized={true}
           />
         </div>
       </div>
 
-      <div className="py-20 bg-primary">
-        <div className="mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-6 items-start">
+      <div className="py-12 bg-primary/80">
+        <div className="mx-auto max-w-7xl px-6 text-start">
 
-          <div className="md:col-span-2 bg-background rounded-2xl p-8 shadow-lg">
-            <Tag label="Over ons" href="/over-ons" />
-            <h3 className="text-xl font-semibold mb-4 leading-snug">
-              Wie zijn wij?
-            </h3>
-            <p className="leading-relaxed">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-            </p>
-          </div>
+          <h2 className="text-9xl md:text-6xl font-semibold mb-6 text-white/80 leading-tight">
+            GEZONDE LEEFOMGEVING
+          </h2>
+          
+          <h2 className="text-4xl md:text-2xl font-semibold text-white/60 mb-2 leading-tight">
+            Inclusieve en duurzame stadsontwikkeling
+          </h2>
 
-          <div className="md:col-span-2 bg-background rounded-2xl p-8 shadow-lg">
-            <Tag label="Urban Innovation" href="/urban-innovation" />
-            <h3 className="text-xl font-semibold mb-4 leading-snug">
-              Wat doen wij?
-            </h3>
-            <p className="leading-relaxed">
-              Onderzoek naar inclusieve, veilige en duurzame steden in Flevoland. 
-            </p>
-          </div>
+          <p className="text-lg md:text-l text-white/50 leading-relaxed">
+            In de stad en de stedelijke regio liggen de grote uitdagingen van de toekomst. 
+            Er spelen economische en sociale vraagstukken en tegelijkertijd staan de steden voor grote opgaven op het gebied van bouwen en duurzaamheid.  
+            De onderzoekers van het lectoraat Urban Innovation werken in fieldlabs en leergemeenschappen samen met bedrijven, regionale organisaties, inwoners en studenten aan praktijkgerichte onderzoeksvragen. 
+            Met een participatieve en ontwerpgerichte aanpak worden innovatieve toepassingen direct in de praktijk getest.
+          </p>
 
         </div>
       </div>
@@ -74,7 +69,7 @@ export default async function HomePage() {
             <h2 className="text-3xl font-semibold text-center">
               Uitgelichte Gemeenten
             </h2>
-            <p className="text-muted-foreground text-center max-w-md">
+            <p className="text-center max-w-md">
               Bekijk de meest recente dashboards van deelnemende gemeenten.
             </p>
           </div>
@@ -96,6 +91,33 @@ export default async function HomePage() {
           </div>
         </div>
       </div>
+
+      <div className="py-20 bg-primary/80">
+        <div className="mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-6 items-start">
+
+          <div className="md:col-span-2 bg-background rounded-2xl p-8 shadow-lg">
+            <Tag label="Over ons" href="/over-ons" />
+            <h3 className="text-xl font-semibold mb-4 leading-snug">
+              Wie zijn wij?
+            </h3>
+            <p className="leading-relaxed">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+            </p>
+          </div>
+
+          <div className="md:col-span-2 bg-background rounded-2xl p-8 shadow-lg">
+            <Tag label="Urban Innovation" href="/urban-innovation" />
+            <h3 className="text-xl font-semibold mb-4 leading-snug">
+              Wat doen wij?
+            </h3>
+            <p className="leading-relaxed">
+              Onderzoek naar inclusieve, veilige en duurzame steden in Flevoland. 
+            </p>
+          </div>
+          
+        </div>
+      </div>
+
     </>
   );
 }

@@ -2,7 +2,7 @@ import Tag from "./Tag"
 
 export default function Footer() {
   return (
-    <footer className="w-full border-t border-white/10 bg-primary backdrop-blur-md mt-12">
+    <footer className="w-full border-t border-white/10 bg-primary backdrop-blur-md">
       <div className="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-4 gap-8 text-sm">
 
         <div>
