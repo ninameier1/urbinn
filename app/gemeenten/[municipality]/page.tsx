@@ -31,9 +31,9 @@ export default async function MunicipalityDashboard({ params }: MunicipalityProp
   const entries = municipalityData.core_elements;
 
   return (
-    <div className="relative w-full h-screen">
+    <div className="relative w-full h-[90vh]">
       <Image
-        src="/assets/images/backgroundplain.png"
+        src="/assets/images/newbg.png"
         alt="Background"
         fill
         className="object-contain"
@@ -45,7 +45,7 @@ export default async function MunicipalityDashboard({ params }: MunicipalityProp
           <div className={styles.logoSpin}>
             <Gear colour="#c6c6c6" teeth={36} variant="logo" className="spin" />
           </div>
-          <span className="absolute capitalize top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center font-bold text-3xl pointer-events-none w-[90%]">
+          <span className="absolute capitalize top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center font-semibold text-4xl pointer-events-none w-[90%]">
             {municipality}
           </span>
         </div>
