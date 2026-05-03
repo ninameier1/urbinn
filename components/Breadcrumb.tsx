@@ -1,5 +1,7 @@
 "use client";
+
 import Link from "next/link";
+
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -15,14 +17,20 @@ export default function Breadcrumb() {
   const segments = pathname.split("/").filter(Boolean);
   const [overrides, setOverrides] = useState<Record<string, string>>({});
 
-  useEffect(() => {
+useEffect(() => {
+  const read = () => {
     const result: Record<string, string> = {};
     segments.forEach((segment) => {
       const stored = sessionStorage.getItem(`breadcrumb_${segment}`);
       if (stored) result[segment] = stored;
     });
     setOverrides(result);
-  }, [pathname]);
+  };
+
+  read(); // read immediately in case it's already written, duh
+  window.addEventListener("breadcrumb-updated", read);
+  return () => window.removeEventListener("breadcrumb-updated", read);
+}, [pathname]);
 
   if (segments.length === 0) return null;
 

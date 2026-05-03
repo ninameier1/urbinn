@@ -53,7 +53,7 @@ export default async function CoreElementPage({ params }: CoreElementProps) {
       <div className="relative w-full h-screen">
         <div className={`${styles.bigGearWrapper} flex-shrink-0`}>
           <Gear colour={mainColour} teeth={18} variant="big" />
-          <h1 className={`${styles.bigGearTitle} w-[90%] text-[2em] leading-snug font-bold text-center pointer-events-none m-0 p-0`}>
+          <h1 className={`${styles.bigGearTitle} w-[90%] text-2xl leading-snug font-semibold text-center pointer-events-none m-0 p-0`}>
             {element.title}
           </h1>
         </div>
@@ -67,7 +67,7 @@ export default async function CoreElementPage({ params }: CoreElementProps) {
           />
         </div>
 
-        <div className={`${styles.mechanismsWrapper} rounded-full`}>
+        <div className={`${styles.mechanismsWrapper} rounded-full text-sm text-center`}>
           {mechanisms.map((m, i) => {
             const angle = (360 / mechanisms.length) * i - 90;
             return (
@@ -97,7 +97,7 @@ export default async function CoreElementPage({ params }: CoreElementProps) {
               ))}
           </div>
         </div>
-        
+
       </div>
     </>
   );
