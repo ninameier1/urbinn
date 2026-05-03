@@ -25,7 +25,7 @@
 
 .gear--logo span {
   height: 17vh;
-  width: 5.5vh;
+  width: 6.5vh;
   top: -1vh;
   transform: translateX(-50%)
     rotate(calc(var(--i) * 10deg)); /* 360 / 36 */
@@ -33,13 +33,13 @@
 
 
 .gear--big {
-  width: 35vh;
-  height: 35vh;
+  width: 32vh;
+  height: 32vh;
   rotate: 30deg;
 }
 
 .gear--big span {
-  height: 19.5vh;
+  height: 18vh;
   width: 12vh;
   top: -2vh;
   transform: translateX(-50%)
@@ -47,14 +47,14 @@
 }
 
 .gear--mechanism {
-  width: 18vh;
-  height: 18vh;
+  width: 15vh;
+  height: 15vh;
 }
 
 .gear--mechanism span {
-  height: 11vh;
-  width: 10vh;
-    top: -2vh;
+  height: 9.25vh;
+  width: 9vh;
+    top: -1.75vh;
   transform: translateX(-50%)
     rotate(calc(var(--i) * 45deg)); /* 360 / 8 */
 }

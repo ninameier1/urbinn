@@ -5,10 +5,11 @@
   transform:
     translate(-50%, -50%)
     rotate(var(--angle))
-    translate(29.5vmin);
+    translate(26vmin);
   filter:
     drop-shadow(0 0 0.75rem rgba(0, 0, 0, 0.2));
   z-index: 1;
+    /* border: 5px solid orange; */
 }
 
 .mechanismText {

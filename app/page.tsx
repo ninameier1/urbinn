@@ -41,16 +41,15 @@ export default async function HomePage() {
       </div>
 
       <div className="py-20 bg-primary">
-        <div className="mx-auto px-6 grid grid-cols-1 md:grid-cols-5 gap-6 items-start">
+        <div className="mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-6 items-start">
 
-          <div className="md:col-span-3 bg-background rounded-2xl p-8 shadow-lg">
+          <div className="md:col-span-2 bg-background rounded-2xl p-8 shadow-lg">
             <Tag label="Over ons" href="/over-ons" />
-            <h3 className="text-2xl font-semibold mb-4 leading-snug">
+            <h3 className="text-xl font-semibold mb-4 leading-snug">
               Wie zijn wij?
             </h3>
             <p className="leading-relaxed">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
             </p>
           </div>
 
@@ -60,7 +59,7 @@ export default async function HomePage() {
               Wat doen wij?
             </h3>
             <p className="leading-relaxed">
-              Onderzoek naar inclusieve, veilige en duurzame steden in Flevoland.
+              Onderzoek naar inclusieve, veilige en duurzame steden in Flevoland. 
             </p>
           </div>
 
