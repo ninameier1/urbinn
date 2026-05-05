@@ -47,11 +47,11 @@ export default async function HomePage() {
             GEZONDE LEEFOMGEVING
           </h2>
           
-          <h2 className="text-4xl md:text-2xl font-semibold text-white/60 mb-2 tracking-tight">
+          <h2 className="text-4xl md:text-2xl font-semibold text-white/75 mb-2 tracking-tight">
             Inclusieve en duurzame stadsontwikkeling
           </h2>
 
-          <p className="text-lg md:text-l text-white/50 tracking-normal">
+          <p className="text-lg md:text-l text-white/60 tracking-normal">
             In de stad en de stedelijke regio liggen de grote uitdagingen van de toekomst. 
             Er spelen economische en sociale vraagstukken en tegelijkertijd staan de steden voor grote opgaven op het gebied van bouwen en duurzaamheid.  
             De onderzoekers van het lectoraat Urban Innovation werken in fieldlabs en leergemeenschappen samen met bedrijven, regionale organisaties, inwoners en studenten aan praktijkgerichte onderzoeksvragen. 
