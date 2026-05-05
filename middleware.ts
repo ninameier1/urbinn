@@ -1,6 +1,5 @@
-export { auth as middleware } from '@/lib/auth'
+export { auth as middleware } from '@/auth'
 
-export const config = {
-  matcher: ['/cms/:path*'],   // keep it secret, keep it safe
+export const config = { // keep it secret, keep it safe
+  matcher: ['/cms/:path*'],
 }
-

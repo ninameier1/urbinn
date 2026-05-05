@@ -1,13 +1,20 @@
 'use server'
 
-import { auth } from '@/lib/auth'
+import { auth } from '@/auth'
 import { prisma } from '@/lib/prisma'
 
-// helper so I don't repeat myself ten thousand times
-async function requireAuth() {
+async function requireAuth() { // handler so I don't type this 100 times
   const session = await auth()
-  if (!session || !session.user) throw new Error('Unauthorized')
-  return session as typeof session & { user: { id: string } }
+
+  if (!session?.user) {
+    throw new Error('Unauthorized')
+  }
+
+  return session as typeof session & {
+    user: {
+      id: string
+    }
+  }
 }
 
 // ------- MUNICIPALITY CRUD --------
@@ -16,11 +23,12 @@ async function requireAuth() {
 export async function createMunicipality(formData: FormData) {
   const session = await requireAuth()
   const name = formData.get('name') as string
+  const userId = Number(session.user?.id)
 
   await prisma.municipality.create({
     data: {
       name,
-      created_by: Number(session.user.id)
+      created_by: userId
     }
   })
 }
@@ -55,13 +63,14 @@ export async function deleteMunicipality(id: number) {
 // create
 export async function createCoreElement(municipalityId: number, formData: FormData) {
   const session = await requireAuth()
+  const userId = Number(session.user?.id)
 
   await prisma.coreElement.create({
     data: {
       municipality_id: municipalityId,
       title: formData.get('title') as string,
       slug: formData.get('slug') as string,
-      created_by: Number(session.user.id)
+      created_by: userId,
     }
   })
 }
@@ -106,13 +115,14 @@ export async function deleteCoreElement(id: number) {
 // create
 export async function createMechanism(coreElementId: number, formData: FormData) {
   const session = await requireAuth()
+  const userId = Number(session.user?.id)
 
   await prisma.mechanism.create({
     data: {
       core_element_id: coreElementId,
       label: formData.get('label') as string,
       text: formData.get('text') as string,
-      created_by: Number(session.user.id)
+      created_by: userId
     }
   })
 }
@@ -158,6 +168,7 @@ export async function deleteMechanism(id: number) {
 // create
 export async function createFactor(coreElementId: number, formData: FormData) {
   const session = await requireAuth()
+  const userId = Number(session.user?.id)
 
   await prisma.factor.create({
     data: {
@@ -165,7 +176,7 @@ export async function createFactor(coreElementId: number, formData: FormData) {
       label: formData.get('label') as string,
       text: formData.get('text') as string,
       type: formData.get('type') as 'plus' | 'min',
-      created_by: Number(session.user.id)
+      created_by: userId
     }
   })
 }
