@@ -24,7 +24,6 @@ async function main() {
       username: "admin",
       email: "admin@admin.com",
       password_hash: "admin",
-      role: "admin",
     },
   });
 

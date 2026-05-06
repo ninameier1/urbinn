@@ -12,10 +12,6 @@ datasource db {
   provider = "mysql"
 }
 
-enum Role {
-  admin
-}
-
 enum FactorType {
   plus
   min
@@ -26,7 +22,6 @@ model User {
   username         String
   email            String         @unique
   password_hash    String
-  role             Role           @default(admin)
   created_at       DateTime       @default(now())
 
   municipalities   Municipality[] @relation("MunicipalityCreatedBy")
