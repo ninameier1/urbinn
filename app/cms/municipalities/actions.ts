@@ -3,18 +3,12 @@
 import { auth } from '@/auth'
 import { prisma } from '@/lib/prisma'
 
-async function requireAuth() { // handler so I don't type this 100 times
+async function requireAuth() { // handler for authenticating server actions
   const session = await auth()
-
   if (!session?.user) {
     throw new Error('Unauthorized')
   }
-
-  return session as typeof session & {
-    user: {
-      id: string
-    }
-  }
+  return session
 }
 
 // ------- MUNICIPALITY CRUD --------
