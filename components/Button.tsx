@@ -28,7 +28,7 @@ export default function Button({
 
   const variants = {
     primary: "bg-primary text-white shadow-sm hover:bg-secondary hover:text-text",
-    secondary: "bg-secondary text-white shadow-sm hover:bg-accent hover:text-text",
+    secondary: "bg-accent text-white shadow-sm hover:bg-secondary hover:text-text",
   };
 
   const disabledStyles = "opacity-50 cursor-not-allowed";

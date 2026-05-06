@@ -28,7 +28,9 @@ export default function MunicipalityCard({ name, image, href }: __MunicipalityCa
        
        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
           <div className="absolute bottom-0 left-0 right-0 p-4 bg-black/20 backdrop-blur-sm px-4 py-3">
-            <h2 className="text-2xl text-center text-white/80 hover:text-white">{name}</h2>
+            <h2 className="text-2xl text-center text-white/80 hover:text-white">
+            {name}
+            </h2>
           </div>
         </div>
       </Link>
