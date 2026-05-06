@@ -24,7 +24,7 @@ export default function Button({
   const isDisabled = disabled || loading;
 
   const base =
-    "inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl transition";
+    "inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl transition cursor-pointer";
 
   const variants = {
     primary: "bg-primary text-white shadow-sm hover:bg-secondary hover:text-text",
