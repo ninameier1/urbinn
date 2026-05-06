@@ -78,7 +78,7 @@ export default async function HomePage() {
               <MunicipalityCard
                 key={municipality.id}
                 name={municipality.name}
-                image={municipality.image ?? ""}
+                image={municipality.image ?? "/placeholder.jpg"}
                 href={`/gemeenten/${municipality.name.toLowerCase()}`}
               />
             ))}
