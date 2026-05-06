@@ -5,6 +5,7 @@ import { PrismaClient } from "../generated/prisma/client";
 import { faker } from "@faker-js/faker/locale/nl";
 import { slugify } from '@utils/helpers';
 
+import bcrypt from 'bcryptjs'
 import realData from "../data/data.json";
 
 const adapter = new PrismaMariaDb({
@@ -17,13 +18,15 @@ const adapter = new PrismaMariaDb({
 const prisma = new PrismaClient({ adapter });
 
 async function main() {
+  const hash = await bcrypt.hash('admin', 12)
+
   const admin = await prisma.user.upsert({
     where: { email: "admin@admin.com" },
-    update: {},
+    update: { password_hash: hash },
     create: {
       username: "admin",
       email: "admin@admin.com",
-      password_hash: "admin",
+      password_hash: hash,
     },
   });
 
