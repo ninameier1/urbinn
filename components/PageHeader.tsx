@@ -33,7 +33,7 @@ export default function PageHeader() {
             alt="Urban Innovation Logo"
             width={64}
             height={64}
-            className="object-contain h-16  px-4 w-auto hover:opacity-50 transition-opacity"
+            className="object-contain h-16 px-4 w-auto hover:opacity-50 transition-opacity"
             unoptimized={true}
             priority
           />

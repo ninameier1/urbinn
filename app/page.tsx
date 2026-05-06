@@ -26,16 +26,15 @@ export default async function HomePage() {
           unoptimized={true}
           priority
         />
+        
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10" />
-
-        <div className="absolute inset-0 z-10">
+        <div className="absolute top-1/2 left-36 -translate-y-1/2 w-[600px] h-full z-10">
           <Image
             src="/assets/images/tree.png"
             alt="Overlay"
             fill
-            sizes="100vw"
-            className="object-contain object-left px-46 z-20"
-            unoptimized={true}
+            className="object-contain object-left z-20"
+            unoptimized
           />
         </div>
       </div>
