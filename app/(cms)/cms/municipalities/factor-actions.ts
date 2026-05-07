@@ -9,7 +9,7 @@ import { FactorSchema } from '@/lib/zodSchemas'
 // create
 export async function createFactor(coreElementId: number, formData: FormData) {
   const session = await requireAuth()
-  const userId = Number(session.user?.id)
+  const userId = Number(session.user.id)
 
   const parsed = FactorSchema.safeParse({
     label: formData.get('label'),

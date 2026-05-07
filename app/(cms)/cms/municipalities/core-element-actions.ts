@@ -9,7 +9,7 @@ import { CoreElementSchema } from '@/lib/zodSchemas'
 // create
 export async function createCoreElement(municipalityId: number, formData: FormData) {
   const session = await requireAuth()
-  const userId = Number(session.user?.id)
+  const userId = Number(session.user.id)
 
   const parsed = CoreElementSchema.safeParse({
     title: formData.get('title'),

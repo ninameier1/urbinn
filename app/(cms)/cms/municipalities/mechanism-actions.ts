@@ -9,7 +9,7 @@ import { MechanismSchema } from '@/lib/zodSchemas'
 // create
 export async function createMechanism(coreElementId: number, formData: FormData) {
   const session = await requireAuth()
-  const userId = Number(session.user?.id)
+  const userId = Number(session.user.id)
 
   const parsed = MechanismSchema.safeParse({
     label: formData.get('label'),

@@ -9,7 +9,7 @@ import { MunicipalitySchema } from '@/lib/zodSchemas'
 // create
 export async function createMunicipality(formData: FormData) {
   const session = await requireAuth()
-  const userId = Number(session.user?.id)
+  const userId = Number(session.user.id)
 
   const parsed = MunicipalitySchema.safeParse({
     name: formData.get('name'),
