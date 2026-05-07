@@ -6,10 +6,11 @@ type ButtonProps = {
   children: React.ReactNode;
   href?: string;
   type?: "button" | "submit";
-  variant?: "primary" | "secondary";
+  variant?: "primary" | "secondary" | "logout";
   className?: string;
   disabled?: boolean;
   loading?: boolean;
+  action?: () => Promise<void>;
 };
 
 export default function Button({
@@ -20,23 +21,23 @@ export default function Button({
   className = "",
   disabled = false,
   loading = false,
+  action,
 }: ButtonProps) {
   const isDisabled = disabled || loading;
 
   const base =
-    "inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl transition uppercase cursor-pointer";
+    "inline-flex items-center justify-center gap-2 px-6 py-3  transition uppercase cursor-pointer";
 
   const variants = {
-    primary: "bg-primary text-white shadow-sm hover:bg-secondary hover:text-text",
-    secondary: "bg-accent text-white shadow-sm hover:bg-secondary hover:text-text",
+    primary: "bg-primary text-white shadow-sm hover:bg-secondary hover:text-text rounded-xl",
+    secondary: "bg-accent text-white shadow-sm hover:bg-secondary hover:text-text rounded-xl",
+    logout: "bg-primary block px-4 py-3 text-sm text-center w-full text-white hover:bg-accent hover:text-text",
   };
-
-  const disabledStyles = "opacity-50 cursor-not-allowed";
 
   const styles = `
     ${base}
     ${variants[variant]}
-    ${isDisabled ? disabledStyles : ""}
+    ${isDisabled ? "opacity-50 cursor-not-allowed" : ""}
     ${className}
   `;
 
@@ -65,7 +66,16 @@ export default function Button({
   }
 
   return (
-    <button type={type} className={styles} disabled={isDisabled}>
+    <button
+      type={type}
+      className={styles}
+      disabled={isDisabled}
+      onClick={async () => {
+        if (action && !isDisabled) {
+          await action();
+        }
+      }}
+    >
       {content}
     </button>
   );

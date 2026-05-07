@@ -5,11 +5,10 @@ import Image from "next/image";
 
 import { useEffect, useState } from "react";
 
-import MainNav from './MainNav';
 import Breadcrumb from './Breadcrumb';
 
 
-export default function PageHeader() {
+export default function PageHeader({ nav }: { nav: React.ReactNode }) {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -19,13 +18,13 @@ export default function PageHeader() {
   }, []);
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300
+    <header className={`fixed top-0 left-0 right-0 z-50
         ${scrolled
           ? "bg-primary/80 backdrop-blur-md border-b border-white/10 shadow-sm"
           : "bg-primary"
         }`}>
-
-      <div className="mx-auto flex justify-between items-end h-16">
+     
+      <div className="mx-auto flex h-16 divide-x divide-secondary">
         <Link href="/" className="flex items-end group ">
           <Image
             src="/assets/images/tree.png"
@@ -36,14 +35,12 @@ export default function PageHeader() {
             unoptimized={true}
             priority
           />
-          {/* <p className="text-white/80 text-sm tracking-tight py-1">
-            GEZONDE LEEFOMGEVING
-          </p> */}
         </Link>
         
-        <MainNav />
+        {nav} 
+        
       </div>
-    
+
     <Breadcrumb />
     
     </header>
