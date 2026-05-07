@@ -85,7 +85,7 @@ export default async function HomePage() {
           </div>
           <div className="text-center mt-10">
             <Button href="/gemeenten" variant="primary">
-              Bekijk alle gemeenten →
+              Alle gemeenten →
             </Button>
           </div>
         </div>

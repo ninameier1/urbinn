@@ -19,13 +19,12 @@ export default function PageHeader() {
   }, []);
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300
         ${scrolled
           ? "bg-primary/80 backdrop-blur-md border-b border-white/10 shadow-sm"
           : "bg-primary"
-        }`}
-    >
+        }`}>
+
       <div className="mx-auto flex justify-between items-end h-16">
         <Link href="/" className="flex items-end group ">
           <Image
@@ -41,9 +40,12 @@ export default function PageHeader() {
             GEZONDE LEEFOMGEVING
           </p> */}
         </Link>
+        
         <MainNav />
       </div>
+    
     <Breadcrumb />
+    
     </header>
   );
 };
