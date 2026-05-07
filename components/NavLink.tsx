@@ -19,12 +19,14 @@ export default function NavLink({ href, children }: NavLinkProps) {
   return (
     <Link
       href={href}
-      className={`px-4 h-full flex items-center text-sm uppercase font-medium transition-all duration-50
-        ${isActive
-          ? "bg-white/20 text-text"
-          : "text-white hover:text-text hover:bg-white/20"
-        }`}
-    >
+      className={`relative px-4 h-full flex items-center text-sm uppercase font-medium
+      ${isActive ? "text-white" : "text-text hover:text-white"}
+    `}>
+          <span
+            className={`absolute bottom-0 left-0 h-[2px] w-full bg-accent transition-all duration-200
+              ${isActive ? "opacity-100" : "opacity-0 scale-x-0 group-hover:opacity-100 group-hover:scale-x-100"}
+            `}
+          />
       {children}
     </Link>
   );

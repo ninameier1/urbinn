@@ -10,6 +10,9 @@ const labels: Record<string, string> = {
   "over-ons": "Over ons",
   onderzoeken: "Onderzoeken",
   "urban-innovation": "Urban Innovation",
+  cms: "CMS",
+  municipalities: "Alle Gemeenten",
+  new: "Nieuwe Gemeente",
 };
 
 export default function Breadcrumb() {
