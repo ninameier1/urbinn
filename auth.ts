@@ -11,6 +11,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 
   session: {
     strategy: "jwt",
+    maxAge: 8 * 60 * 60, // 8 hours, like a normal working day, log in once a day
   },
 
   providers: [
@@ -47,13 +48,13 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 
   callbacks: { // okay so it freaks out if I don't add this 
     async jwt({ token, user }: any) {
-    if (user) token.id = user.id
+    if (user) token.id = user.id; 
     return token
     },
 
     async session({ session, token }: any) {
     if (session.user) {
-        session.user.id = token.id
+        session.user.id = token.id; 
     }
     return session
     }
