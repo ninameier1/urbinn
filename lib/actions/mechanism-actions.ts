@@ -1,8 +1,8 @@
 'use server'
 
 import { prisma } from '@/lib/prisma'
-import { requireAuth } from '@/lib/auth-guard'
-import { MechanismSchema } from '@/lib/zodSchemas'
+import { requireAuth } from '@/lib/auth/auth-guard'
+import { MechanismSchema } from '@/lib/validations/zodSchemas'
 
 // ------- MECHANISM CRUD --------
 

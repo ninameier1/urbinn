@@ -1,8 +1,8 @@
 'use server'
 
 import { prisma } from '@/lib/prisma'
-import { requireAuth } from '@/lib/auth-guard'
-import { MunicipalitySchema } from '@/lib/zodSchemas'
+import { requireAuth } from '@/lib/auth/auth-guard'
+import { MunicipalitySchema } from '@/lib/validations/zodSchemas'
 
 // ------- MUNICIPALITY CRUD --------
 
