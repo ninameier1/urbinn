@@ -1,26 +1,32 @@
-import { signIn } from '@/auth'
+'use client'
+
+import { useActionState } from 'react'
+import { handleLogin } from '@/lib/actions/account-actions'
 
 import Button from '@/components/Button'
 
 export default function LoginPage() {
-  async function handleLogin(formData: FormData) {
-    'use server'
-    await signIn('credentials', {
-      email: formData.get('email'),
-      password: formData.get('password'),
-      redirectTo: '/cms',
-    })
-  }
+  const [state, action, pending] = useActionState(handleLogin, null)
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4 bg-secondary/60">
       <div className="w-full max-w-lg bg-primary border border-gray-200 shadow-2xl rounded-2xl p-10">
-        
         <h1 className="mb-8 text-4xl text-center tracking-widest text-white font-medium uppercase">
           Urban Innovation
         </h1>
 
-        <form action={handleLogin} className="flex flex-col gap-4">
+        {state?.ok && (
+          <p className="mb-4 text-sm text-center text-green-300">
+            Magic Link is verstuurd.
+          </p>
+        )}
+        {state?.error === "not-invited" && (
+          <p className="mb-4 text-sm text-center text-red-300">
+            Dit Email Adres is ongeldig.
+          </p>
+        )}
+
+        <form action={action} className="flex flex-col gap-4">
           <div>
             <label className="block text-sm text-white mb-1.5" htmlFor="email">
               Email
@@ -34,26 +40,10 @@ export default function LoginPage() {
               className="w-full h-[32px] bg-white rounded-sm text-base px-2"
             />
           </div>
-
-          <div>
-            <label className="block text-sm text-white mb-1.5" htmlFor="password">
-              Password
-            </label>
-            <input
-              id="password"
-              name="password"
-              type="password"
-              placeholder="••••••••"
-              required
-              className="w-full h-[32px] bg-white rounded-sm text-2xl px-2"
-            />
-          </div>
-
-          <Button variant="secondary" type="submit">
-            Log in
+          <Button variant="secondary" type="submit" disabled={pending}>
+            {pending ? 'Sending...' : 'Send magic link'}
           </Button>
         </form>
-        
       </div>
     </div>
   )

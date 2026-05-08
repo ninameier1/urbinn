@@ -1,8 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Get a free hosted Postgres database in seconds: `npx create-db`
-
 generator client {
   provider = "prisma-client"
   output   = "../generated/prisma"
@@ -12,22 +7,64 @@ datasource db {
   provider = "mysql"
 }
 
-enum FactorType {
-  plus
-  min
+model User {
+  id             Int            @id @default(autoincrement())
+  username       String?
+  email          String         @unique
+  emailVerified  DateTime?
+  password_hash  String?
+  created_at     DateTime       @default(now())
+  created_by     Int?
+  accounts       Account[]
+  core_elements  CoreElement[]  @relation("CoreElementCreatedBy")
+  factors        Factor[]       @relation("FactorCreatedBy")
+  mechanisms     Mechanism[]    @relation("MechanismCreatedBy")
+  municipalities Municipality[] @relation("MunicipalityCreatedBy")
+  sessions       Session[]
 }
 
-model User {
-  id               Int            @id @default(autoincrement())
-  username         String
-  email            String         @unique
-  password_hash    String
-  created_at       DateTime       @default(now())
+model Account {
+  id                String  @id @default(cuid())
+  userId            Int
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  municipalities   Municipality[] @relation("MunicipalityCreatedBy")
-  core_elements    CoreElement[]  @relation("CoreElementCreatedBy")
-  mechanisms       Mechanism[]    @relation("MechanismCreatedBy")
-  factors          Factor[]       @relation("FactorCreatedBy")
+  @@unique([provider, providerAccountId])
+  @@index([userId], map: "Account_userId_fkey")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       Int
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId], map: "Session_userId_fkey")
+}
+
+model Invite {
+  id         Int       @id @default(autoincrement())
+  email      String    @unique
+  created_at DateTime  @default(now())
+  used_at    DateTime?
+}
+
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@unique([identifier, token])
 }
 
 model Municipality {
@@ -36,9 +73,10 @@ model Municipality {
   image         String?
   created_at    DateTime      @default(now())
   created_by    Int
+  core_elements CoreElement[]
   creator       User          @relation("MunicipalityCreatedBy", fields: [created_by], references: [id])
 
-  core_elements CoreElement[]
+  @@index([created_by], map: "Municipality_created_by_fkey")
 }
 
 model CoreElement {
@@ -48,11 +86,13 @@ model CoreElement {
   slug            String       @unique
   created_at      DateTime     @default(now())
   created_by      Int
-  municipality    Municipality @relation(fields: [municipality_id], references: [id])
   creator         User         @relation("CoreElementCreatedBy", fields: [created_by], references: [id])
-
-  mechanisms      Mechanism[]
+  municipality    Municipality @relation(fields: [municipality_id], references: [id])
   factors         Factor[]
+  mechanisms      Mechanism[]
+
+  @@index([created_by], map: "CoreElement_created_by_fkey")
+  @@index([municipality_id], map: "CoreElement_municipality_id_fkey")
 }
 
 model Mechanism {
@@ -64,6 +104,9 @@ model Mechanism {
   created_by      Int
   core_element    CoreElement @relation(fields: [core_element_id], references: [id])
   creator         User        @relation("MechanismCreatedBy", fields: [created_by], references: [id])
+
+  @@index([core_element_id], map: "Mechanism_core_element_id_fkey")
+  @@index([created_by], map: "Mechanism_created_by_fkey")
 }
 
 model Factor {
@@ -76,4 +119,12 @@ model Factor {
   created_by      Int
   core_element    CoreElement @relation(fields: [core_element_id], references: [id])
   creator         User        @relation("FactorCreatedBy", fields: [created_by], references: [id])
+
+  @@index([core_element_id], map: "Factor_core_element_id_fkey")
+  @@index([created_by], map: "Factor_created_by_fkey")
+}
+
+enum FactorType {
+  plus
+  min
 }
