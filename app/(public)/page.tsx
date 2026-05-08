@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import { prisma } from "@/lib/prisma";
+import { getNewestMunicipalities } from "@db/municipalities";
 
 import Button from "@/components/Button"
 import Tag from "@/components/Tag"
@@ -9,14 +9,11 @@ import MunicipalityCard from "@/components/MunicipalityCard";
 export const revalidate = 60;
 
 export default async function HomePage() {
-  const municipalities = await prisma.municipality.findMany({
-    orderBy: { created_at: "desc" },
-    take: 3,
-  });
-
-  return (
+const municipalities = await getNewestMunicipalities();
+  
+return (
     <>
-      <div className="relative h-[55vh] min-h-[400px] -mt-10">
+      <div className="relative h-[55vh] min-h-[400px] -mt-8">
         <Image
           src="/assets/images/header.jpg"
           alt="Urban Innovation"
@@ -39,7 +36,7 @@ export default async function HomePage() {
         </div>
       </div>
 
-      <div className="py-12 bg-primary/80">
+      <div className="py-16 bg-primary/80">
         <div className="mx-auto max-w-7xl px-6 text-start">
 
           <h2 className="text-9xl md:text-6xl font-semibold mb-6 text-white/80 tracking-tight">

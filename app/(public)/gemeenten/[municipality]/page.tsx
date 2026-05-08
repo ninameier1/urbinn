@@ -1,8 +1,7 @@
 import Link from 'next/link';
 
-import { prisma } from "@/lib/prisma";
-import { getThemeForIndex } from '@utils/helpers';
-import { slugify } from '@utils/helpers';
+import { getThemeForIndex, slugify } from '@utils/helpers';
+import { getMunicipalityByName } from '@db/municipalities';
 
 import Gear from '@/components/Gear/Gear';
 import Image from "next/image";
@@ -16,18 +15,8 @@ interface MunicipalityProps {
 
 export default async function MunicipalityDashboard({ params }: MunicipalityProps) {
   const { municipality } = await params;
-
-  const municipalityData = await prisma.municipality.findFirst({
-    where: { name: { equals: municipality } },
-    include: {
-      core_elements: {
-        orderBy: { id: 'asc' },
-      },
-    },
-  });
-
+  const municipalityData = await getMunicipalityByName(municipality);
   if (!municipalityData) return <h2>Gemeente niet gevonden</h2>;
-
   const entries = municipalityData.core_elements;
 
   return (

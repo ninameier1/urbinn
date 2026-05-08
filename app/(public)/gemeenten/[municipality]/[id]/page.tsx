@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import { prisma } from '@/lib/prisma';
+import { getCoreElementBySlug, getCoreElementsByMunicipalityId } from '@db/core-elements';
 import { getThemeForIndex } from '@utils/helpers';
 
 import Mechanism from '@components/Mechanism/Mechanism';
@@ -22,25 +22,10 @@ interface CoreElementProps {
 export default async function CoreElementPage({ params }: CoreElementProps) {
   const { municipality, id } = await params;
 
-  const element = await prisma.coreElement.findFirst({
-  where: {
-    slug: id,
-    municipality: { name: municipality },
-  },
-    include: {
-      mechanisms: true,
-      factors: true,
-      municipality: true,
-    },
-  });
-
+  const element = await getCoreElementBySlug(id, municipality);
   if (!element) notFound();
 
-  const allElements = await prisma.coreElement.findMany({
-    where: { municipality_id: element.municipality_id },
-    select: { id: true, title: true, slug: true },
-    orderBy: { id: 'asc' },
-  });
+  const allElements = await getCoreElementsByMunicipalityId(element.municipality_id);
 
   const index = allElements.findIndex((e) => e.slug === id);
   const { mainColour, subColour } = getThemeForIndex(index, allElements.length);

@@ -1,13 +1,12 @@
-import { prisma } from "@/lib/prisma";
+import { getAllMunicipalities } from '@db/municipalities';
 
 import MunicipalityCard from '@/components/MunicipalityCard';
 
 export const revalidate = 60;
 
 export default async function MunicipalitiesPage() {
-    const municipalities = await prisma.municipality.findMany({
-      orderBy: { name: "asc" },
-    });
+const municipalities = await getAllMunicipalities();
+if (!municipalities.length) return <h2>Geen gemeenten gevonden</h2>;
 
   return (
     <div className="py-20 mb-12">
