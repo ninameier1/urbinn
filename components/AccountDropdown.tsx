@@ -5,7 +5,7 @@ import { useState } from "react";
 import { usePathname } from "next/navigation";
 
 import Button from "./Button";
-import { logout } from "@/app/(cms)/cms/account/account-actions";
+import { logout } from "@/lib/actions/account-actions";
 
 type AccountDropdownProps = {
   username: string;
