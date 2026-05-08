@@ -8,6 +8,7 @@ import Gear from '@/components/Gear/Gear';
 import ElementBar from '@/components/ElementBar/ElementBar';
 import BreadcrumbOverride from '@/components/BreadcrumbOverride';
 import styles from './CoreElement.module.css';
+import Image from "next/image";
 
 export const revalidate = 60;
 
@@ -48,7 +49,16 @@ export default async function CoreElementPage({ params }: CoreElementProps) {
   const factors = element.factors;
 
   return (
-    <>
+    <div className="relative w-full h-[90vh]">
+          {/* <Image
+            src="/assets/images/newbg.png"
+            alt="Background"
+            fill
+            className="object-contain mt-16"
+            unoptimized={true}
+            priority
+          /> */}
+
       <BreadcrumbOverride segment={id} label={element.title} />
       <div className="relative w-full h-screen">
         <div className={`${styles.bigGearWrapper} flex-shrink-0`}>
@@ -99,6 +109,6 @@ export default async function CoreElementPage({ params }: CoreElementProps) {
         </div>
 
       </div>
-    </>
+    </div>
   );
 }

@@ -43,7 +43,7 @@ export default async function MunicipalityDashboard({ params }: MunicipalityProp
       <div className="w-full h-auto min-h-full flex flex-col items-center bg-background rounded-none">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full drop-shadow-md">
           <div className={styles.logoSpin}>
-            <Gear colour="#c6c6c6" teeth={36} variant="logo" className="spin" />
+            <Gear colour="#c6c6c6" teeth={36} variant="logo" />
           </div>
           <span className="absolute capitalize top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center font-semibold text-4xl pointer-events-none w-[90%]">
             {municipality}
