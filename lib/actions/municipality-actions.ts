@@ -2,7 +2,7 @@
 
 import { prisma } from '@/lib/prisma'
 import { requireAuth } from '@/lib/auth/auth-guard'
-import { MunicipalitySchema } from '@/lib/validations/zodSchemas'
+import { MunicipalitySchema } from '@validations/zodSchemas'
 
 // ------- MUNICIPALITY CRUD --------
 
@@ -14,7 +14,10 @@ export async function createMunicipality(formData: FormData) {
   const parsed = MunicipalitySchema.safeParse({
     name: formData.get('name'),
   })
-  if (!parsed.success) throw new Error(parsed.error.issues[0].message)
+
+  if (!parsed.success) {
+  throw new Error(parsed.error.issues[0].message)
+  }
 
   await prisma.municipality.create({
     data: {
@@ -38,7 +41,10 @@ export async function updateMunicipality(id: number, formData: FormData) {
   const parsed = MunicipalitySchema.safeParse({
     name: formData.get('name'),
   })
-  if (!parsed.success) throw new Error(parsed.error.issues[0].message)
+  
+  if (!parsed.success) {
+  throw new Error(parsed.error.issues[0].message)
+  }
 
   await prisma.municipality.update({
     where: { id },

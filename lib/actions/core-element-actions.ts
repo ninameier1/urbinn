@@ -2,7 +2,7 @@
 
 import { prisma } from '@/lib/prisma'
 import { requireAuth } from '@/lib/auth/auth-guard'
-import { CoreElementSchema } from '@/lib/validations/zodSchemas'
+import { CoreElementSchema } from '@validations/zodSchemas'
 
 // ------- CORE ELEMENT CRUD --------
 
@@ -15,7 +15,10 @@ export async function createCoreElement(municipalityId: number, formData: FormDa
     title: formData.get('title'),
     slug: formData.get('slug'),
   })
-  if (!parsed.success) throw new Error(parsed.error.issues[0].message)
+
+  if (!parsed.success) {
+  throw new Error(parsed.error.issues[0].message)
+  }
 
   await prisma.coreElement.create({
     data: {
@@ -50,7 +53,10 @@ export async function updateCoreElement(id: number, formData: FormData) {
   const parsed = CoreElementSchema.pick({ title: true }).safeParse({
     title: formData.get('title'),
   })
-if (!parsed.success) throw new Error(parsed.error.issues[0].message)
+  
+  if (!parsed.success) {
+  throw new Error(parsed.error.issues[0].message)
+  }
 
   await prisma.coreElement.update({
     where: { id },

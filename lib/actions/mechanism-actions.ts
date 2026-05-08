@@ -2,7 +2,7 @@
 
 import { prisma } from '@/lib/prisma'
 import { requireAuth } from '@/lib/auth/auth-guard'
-import { MechanismSchema } from '@/lib/validations/zodSchemas'
+import { MechanismSchema } from '@validations/zodSchemas'
 
 // ------- MECHANISM CRUD --------
 
@@ -15,7 +15,10 @@ export async function createMechanism(coreElementId: number, formData: FormData)
     label: formData.get('label'),
     text: formData.get('text'),
   })
-if (!parsed.success) throw new Error(parsed.error.issues[0].message)
+  
+  if (!parsed.success) {
+    throw new Error(parsed.error.issues[0].message)
+  }
 
   await prisma.mechanism.create({
     data: {

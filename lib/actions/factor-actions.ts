@@ -2,7 +2,7 @@
 
 import { prisma } from '@/lib/prisma'
 import { requireAuth } from '@/lib/auth/auth-guard'
-import { FactorSchema } from '@/lib/validations/zodSchemas'
+import { FactorSchema } from '@validations/zodSchemas'
 
 // ------- FACTOR CRUD --------
 
@@ -16,7 +16,10 @@ export async function createFactor(coreElementId: number, formData: FormData) {
     text: formData.get('text'),
     type: formData.get('type'),
   })
-if (!parsed.success) throw new Error(parsed.error.issues[0].message)
+  
+  if (!parsed.success) {
+    throw new Error(parsed.error.issues[0].message)
+  }
 
   await prisma.factor.create({
     data: {
@@ -54,7 +57,10 @@ export async function updateFactor(id: number, formData: FormData) {
     text: formData.get('text'),
     type: formData.get('type'),
   })
-if (!parsed.success) throw new Error(parsed.error.issues[0].message)
+
+  if (!parsed.success) {
+  throw new Error(parsed.error.issues[0].message)
+  }
 
   await prisma.factor.update({
     where: { id },
