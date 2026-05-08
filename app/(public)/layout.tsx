@@ -8,7 +8,7 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
       
       <PageHeader nav={<MainNav />} />
 
-      <main className="flex-1 pt-26">
+      <main className="flex-1 pt-24">
         <div className="container max-w-full">
           {children}
         </div>

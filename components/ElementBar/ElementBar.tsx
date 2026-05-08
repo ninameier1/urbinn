@@ -9,7 +9,7 @@ import styles from "./ElementBar.module.css";
 type EleProps = {
   eleIds: string[];
   municipality: string | string[];
-  data: any;
+  data: Record<string, { title?: string }>;
   activeId: string;
 };
 

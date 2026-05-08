@@ -25,20 +25,24 @@ export default function AccountDropdown({ username }: AccountDropdownProps) {
       
         <button type="button" 
             className={`relative px-4 h-full flex items-center text-sm uppercase font-medium
-            ${isActive ? "text-white" : "text-text hover:text-white"}
-        }`}>
+            ${isActive 
+              ? "text-white" 
+              : "text-text hover:text-white"}
+        `}>
             <span
             className={`absolute bottom-0 left-0 h-[2px] w-full bg-accent transition-all duration-200
-              ${isActive ? "opacity-100" : "opacity-0 scale-x-0 group-hover:opacity-100 group-hover:scale-x-100"}
+              ${isActive 
+                ? "opacity-100" 
+                : "opacity-0 scale-x-0 hover:opacity-100 hover:scale-x-100"}
             `}/>
                 {username}
         </button>
 
-      <div className={`absolute top-full right-0 z-50 w-56 overflow-hidden border border-white/10 bg-secondary shadow-xl ${
-          isOpen
+      <div className={`absolute top-full right-0 z-50 w-56 overflow-hidden border border-white/10 bg-secondary shadow-xl 
+          ${isOpen
             ? "visible translate-y-0 opacity-100"
-            : "invisible -translate-y-1 opacity-0"
-        }`}>
+            : "invisible -translate-y-1 opacity-0"}
+      `}>
 
         <Link href="/cms/account" className="block px-4 py-3 text-sm text-center text-white hover:text-text hover:bg-accent">
           Instellingen

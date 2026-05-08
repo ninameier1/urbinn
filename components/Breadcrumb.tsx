@@ -46,8 +46,8 @@ useEffect(() => {
   });
 
   return (
-    <nav className="w-full bg-white/30 backdrop-blur-sm border-b border-white/10">
-      <div className="mx-auto px-6 py-2 flex items-center gap-2 text-xs text-white">
+<nav className="w-full h-8 bg-white/30 backdrop-blur-sm border-b border-white/10">
+  <div className="mx-auto h-full px-6 flex items-center gap-2 text-xs text-white">
         <Link href="/" className="hover:text-accent transition-colors">
           Home
         </Link>

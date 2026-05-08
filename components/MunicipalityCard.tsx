@@ -5,13 +5,13 @@ import Link from 'next/link';
 
 import { useState } from 'react';
 
-type __MunicipalityCardProps__ = {
+type MunicipalityCardProps = {
   name: string;
   image: string;
   href: string;
 };
 
-export default function MunicipalityCard({ name, image, href }: __MunicipalityCardProps__) {
+export default function MunicipalityCard({ name, image, href }: MunicipalityCardProps) {
   const [src, setSrc] = useState(image || "/assets/images/placeholder.jpg");
 
   return (
