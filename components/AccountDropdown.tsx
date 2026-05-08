@@ -8,15 +8,16 @@ import Button from "./Button";
 import { logout } from "@/lib/actions/account-actions";
 
 type AccountDropdownProps = {
-  username: string;
+  userLabel?: string | null
 };
 
-export default function AccountDropdown({ username }: AccountDropdownProps) {
-    const [isOpen, setIsOpen] = useState(false);
+export default function AccountDropdown({ userLabel }: AccountDropdownProps) {
+  const [isOpen, setIsOpen] = useState(false);
     const pathname = usePathname();
     const isActive =
     pathname === "/cms/account" ||
     pathname.startsWith("/cms/account/");
+    
 
   return (
     <div className="relative flex h-full items-center"
@@ -35,7 +36,7 @@ export default function AccountDropdown({ username }: AccountDropdownProps) {
                 ? "opacity-100" 
                 : "opacity-0 scale-x-0 hover:opacity-100 hover:scale-x-100"}
             `}/>
-                {username}
+                {userLabel}
         </button>
 
       <div className={`absolute top-full right-0 z-50 w-56 overflow-hidden border border-white/10 bg-secondary shadow-xl 

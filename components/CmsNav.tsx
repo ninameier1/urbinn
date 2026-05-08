@@ -20,10 +20,10 @@ import NavLink from "./NavLink";
 import AccountDropdown from "./AccountDropdown";
 
 type CmsNavProps = {
-  username: string;
+  userLabel: string;
 };
 
-export default function CmsNav({ username }: CmsNavProps) {
+export default function CmsNav({ userLabel }: CmsNavProps) {
   return (
     <nav className="flex h-full flex-1 items-center justify-between">
       <div className="flex h-full items-center divide-x divide-secondary">
@@ -39,7 +39,7 @@ export default function CmsNav({ username }: CmsNavProps) {
       </div>
 
       <div className="flex h-full items-center border-l border-secondary">
-        <AccountDropdown username={username} />
+        <AccountDropdown userLabel={ userLabel} />
       </div>
     </nav>
   );

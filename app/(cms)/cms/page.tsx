@@ -2,10 +2,15 @@ import { auth } from "@/auth";
 
 export default async function CmsPage() {
   const session = await auth();
+  const userLabel =
+  session?.user?.name?.trim() ||
+  session?.user?.email ||
+  "gebruiker";
+  
   return (
     <main className="container mx-auto px-6 py-20">
       <h1 className="text-3xl font-bold">CMS Dashboard</h1>
-      <p className="text-muted-foreground mt-4">Welkom {session?.user?.name ?? ""} in het Content Management System van Urban Innovation!</p>
+      <p className="text-muted-foreground mt-4">Welkom {userLabel} in het Content Management System van Urban Innovation!</p>
     </main>
   );
 }
