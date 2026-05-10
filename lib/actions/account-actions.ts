@@ -12,17 +12,28 @@ export async function handleLogin(_: any, formData: FormData) {
   });
 
   if (!invite) {
-    return { ok: false, error: "not-invited" };
+    return { ok: false, 
+      error: "not-invited" };
   }
 
   try {
-    await signIn("resend", { email, redirect: false });
-    return { ok: true };
+    await signIn("resend", {
+      email,
+      redirect: false,
+      redirectTo: "/cms",
+    });
+    return { 
+      ok: true };
   } catch {
-    return { ok: false, error: "sign-in-failed" };
+    return { 
+      ok: false, 
+      error: "sign-in-failed" };
   }
 }
 
 export async function logout() {
-  await signOut();
+    await signOut({
+    redirectTo: "/login",
+  });
 }
+
