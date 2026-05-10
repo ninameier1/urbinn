@@ -2,6 +2,7 @@
 
 import { useActionState } from 'react'
 import { inviteUser } from '@/lib/actions/invite-actions'
+
 import Button from '@/components/Button'
 
 type State = {
@@ -35,12 +36,20 @@ export default function InvitePage() {
   )
 
   return (
-    <div className="max-w-lg mx-auto mt-16 px-4">
-      <div className="bg-primary border border-gray-200 shadow-2xl rounded-2xl p-10">
+    <div className="relative w-full h-[90vh] flex items-center justify-center px-4">
+      <div className="w-full max-w-lg bg-primary border border-gray-200 shadow-2xl rounded-2xl p-10">
 
-        <h2 className="mb-8 text-4xl text-center tracking-widest text-white font-medium uppercase">
-          Gebruiker uitnodigen
-        </h2>
+        <div className="flex flex-col items-center mb-6">
+            <img
+              src="/assets/images/tree.png"
+              alt="Urban Innovation Logo"
+              className="h-36 w-auto mb-2"
+            />
+
+            <h1 className="text-2xl text-center tracking-widest text-white font-medium uppercase">
+              Gebruiker Uitnodigen
+            </h1>
+        </div>
 
         {state.ok && (
           <p className="text-sm text-center text-green-300 mb-4">
