@@ -6,6 +6,11 @@ import { prisma } from '@/lib/prisma'
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   adapter: PrismaAdapter(prisma),
+  session: {
+    strategy: "database",
+    maxAge: 8 * 60 * 60, // 8 hours
+    updateAge: 60 * 60,  // refresh the expiry timestamp every hour
+  },
   providers: [
     Resend({
       apiKey: process.env.RESEND_API_KEY,
@@ -17,6 +22,13 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       if (session.user && user) {
         session.user.id = String(user.id)
       }
+
+      if (Math.random() < 0.01) { // not too often so it doesn't slow stuff down
+        await prisma.session.deleteMany({ //housekeeping
+          where: { expires: { lt: new Date() } },
+        })
+      }
+
       return session
     },
 
@@ -41,87 +53,3 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     verifyRequest: '/login?verify=true',
   },
 })
-
-
-
-// import NextAuth from "next-auth"
-// import Credentials from "next-auth/providers/credentials"
-
-// import { prisma } from "@/lib/prisma"
-
-// import type { Session } from "next-auth"
-// import type { JWT } from "next-auth/jwt"
-
-// import bcrypt from "bcryptjs"
-
-// export const { handlers, auth, signIn, signOut } = NextAuth({
-
-//   session: {
-//     strategy: "jwt",
-//     maxAge: 8 * 60 * 60, // 8 hours, like a normal working day, log in once a day
-//   },
-
-//   providers: [
-//     Credentials({
-//         credentials: {
-//         email: { label: "Email", type: "email" },
-//         password: { label: "Password", type: "password" },
-//         },
-
-//       async authorize(credentials) {
-//         if (!credentials?.email || !credentials?.password) return null
-
-//         const user = await prisma.user.findUnique({
-//           where: { email: credentials.email as string },
-//         })
-
-//         if (!user) return null
-
-//         const valid = await bcrypt.compare(
-//           credentials.password as string,
-//           user.password_hash
-//         )
-
-//         if (!valid) return null
-
-//         return {
-//           id: String(user.id),
-//           email: user.email,
-//           name: user.username,
-//         }
-//       },
-//     }),
-//   ],
-
-//   callbacks: { // okay so it freaks out if I don't add this 
-//     async jwt({ token, user }: { token: JWT; user?: any }) {
-//       if (user) token.id = user.id
-//       return token
-//     },
-//     async session({ session, token }: { session: Session; token: JWT }) {
-//       if (session.user) {
-//         session.user.id = token.id as string
-//       }
-//       return session
-//     },
-//   },
-
-
-
-//   // callbacks: { 
-//   // async jwt({ token, user }: any) {
-//   // if (user) token.id = user.id; 
-//   // return token
-//   //     },
-//   // async session({ session, token }: any) {
-//   // if (session.user) {
-//   // session.user.id = token.id; 
-//   //     }
-//   // return session
-//   //     }
-//   //   },
-
-//   pages: {
-//     signIn: "/login",
-//   },
-// })
