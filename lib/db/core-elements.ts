@@ -4,13 +4,13 @@ export function getCoreElementBySlug(slug: string, municipalityName: string) {
   return prisma.coreElement.findFirst({
     where: {
       slug,
-      municipality: { name: municipalityName },
+      municipality: {
+        name: {
+          equals: municipalityName.charAt(0).toUpperCase() + municipalityName.slice(1).toLowerCase()
+        }
+      },
     },
-    include: {
-      mechanisms: true,
-      factors: true,
-      municipality: true,
-    },
+    include: { mechanisms: true, factors: true, municipality: true },
   });
 }
 

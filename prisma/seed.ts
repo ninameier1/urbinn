@@ -52,16 +52,15 @@ function generateFakeCoreElement() {
 async function seedCoreElements(
   municipalityId: number,
   adminId: number,
-  elements: { title: string; mechanisms: any[]; factors: any[] }[]
+  elements: { title: string; mechanisms: any[]; factors: any[] }[],
+  fake = false
 ) {
   for (const el of elements) {
     await prisma.coreElement.create({
       data: {
         municipality_id: municipalityId,
         title: el.title,
-
-        slug: `${slugify(el.title)}-${municipalityId}`,
-
+        slug: fake ? `${slugify(el.title)}-${municipalityId}` : slugify(el.title),
         created_by: adminId,
         mechanisms: {
           create: el.mechanisms.map((m) => ({
@@ -86,7 +85,6 @@ async function seedCoreElements(
 async function main() {
   const adminEmail = "s1081087@student.windesheim.nl";
 
-  // clean DB, safe for real this time
   await prisma.$transaction(async (tx) => {
     await tx.factor.deleteMany()
     await tx.mechanism.deleteMany()
@@ -94,20 +92,18 @@ async function main() {
     await tx.municipality.deleteMany()
   })
 
-await prisma.invite.upsert({
-  where: {
-    email: 's1081087@student.windesheim.nl',
-  },
+  await prisma.invite.upsert({
+    where: { email: 's1081087@student.windesheim.nl' },
     update: {
-    token: crypto.randomBytes(32).toString('hex'),
-    expiresAt: new Date(Date.now() + 1000 * 60 * 60 * 24 * 2),
-  },
-  create: {
-    email: 's1081087@student.windesheim.nl',
-    token: crypto.randomBytes(32).toString('hex'),
-    expiresAt: new Date(Date.now() + 1000 * 60 * 60 * 24 * 2),
-  },
-})
+      token: crypto.randomBytes(32).toString('hex'),
+      expiresAt: new Date(Date.now() + 1000 * 60 * 60 * 24 * 2),
+    },
+    create: {
+      email: 's1081087@student.windesheim.nl',
+      token: crypto.randomBytes(32).toString('hex'),
+      expiresAt: new Date(Date.now() + 1000 * 60 * 60 * 24 * 2),
+    },
+  })
 
   const admin = await prisma.user.upsert({
     where: { email: adminEmail },
@@ -119,10 +115,10 @@ await prisma.invite.upsert({
   });
 
   const municipalityData = [
-    { name: "Almere", image: "/assets/images/almere.jpg", real: false },
-    { name: "Zwolle", image: "/assets/images/zwolle.jpg", real: true },
+    { name: "Almere",    image: "/assets/images/almere.jpg",   real: false },
+    { name: "Zwolle",   image: "/assets/images/zwolle.jpg",   real: true  },
     { name: "Lelystad", image: "/assets/images/lelystad.jpg", real: false },
-    { name: "Dronten", image: "/assets/images/dronten.jpg", real: false },
+    { name: "Dronten",  image: "/assets/images/dronten.jpg",  real: false },
     { name: "Zeewolde", image: "/assets/images/zeewolde.jpg", real: false },
   ];
 
@@ -149,7 +145,7 @@ await prisma.invite.upsert({
         generateFakeCoreElement
       );
 
-      await seedCoreElements(municipality.id, admin.id, fakeElements);
+      await seedCoreElements(municipality.id, admin.id, fakeElements, true);
     }
   }
 

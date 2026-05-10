@@ -47,7 +47,7 @@ export default async function MunicipalityDashboard({ params }: MunicipalityProp
             return (
               <Link
                 key={element.id}
-                href={`/gemeenten/${municipality}/${slugify(element.title)}`}
+                href={`/gemeenten/${municipality}/${element.slug}`}
                 className={`${styles.circleButton} rounded-full flex items-center justify-center no-underline font-bold cursor-pointer`}
                 style={{
                   ['--colour' as any]: mainColour,
