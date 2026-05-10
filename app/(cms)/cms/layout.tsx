@@ -13,9 +13,6 @@ export default async function CmsLayout({ children }: { children: React.ReactNod
   session.user?.email?.trim() ||
   "gebruiker";
 
-  console.log("SESSION USER:", session.user)
-  console.log("USER LABEL:", userLabel)
-
   return (
       <div className="flex flex-col min-h-screen bg-background">
         
