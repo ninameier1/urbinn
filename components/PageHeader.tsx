@@ -29,10 +29,11 @@ export default function PageHeader({ nav }: { nav: React.ReactNode }) {
           <Image
             src="/assets/images/tree.png"
             alt="Urban Innovation Logo"
-            width={64}
-            height={64}
-            className="object-contain h-16 px-4 w-auto hover:opacity-50 transition-opacity"
-            unoptimized={true}
+            width={0}
+            height={0}
+            sizes="64px"
+            className="h-16 w-auto px-4 object-contain hover:opacity-50 transition-opacity"
+            unoptimized
             priority
           />
         </Link>
