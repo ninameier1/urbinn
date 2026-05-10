@@ -5,7 +5,12 @@ import { PrismaAdapter } from '@auth/prisma-adapter'
 import { prisma } from '@/lib/prisma'
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
-  adapter: PrismaAdapter(prisma),
+  adapter: {
+    ...PrismaAdapter(prisma),
+    deleteSession: async (sessionToken: string) => {
+      await prisma.session.deleteMany({ where: { sessionToken } })
+    },
+  },
   session: {
     strategy: "database",
     maxAge: 8 * 60 * 60, // 8 hours
@@ -15,12 +20,15 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     Resend({
       apiKey: process.env.RESEND_API_KEY,
       from: 'onboarding@resend.dev',
+      async sendVerificationRequest({ url }) { // I cba going into my email all the time
+      console.log('MAGIC LINK:', url)},
     }),
   ],
   callbacks: {
     async session({ session, user }) {
       if (session.user && user) {
-        session.user.id = String(user.id)
+        session.user.id = String(user.id),
+        session.user.name = (user as any).username
       }
 
       if (Math.random() < 0.01) { // not too often so it doesn't slow stuff down
@@ -36,13 +44,13 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       const email = user.email;
       if (!email) return false;
 
-      const invite = await prisma.invite.findUnique({
+      const existingUser = await prisma.user.findUnique({
         where: {
-        email: email.toLowerCase().trim(),
+          email: email.toLowerCase().trim(),
         },
       });
 
-      return !!invite;
+      return !!existingUser;
     },
     async redirect({ url, baseUrl }) {
       return `${baseUrl}/cms`
@@ -51,5 +59,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   pages: {
     signIn: '/login',
     verifyRequest: '/login?verify=true',
+    error: '/auth/error',
   },
 })

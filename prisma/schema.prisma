@@ -8,26 +8,30 @@ datasource db {
 }
 
 model User {
-  id             Int            @id @default(autoincrement())
-  username       String?
-  email          String         @unique
-  emailVerified  DateTime?
-  created_at     DateTime       @default(now())
-  created_by     Int?
-  accounts       Account[]
-  core_elements  CoreElement[]  @relation("CoreElementCreatedBy")
-  factors        Factor[]       @relation("FactorCreatedBy")
-  mechanisms     Mechanism[]    @relation("MechanismCreatedBy")
-  municipalities Municipality[] @relation("MunicipalityCreatedBy")
-  sessions       Session[]
+  id               Int            @id @default(autoincrement())
+  username         String
+  email            String         @unique
+  created_at       DateTime       @default(now())
+  emailVerified    DateTime?
+
+  municipalities   Municipality[] @relation("MunicipalityCreatedBy")
+  core_elements    CoreElement[]  @relation("CoreElementCreatedBy")
+  mechanisms       Mechanism[]    @relation("MechanismCreatedBy")
+  factors          Factor[]       @relation("FactorCreatedBy")
+
+  invites_sent     Invite[]       @relation("InviteSentBy")
+  accounts      Account[]      
+  sessions      Session[] 
 }
 
 model Account {
   id                String  @id @default(cuid())
   userId            Int
   type              String
+
   provider          String
   providerAccountId String
+
   refresh_token     String? @db.Text
   access_token      String? @db.Text
   expires_at        Int?
@@ -41,21 +45,18 @@ model Account {
   @@index([userId], map: "Account_userId_fkey")
 }
 
-model Session {
-  id           String   @id @default(cuid())
-  sessionToken String   @unique
-  userId       Int
-  expires      DateTime
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@index([userId], map: "Session_userId_fkey")
-}
-
 model Invite {
-  id         Int       @id @default(autoincrement())
-  email      String    @unique
-  created_at DateTime  @default(now())
-  used_at    DateTime?
+  id          Int       @id @default(autoincrement())
+  email       String    @unique
+  token       String    @unique
+
+  invitedById Int?
+  invitedBy   User?     @relation("InviteSentBy", fields: [invitedById], references: [id])
+
+  expiresAt   DateTime
+  usedAt      DateTime?
+
+  createdAt   DateTime  @default(now())
 }
 
 model VerificationToken {
@@ -64,6 +65,16 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       Int
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId], map: "Session_userId_fkey")
 }
 
 model Municipality {

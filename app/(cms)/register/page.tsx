@@ -1,8 +1,43 @@
-export default function RegisterPage() {
-  return (
-    <main className="container mx-auto px-6 py-20">
-      <h1 className="text-3xl font-bold">Registreren</h1>
-      <p className="text-muted-foreground mt-4">Binnenkort beschikbaar.</p>
-    </main>
-  );
+import { validateInviteToken } from '@/lib/actions/invite-actions'
+import { RegisterClient } from '@/components/RegisterClient'
+
+import AuthCard from '@/components/AuthCard'
+
+export default async function RegisterPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ token?: string }>
+}) {
+  const { token } = await searchParams
+
+  if (!token) {
+    return (
+      <AuthCard>
+        <p className="text-sm text-center text-red-300">
+          Geen uitnodigingslink gevonden.
+        </p>
+      </AuthCard>
+    )
+  }
+
+  try {
+    const { email } = await validateInviteToken(token)
+
+    return (
+      <AuthCard>
+        <RegisterClient token={token} email={email} />
+      </AuthCard>
+    )
+  } catch (err: unknown) {
+    const message =
+      err instanceof Error ? err.message : 'Onbekende fout'
+
+    return (
+      <AuthCard>
+        <p className="text-sm text-center text-red-300">
+          {message}
+        </p>
+      </AuthCard>
+    )
+  }
 }

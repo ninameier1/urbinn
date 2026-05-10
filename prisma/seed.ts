@@ -4,6 +4,8 @@ import { PrismaMariaDb } from "@prisma/adapter-mariadb";
 import { PrismaClient } from "../generated/prisma/client";
 import { faker } from "@faker-js/faker/locale/nl";
 import { slugify } from "@utils/helpers";
+
+import crypto from 'crypto'
 import realData from "../data/data.json";
 
 const adapter = new PrismaMariaDb({
@@ -58,8 +60,7 @@ async function seedCoreElements(
         municipality_id: municipalityId,
         title: el.title,
 
-        // FIX: avoid slug collisions
-        slug: `${slugify(el.title)}-${municipalityId}-${Date.now()}`,
+        slug: `${slugify(el.title)}-${municipalityId}`,
 
         created_by: adminId,
         mechanisms: {
@@ -85,17 +86,28 @@ async function seedCoreElements(
 async function main() {
   const adminEmail = "s1081087@student.windesheim.nl";
 
-  // clean DB (safe order)
-  await prisma.factor.deleteMany();
-  await prisma.mechanism.deleteMany();
-  await prisma.coreElement.deleteMany();
-  await prisma.municipality.deleteMany();
+  // clean DB, safe for real this time
+  await prisma.$transaction(async (tx) => {
+    await tx.factor.deleteMany()
+    await tx.mechanism.deleteMany()
+    await tx.coreElement.deleteMany()
+    await tx.municipality.deleteMany()
+  })
 
-  await prisma.invite.upsert({
-    where: { email: adminEmail },
-    update: {},
-    create: { email: adminEmail },
-  });
+await prisma.invite.upsert({
+  where: {
+    email: 's1081087@student.windesheim.nl',
+  },
+    update: {
+    token: crypto.randomBytes(32).toString('hex'),
+    expiresAt: new Date(Date.now() + 1000 * 60 * 60 * 24 * 2),
+  },
+  create: {
+    email: 's1081087@student.windesheim.nl',
+    token: crypto.randomBytes(32).toString('hex'),
+    expiresAt: new Date(Date.now() + 1000 * 60 * 60 * 24 * 2),
+  },
+})
 
   const admin = await prisma.user.upsert({
     where: { email: adminEmail },
