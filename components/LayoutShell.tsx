@@ -15,9 +15,9 @@ export default function LayoutShell({
       <PageHeader nav={nav} />
 
       <main className="flex-1 pt-24">
-        <div className="container max-w-full">
+
           {children}
-        </div>
+
       </main>
 
       <Footer />
