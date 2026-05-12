@@ -1,16 +1,17 @@
 "use client";
 
 import Link from "next/link";
+import React from "react";
 
 type ButtonProps = {
   children: React.ReactNode;
   href?: string;
-  type?: "button" | "submit";
+  type?: "button" | "submit" | "reset";
   variant?: "primary" | "secondary" | "logout";
   className?: string;
   disabled?: boolean;
   loading?: boolean;
-  action?: () => Promise<void>;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 };
 
 export default function Button({
@@ -21,17 +22,20 @@ export default function Button({
   className = "",
   disabled = false,
   loading = false,
-  action,
+  onClick,
 }: ButtonProps) {
   const isDisabled = disabled || loading;
 
   const base =
-    "inline-flex items-center justify-center gap-2 px-6 py-3  transition uppercase cursor-pointer";
+  "inline-flex items-center justify-center gap-2 px-6 py-3 transition uppercase cursor-pointer";
 
   const variants = {
-    primary: "bg-primary text-white shadow-sm hover:bg-secondary hover:text-text rounded-xl",
-    secondary: "bg-accent text-white shadow-sm hover:bg-secondary hover:text-text rounded-xl",
-    logout: "bg-primary block px-4 py-3 text-sm text-center w-full text-white hover:bg-accent hover:text-text",
+    primary:
+      "bg-primary text-white shadow-sm hover:bg-secondary hover:text-text rounded-xl",
+    secondary:
+      "bg-accent text-white shadow-sm hover:bg-secondary hover:text-text rounded-xl",
+    logout:
+      "bg-primary block px-4 py-3 text-sm text-center w-full text-white hover:bg-accent hover:text-text",
   };
 
   const styles = `
@@ -53,7 +57,7 @@ export default function Button({
   if (href) {
     return (
       <Link
-        href={isDisabled ? "#" : href}
+        href={href}
         className={styles}
         aria-disabled={isDisabled}
         onClick={(e) => {
@@ -70,11 +74,7 @@ export default function Button({
       type={type}
       className={styles}
       disabled={isDisabled}
-      onClick={async () => {
-        if (action && !isDisabled) {
-          await action();
-        }
-      }}
+      onClick={onClick}
     >
       {content}
     </button>

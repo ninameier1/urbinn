@@ -1,11 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+
+import { useState, useTransition } from "react";
 import { usePathname } from "next/navigation";
+import { logout } from "@/lib/actions/account-actions";
 
 import Button from "./Button";
-import { logout } from "@/lib/actions/account-actions";
+
 
 type AccountDropdownProps = {
   userLabel?: string | null
@@ -17,6 +19,12 @@ export default function AccountDropdown({ userLabel }: AccountDropdownProps) {
     const isActive =
     pathname === "/cms/account" ||
     pathname.startsWith("/cms/account/");
+  const [isPending, startTransition] = useTransition();
+  const handleLogout = () => {
+    startTransition(async () => {
+      await logout()
+    })
+  };
     
 
   return (
@@ -25,7 +33,7 @@ export default function AccountDropdown({ userLabel }: AccountDropdownProps) {
       onMouseLeave={() => setIsOpen(false)}>
       
         <button type="button" 
-            className={`relative px-4 h-full flex items-center text-sm uppercase font-medium
+            className={`relative px-4 h-full flex items-center text-sm uppercase font-medium cursor-pointer
             ${isActive 
               ? "text-white" 
               : "text-text hover:text-white"}
@@ -53,9 +61,12 @@ export default function AccountDropdown({ userLabel }: AccountDropdownProps) {
           Uitnodigen
         </Link>
 
-
-        <Button variant="logout" action={logout}>
-            Logout
+        <Button
+          variant="logout"
+          onClick={handleLogout}
+          loading={isPending}
+        >
+          Logout
         </Button>
 
       </div>
