@@ -27,6 +27,7 @@
       "@actions/*": ["lib/actions/*"],
       "@db/*": ["lib/db/*"],
       "@validations/*": ["lib/validations/*"],
+      "@types/*": ["types/*"],
       "@utils/*": ["utils/*"],
       "@images/*": ["public/assets/images/*"],
       "@fonts/*": ["public/assets/fonts/*"],
