@@ -1,8 +1,15 @@
 export default function MunicipalitiesPage() {
   return (
-    <main className="container mx-auto px-6 py-20">
-      <h1 className="text-3xl font-bold">Alle Gemeenten</h1>
-      <p className="text-muted-foreground mt-4">Binnenkort beschikbaar.</p>
-    </main>
+    <div className="py-12 mb-12 relative w-full min-h-[90vh]">
+      <div className="container mx-auto px-4">
+        <div className="pb-6 border-b border-stone-200">
+          <h1 className="text-3xl font-semibold tracking-tight">
+            Gemeenten beheren
+          </h1>
+        </div>
+
+        <p className="text-muted-foreground mt-4">Binnenkort beschikbaar.</p>
+      </div>
+    </div>
   );
 }

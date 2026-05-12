@@ -9,10 +9,15 @@ const municipalities = await getAllMunicipalities();
 if (!municipalities.length) return <h2>Geen gemeenten gevonden</h2>;
 
   return (
-    <div className="py-20 mb-12">
-      <div className="container mx-auto">
-        <h1 className="text-center text-3xl font-bold mb-12">Gemeenten</h1>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <div className="py-12 mb-12 relative w-full min-h-[90vh]">
+      <div className="container mx-auto px-4">
+        <div className="pb-6 border-b border-stone-200">
+          <h1 className="text-3xl font-semibold text-stone-900 tracking-tight">
+            Gemeenten
+          </h1>
+        </div>
+
+        <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-8">
           {municipalities.map((municipality) => (
             <MunicipalityCard
               key={municipality.id}

@@ -8,9 +8,15 @@ export default async function CmsPage() {
   "gebruiker";
   
   return (
-    <main className="container mx-auto px-6 py-20">
-      <h1 className="text-3xl font-bold">CMS Dashboard</h1>
-      <p className="text-muted-foreground mt-4">Welkom {userLabel} in het Content Management System van Urban Innovation!</p>
-    </main>
+    <div className="py-12 mb-12 relative w-full min-h-[90vh]">
+      <div className="container mx-auto px-4">
+        <div className="pb-6 border-b border-stone-200">
+          <h1 className="text-3xl font-semibold tracking-tight">
+            Content Management System
+          </h1>
+        </div>
+        <p className="text-muted-foreground mt-4">Welkom {userLabel} in het CMS van Urban Innovation!</p>
+      </div>
+    </div>
   );
 }
