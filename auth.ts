@@ -50,7 +50,11 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         },
       });
 
-      return !!existingUser;
+      if (!existingUser) {
+        throw new Error('account-not-found')
+      }
+
+      return true;
     },
     async redirect({ url, baseUrl }) {
       return `${baseUrl}/cms`

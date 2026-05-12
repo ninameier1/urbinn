@@ -20,8 +20,10 @@ model User {
   factors          Factor[]       @relation("FactorCreatedBy")
 
   invites_sent     Invite[]       @relation("InviteSentBy")
-  accounts      Account[]      
-  sessions      Session[] 
+  accounts         Account[]      
+  sessions         Session[]
+
+  deletedAt        DateTime? 
 }
 
 model Account {

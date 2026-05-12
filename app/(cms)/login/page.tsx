@@ -18,7 +18,22 @@ export default function LoginPage() {
       )}
       {state?.error === 'not-invited' && (
         <p className="mb-4 text-sm text-center text-red-300">
-          Dit Email Adres is ongeldig.
+          Dit e-maildres is ongeldig.
+        </p>
+      )}
+      {state?.error === 'account-deleted' && (
+        <p className="mb-4 text-sm text-center text-red-300">
+          Account bestaat niet meer.
+        </p>
+      )}
+      {state?.error === 'sign-in-failed' && (
+        <p className="mb-4 text-sm text-center text-red-300">
+          Inloggen mislukt. Probeer het opnieuw.
+        </p>
+      )}
+      {state?.error === 'missing-email' && (
+        <p className="mb-4 text-sm text-center text-red-300">
+          Vul een e-mailadres in.
         </p>
       )}
       <form action={action} className="flex flex-col gap-4">
