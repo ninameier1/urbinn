@@ -4,6 +4,7 @@ import crypto from "crypto";
 
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
+import { isAllowedEmail } from '@/utils/emails'
 
 // -------- INVITE USER --------
 export async function inviteUser(email: string) {
@@ -14,6 +15,10 @@ export async function inviteUser(email: string) {
   }
 
   const normalizedEmail = email.toLowerCase().trim();
+  // is user part of Windesheim of VU
+    if (!isAllowedEmail(normalizedEmail)) {
+    throw new Error("E-mailadres domein is niet toegestaan");
+  }
 
   // does user exist
   const existingUser = await prisma.user.findUnique({
