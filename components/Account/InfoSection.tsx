@@ -10,7 +10,7 @@ export default function AccountInfoSection({ email }: { email: string }) {
       </h2>
 
       <p className="text-sm text-stone-500 mb-4">
-        Huidige account gegevens.
+        Huidige account gegevens. Dit kan niet veranderd worden.
       </p>
 
       <div className="bg-stone-50 border border-stone-200 rounded-md px-4 py-3">

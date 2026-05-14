@@ -55,11 +55,14 @@ export default function UsernameSection({
       </p>
 
       <form onSubmit={submit}>
+        <span className="text-xs font-medium tracking-wide uppercase text-accent block mb-0.5">
+          Weergavenaam
+        </span>
         <input
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           name="username"
-          className="border p-2 w-full mb-4"
+          className="border p-2 w-full mb-4 text-sm px-3 py-2 bg-stone-50 border-stone-300 rounded-md text-stone-900 mb-05"
         />
 
         <Button 

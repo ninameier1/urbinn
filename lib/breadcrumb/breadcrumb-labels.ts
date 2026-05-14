@@ -6,4 +6,5 @@ export const labels: Record<string, string> = {
   cms: "CMS",
   municipalities: "Gemeenten beheren",
   new: "Gemeente aanmaken",
+  invite: "Nieuwe admin uitnodigen",
 }

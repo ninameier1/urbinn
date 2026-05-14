@@ -10,7 +10,7 @@ export default function TitleSection() {
   const title = crumbs.at(-1)?.label ?? "Page";
 
   return (
-    <div className="pb-4 border-b border-stone-200">
+    <div className="pb-4 border-b border-stone-200 mb-4">
       <h1 className="text-3xl font-semibold tracking-tight">
         {title}
       </h1>
