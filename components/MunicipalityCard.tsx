@@ -1,3 +1,66 @@
+// 'use client';
+
+// import Image from 'next/image';
+// import Link from 'next/link';
+
+// import { useState } from 'react';
+
+// type MunicipalityCardProps = {
+//   name: string;
+//   image: string;
+//   href: string;
+//   color: string;
+// };
+
+// export default function MunicipalityCard({ name, image, href, color }: MunicipalityCardProps) {
+//   const [src, setSrc] = useState(image || "/assets/images/placeholder.jpg");
+
+
+//   return (
+//     <Link
+//       href={href}
+//       className="group bg-white border border-text/8 rounded-2xl overflow-hidden hover:border-text/20 transition-colors"
+//     >
+//       <div
+//         className={`h-32 ${color} relative flex items-end p-4`}
+//       >
+//         {image && (
+          
+//           <Image
+//             src={src}
+//             alt={name}
+//             fill
+//             className="object-cover opacity-20 group-hover:opacity-30 transition-opacity"
+//             unoptimized
+//             onError={() => setSrc("/assets/images/placeholder.jpg")}
+//           />
+//         )}
+
+//         <p className="relative font-serif text-2xl font-bold text-background z-10">
+//           {name}
+//         </p>
+//       </div>
+
+//       <div className="p-4">
+//         <div className="flex gap-2 flex-wrap mb-3">
+//           {["Veiligheid", "Duurzaamheid", "Inclusiviteit"].map((tag) => (
+//             <span
+//               key={tag}
+//               className="text-[10px] font-semibold bg-secondary/10 text-secondary rounded-full px-3 py-1"
+//             >
+//               {tag}
+//             </span>
+//           ))}
+//         </div>
+
+//         <p className="text-[11px] font-bold tracking-[.1em] uppercase text-primary group-hover:text-accent transition-colors">
+//           Bekijk dashboard →
+//         </p>
+//       </div>
+//     </Link>
+//   );
+// }
+
 'use client';
 
 import Image from 'next/image';
@@ -7,33 +70,59 @@ import { useState } from 'react';
 
 type MunicipalityCardProps = {
   name: string;
-  image: string;
+  image?: string | null;
   href: string;
+  description?: string;
+  tags?: string[];
+  featured?: boolean;
 };
 
-export default function MunicipalityCard({ name, image, href }: MunicipalityCardProps) {
+export default function MunicipalityCard({ name, image, href, description, tags = [], featured = false,
+}: MunicipalityCardProps) {
   const [src, setSrc] = useState(image || "/assets/images/placeholder.jpg");
 
   return (
-    <Link href={href} className="block rounded-xl bg-main overflow-hidden shadow-md hover:bg-accent hover:shadow-lg transition-all transform hover:scale-105 transition-all duration-300">
-        <div className="relative w-full h-56">
+    <Link href={href} className="group bg-white border border-text/8 rounded-2xl overflow-hidden hover:border-text/20 transition-colors">
+      <div className={`relative flex items-end ${featured ? "h-56 p-5" : "h-64 p-5"}`}>
+        {image && (
           <Image
             src={src}
             alt={name}
             fill
-            sizes="(max-width: 768px) 100vw, 33vw"
-            className="object-cover"
+            className="object-cover group-hover:opacity-80 transition-opacity"
+            unoptimized
             onError={() => setSrc("/assets/images/placeholder.jpg")}
           />
-       
-       <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-          <div className="absolute bottom-0 left-0 right-0 p-4 bg-black/20 backdrop-blur-sm px-4 py-3">
-            <h2 className="text-2xl text-center text-white/80 hover:text-white">
-            {name}
-            </h2>
-          </div>
-        </div>
-      </Link>
+        )}
 
+        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+
+        <div className="relative z-10 flex gap-2 flex-wrap">
+          {tags.map((tag) => (
+            <span key={tag} className="text-[10px] font-semibold bg-accent/60 text-white rounded-full px-3 py-1">
+              {tag}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <div className={featured ? "p-5" : "p-4"}>
+        <div className="relative">
+          <p className={`font-serif font-bold mb-4 ${featured ? "text-3xl" : "text-2xl"} `}>
+            {name}
+          </p>
+        </div>
+
+        {description && (
+          <p className="text-xs text-text/50 leading-relaxed mb-4">
+            {description}
+          </p>
+        )}
+
+        <p className="text-[11px] font-bold tracking-[.1em] uppercase text-primary group-hover:text-accent transition-colors">
+          Bekijk dashboard →
+        </p>
+      </div>
+    </Link>
   );
 }
