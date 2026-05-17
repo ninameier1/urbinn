@@ -3,6 +3,11 @@ import { prisma } from "@/lib/prisma";
 export function getAllMunicipalities() {
   return prisma.municipality.findMany({
     orderBy: { name: "asc" },
+    include: {
+      creator: {
+        select: { username: true },
+      },
+    },
   });
 }
 

@@ -82,9 +82,15 @@ model Session {
 model Municipality {
   id            Int           @id @default(autoincrement())
   name          String
+  description   String?
   image         String?
+
+
   created_at    DateTime      @default(now())
+  updated_at    DateTime      @updatedAt
+  
   created_by    Int
+ 
   core_elements CoreElement[]
   creator       User          @relation("MunicipalityCreatedBy", fields: [created_by], references: [id])
 
@@ -96,9 +102,13 @@ model CoreElement {
   municipality_id Int
   title           String
   slug            String       @unique
+  
   created_at      DateTime     @default(now())
+  updated_at      DateTime     @updatedAt
+  
   created_by      Int
   creator         User         @relation("CoreElementCreatedBy", fields: [created_by], references: [id])
+ 
   municipality    Municipality @relation(fields: [municipality_id], references: [id])
   factors         Factor[]
   mechanisms      Mechanism[]
@@ -112,8 +122,12 @@ model Mechanism {
   core_element_id Int
   label           String
   text            String      @db.Text
+  
   created_at      DateTime    @default(now())
+  updated_at      DateTime    @updatedAt
+  
   created_by      Int
+  
   core_element    CoreElement @relation(fields: [core_element_id], references: [id])
   creator         User        @relation("MechanismCreatedBy", fields: [created_by], references: [id])
 
@@ -127,8 +141,12 @@ model Factor {
   label           String
   text            String      @db.Text
   type            FactorType
+  
   created_at      DateTime    @default(now())
+  
   created_by      Int
+  updated_at      DateTime    @updatedAt
+  
   core_element    CoreElement @relation(fields: [core_element_id], references: [id])
   creator         User        @relation("FactorCreatedBy", fields: [created_by], references: [id])
 
