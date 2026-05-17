@@ -7,7 +7,7 @@ type ButtonProps = {
   children: React.ReactNode;
   href?: string;
   type?: "button" | "submit" | "reset";
-  variant?: "primary" | "secondary" | "logout";
+  variant?: 'primary' | 'secondary' | 'small' | 'cancel' | 'logout';
   className?: string;
   disabled?: boolean;
   loading?: boolean;
@@ -34,6 +34,10 @@ export default function Button({
       "bg-primary text-white shadow-sm hover:bg-secondary hover:text-text rounded-xl",
     secondary:
       "bg-accent text-white shadow-sm hover:bg-secondary hover:text-text rounded-xl",
+    small: 
+      "bg-primary text-white text-xs shadow-sm hover:bg-accent hover:text-white rounded-lg px-3 py-1",
+    cancel: 
+      "bg-secondary text-white text-xs shadow-sm hover:bg-accent hover:text-white rounded-lg px-3 py-1",
     logout:
       "bg-primary block px-4 py-3 text-sm text-center w-full text-white hover:bg-accent hover:text-text",
   };
