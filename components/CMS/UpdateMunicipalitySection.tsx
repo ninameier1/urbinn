@@ -10,7 +10,7 @@ import { Municipality } from '@/types/cms';
 import Button from '@/components/Button';
 
 
-export default function MunicipalitySection({ municipality }: { municipality: Municipality }) {
+export default function UpdateMunicipalitySection({ municipality }: { municipality: Municipality }) {
   const [isEditing, setIsEditing] = useState(false);
   const [form, setForm] = useState({
     name: municipality.name,

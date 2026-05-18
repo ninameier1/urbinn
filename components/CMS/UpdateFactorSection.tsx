@@ -1,23 +1,26 @@
 'use client';
 
 import { useState } from 'react';
-import { updateMechanism, deleteMechanism } from '@/lib/actions/mechanism-actions';
-import { Mechanism } from '@/types/cms';
+import { updateFactor, deleteFactor } from '@/lib/actions/factor-actions';
+import { Factor } from '@/types/cms';
 
 import Button from '@/components/Button';
 
-export default function MechanismSection({ mechanism }: { mechanism: Mechanism }) {
+export default function UpdateFactorSection({ factor }: { factor: Factor }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
-  const [form, setForm] = useState({ label: mechanism.label, text: mechanism.text });
+  const [form, setForm] = useState({ label: factor.label, text: factor.text, type: factor.type });
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
   const [deleting, setDeleting] = useState(false);
 
-  const dirty = form.label !== mechanism.label || form.text !== mechanism.text;
+  const dirty =
+    form.label !== factor.label ||
+    form.text !== factor.text ||
+    form.type !== factor.type;
 
   function handleCancel() {
-    setForm({ label: mechanism.label, text: mechanism.text });
+    setForm({ label: factor.label, text: factor.text, type: factor.type });
     setIsEditing(false);
   }
 
@@ -27,7 +30,8 @@ export default function MechanismSection({ mechanism }: { mechanism: Mechanism }
       const fd = new FormData();
       fd.set('label', form.label);
       fd.set('text', form.text);
-      await updateMechanism(mechanism.id, fd);
+      fd.set('type', form.type);
+      await updateFactor(factor.id, fd);
       setSaved(true);
       setIsEditing(false);
       setTimeout(() => setSaved(false), 3000);
@@ -37,22 +41,23 @@ export default function MechanismSection({ mechanism }: { mechanism: Mechanism }
   }
 
   async function handleDelete() {
-      const confirmed = confirm('Weet je zeker dat je dit mechanisme wilt verwijderen?');
-      if (!confirmed) return;
-  
-      setDeleting(true);
-  
-      try {
-        await deleteMechanism(mechanism.id);
-  
-        window.location.reload();
-      } finally {
-        setDeleting(false);
-      }
+    const confirmed = confirm('Weet je zeker dat je deze factor wilt verwijderen?');
+    if (!confirmed) return;
+
+    setDeleting(true);
+
+    try {
+      await deleteFactor(factor.id);
+
+      window.location.reload();
+    } finally {
+      setDeleting(false);
     }
+  }
 
   return (
     <div className="bg-white border border-stone-200 rounded-lg p-4">
+
       {/* HEADER */}
       <div className="flex items-start justify-between gap-3">
         <button onClick={() => setIsExpanded((v) => !v)} className="text-left cursor-pointer">
@@ -60,6 +65,7 @@ export default function MechanismSection({ mechanism }: { mechanism: Mechanism }
             {isExpanded ? '▾' : '▸'} {form.text.length > 60 ? form.text.slice(0, 60) + '...' : form.text || 'Onbenoemd'}
           </p>
         </button>
+
         {isExpanded && (
           <Button
             variant={isEditing ? 'cancel' : 'small'}
@@ -67,12 +73,14 @@ export default function MechanismSection({ mechanism }: { mechanism: Mechanism }
           >
             {isEditing ? 'Annuleren' : 'Bewerken'}
           </Button>
+          
         )}
       </div>
 
       {/* CONTENT */}
       {isExpanded && (
         <div className="mt-4 space-y-4">
+
           {/* VIEW MODE */}
           {!isEditing && (
             <>
@@ -81,6 +89,12 @@ export default function MechanismSection({ mechanism }: { mechanism: Mechanism }
               </span>
               <p className="text-sm text-stone-600 leading-relaxed">
                 {form.text || 'Geen tekst beschikbaar.'}
+              </p>
+              <p className="text-xs text-stone-500 mt-1">
+                Type:{' '}
+                <span className={form.type === 'plus' ? 'text-green-600 font-medium' : 'text-red-600 font-medium'}>
+                  {form.type === 'plus' ? 'Plus' : 'Min'}
+                </span>
               </p>
               {saved && <p className="text-sm text-green-600">Opgeslagen!</p>}
             </>
@@ -94,8 +108,9 @@ export default function MechanismSection({ mechanism }: { mechanism: Mechanism }
                 Bewerken
               </p>
               <p className="text-sm text-stone-500">
-                Bewerk hier de tekst van het mechanisme.
+                Bewerk hier de tekst en het type van de factor.
               </p>
+
               <div>
                 <span className="text-xs font-medium tracking-wide uppercase text-accent block mb-1">
                   Tekst
@@ -107,6 +122,21 @@ export default function MechanismSection({ mechanism }: { mechanism: Mechanism }
                   onChange={(e) => setForm((p) => ({ ...p, text: e.target.value }))}
                 />
               </div>
+
+              <div>
+                <span className="text-xs font-medium tracking-wide uppercase text-accent block mb-1">
+                  Type
+                </span>
+                <select
+                  className="border p-2 w-full text-sm px-3 py-2 bg-stone-50 border-stone-300 rounded-md text-stone-900"
+                  value={form.type}
+                  onChange={(e) => setForm((p) => ({ ...p, type: e.target.value as 'plus' | 'min' }))}
+                >
+                  <option value="plus">Plus</option>
+                  <option value="min">Min</option>
+                </select>
+              </div>
+
               <div className="flex items-center gap-4 pt-1">
                 <Button variant="small" onClick={handleSave} disabled={!dirty || saving}>
                   {saving ? 'Opslaan...' : 'Opslaan'}
@@ -128,28 +158,29 @@ export default function MechanismSection({ mechanism }: { mechanism: Mechanism }
 }
 
 
+
 // 'use client';
 
 // import { useState } from 'react';
-// import { Mechanism } from '@/types/cms';
+// import { Factor } from '@/types/cms';
 // import Button from '@/components/Button';
 
-// type MechanismProps = {
-//   mechanism: Mechanism;
+// type FactorProps = {
+//   factor: Factor;
 //   ceId: number;
-//   onMechanismField: (
+//   onFactorField: (
 //     ceId: number,
-//     mechId: number,
-//     field: 'label' | 'text',
+//     factorId: number,
+//     field: 'label' | 'text' | 'type',
 //     value: string
 //   ) => void;
 // };
 
-// export default function MechanismSection({
-//   mechanism: m,
+// export default function FactorSection({
+//   factor: f,
 //   ceId,
-//   onMechanismField,
-// }: MechanismProps) {
+//   onFactorField,
+// }: FactorProps) {
 //   const [isExpanded, setIsExpanded] = useState(false);
 //   const [isEditing, setIsEditing] = useState(false);
 
@@ -163,7 +194,7 @@ export default function MechanismSection({ mechanism }: { mechanism: Mechanism }
 //           className="text-left cursor-pointer"
 //         >
 //           <p className="text-sm font-semibold text-stone-800">
-//             {isExpanded ? '▾' : '▸'} {m.label || 'Onbenoemd mechanisme'}
+//             {isExpanded ? '▾' : '▸'} {f.label || 'Onbenoemde factor'}
 //           </p>
 //         </button>
 
@@ -180,6 +211,7 @@ export default function MechanismSection({ mechanism }: { mechanism: Mechanism }
 //       {/* CONTENT */}
 //       {isExpanded && (
 //         <div className="mt-4 space-y-4">
+    
           
 //           {/* EDIT MODE */}
 //           {isEditing && (
@@ -196,9 +228,9 @@ export default function MechanismSection({ mechanism }: { mechanism: Mechanism }
 
 //                 <input
 //                   className="border p-2 w-full text-sm px-3 py-2 bg-stone-50 border-stone-300 rounded-md text-stone-900"
-//                   value={m.label}
+//                   value={f.label}
 //                   onChange={(e) =>
-//                     onMechanismField(ceId, m.id, 'label', e.target.value)
+//                     onFactorField(ceId, f.id, 'label', e.target.value)
 //                   }
 //                 />
 //               </div>
@@ -212,11 +244,29 @@ export default function MechanismSection({ mechanism }: { mechanism: Mechanism }
 //                 <textarea
 //                   rows={3}
 //                   className="border p-2 w-full text-sm px-3 py-2 bg-stone-50 border-stone-300 rounded-md text-stone-900"
-//                   value={m.text}
+//                   value={f.text}
 //                   onChange={(e) =>
-//                     onMechanismField(ceId, m.id, 'text', e.target.value)
+//                     onFactorField(ceId, f.id, 'text', e.target.value)
 //                   }
 //                 />
+//               </div>
+
+//               {/* TYPE */}
+//               <div>
+//                 <span className="text-xs font-medium tracking-wide uppercase text-accent block mb-1">
+//                   Type
+//                 </span>
+
+//                 <select
+//                   className="border p-2 w-full text-sm px-3 py-2 bg-stone-50 border-stone-300 rounded-md text-stone-900"
+//                   value={f.type}
+//                   onChange={(e) =>
+//                     onFactorField(ceId, f.id, 'type', e.target.value)
+//                   }
+//                 >
+//                   <option value="plus">Plus</option>
+//                   <option value="min">Min</option>
+//                 </select>
 //               </div>
 //             </div>
 //           )}
@@ -227,9 +277,22 @@ export default function MechanismSection({ mechanism }: { mechanism: Mechanism }
 //                 <span className="text-xs font-medium tracking-wide uppercase text-accent block mb-1">
 //                   Tekst
 //                 </span>
-//             <p className="text-sm text-stone-600 leading-relaxed">
-//               {m.text || 'Geen tekst beschikbaar.'}
-//             </p>
+//                  <p className="text-sm text-stone-600 leading-relaxed">
+//                     {f.text || 'Geen tekst beschikbaar.'}
+//                 </p>
+//                 <p className="text-xs text-stone-500 mt-1">
+//                 Type:{' '}
+//                     <span
+//                     className={
+//                         f.type === 'plus'
+//                         ? 'text-green-600 font-medium'
+//                         : 'text-red-600 font-medium'
+//                     }
+//                     >
+//                     {f.type === 'plus' ? 'Plus' : 'Min'}
+//                     </span>
+//                 </p>
+
 //             </>
 //           )}
 //         </div>

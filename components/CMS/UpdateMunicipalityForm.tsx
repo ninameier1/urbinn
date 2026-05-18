@@ -2,19 +2,19 @@
 
 import { Municipality } from '@/types/cms';
 
-import MunicipalitySection from './MunicipalitySection';
-import CoreElementSection from './CoreElementSection';
+import UpdateMunicipalitySection from './UpdateMunicipalitySection';
+import UpdateCoreElementSection from './UpdateCoreElementSection';
 
 export default function UpdateMunicipalityForm({ municipality }: { municipality: Municipality }) {
   return (
     <div className="mt-6 space-y-8 max-w-7xl">
-      <MunicipalitySection municipality={municipality} />
+      <UpdateMunicipalitySection municipality={municipality} />
       <div className="bg-secondary/10 border border-stone-200 rounded-lg p-6 space-y-6">
         <h3 className="text-xs font-medium tracking-widest uppercase text-accent">
           Kernelementen
         </h3>
         {municipality.core_elements.map((ce) => (
-          <CoreElementSection key={ce.id} coreElement={ce} />
+          <UpdateCoreElementSection key={ce.id} coreElement={ce} />
         ))}
       </div>
     </div>

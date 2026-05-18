@@ -4,8 +4,8 @@ import { useState } from 'react';
 import { updateCoreElement, deleteCoreElement } from '@/lib/actions/core-element-actions';
 import { CoreElement } from '@/types/cms';
 
-import MechanismSection from './MechanismSection';
-import FactorSection from './FactorSection';
+import UpdateMechanismSection from './UpdateMechanismSection';
+import UpdateFactorSection from './UpdateFactorSection';
 import Button from '@/components/Button';
 
 export default function CoreElementSection({ coreElement }: { coreElement: CoreElement }) {
@@ -140,7 +140,7 @@ export default function CoreElementSection({ coreElement }: { coreElement: CoreE
                 </h4>
                 <div className="space-y-3">
                   {coreElement.mechanisms.map((m) => (
-                    <MechanismSection key={m.id} mechanism={m} />
+                    <UpdateMechanismSection key={m.id} mechanism={m} />
                   ))}
                 </div>
               </div>
@@ -152,7 +152,7 @@ export default function CoreElementSection({ coreElement }: { coreElement: CoreE
                 </h4>
                 <div className="space-y-3">
                   {coreElement.factors.map((f) => (
-                    <FactorSection key={f.id} factor={f} />
+                    <UpdateFactorSection key={f.id} factor={f} />
                   ))}
                 </div>
               </div>
