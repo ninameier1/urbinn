@@ -1,6 +1,8 @@
 import { auth } from '@/auth';
 import { writeFile, mkdir } from 'fs/promises';
 import { NextRequest, NextResponse } from 'next/server';
+import { randomUUID } from 'crypto';
+
 import path from 'path';
 
 // we upload here
@@ -33,11 +35,18 @@ export async function POST(req: NextRequest) {
 
   // get the file...
   const formData = await req.formData();
-  const file = formData.get('file') as File | null;
+  const file = formData.get('file') || formData.get('image');
 
   if (!file) {
     return NextResponse.json(
       { error: 'Geen bestand' },
+      { status: 400 }
+    );
+  }
+
+    if (!(file instanceof File)) {
+    return NextResponse.json(
+      { error: 'Geen geldig bestand ontvangen (key moet "file" zijn)' },
       { status: 400 }
     );
   }
@@ -65,7 +74,7 @@ export async function POST(req: NextRequest) {
   const buffer = Buffer.from(bytes);
 
   // filename
-  const filename = `${crypto.randomUUID()}${ext}`;
+  const filename = `${randomUUID()}${ext}`;
   const filepath = path.join(uploadDir, filename);
 
   // write the file
