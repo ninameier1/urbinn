@@ -20,7 +20,7 @@ export default async function CmsLayout({
 
   return (
     <LayoutShell
-      background="bg-secondary/50"
+      background="bg-gray-100"
       nav={<CmsNav userLabel={userLabel} />}
     >
         <div className="py-12 mb-12 relative w-full min-h-[90vh]">

@@ -19,16 +19,16 @@ export default async function CmsPage() {
           Ik wil:
         </h2>
       <div className="grid gap-4 mt-6 sm:grid-cols-2 lg:grid-cols-2 text-center text-lg">
-        <a href="/cms/municipalities" className="p-6 border border-stone-300 rounded-lg bg-secondary hover:bg-accent hover:text-white">
+        <a href="/cms/municipalities" className="p-6 border border-stone-300 rounded-lg bg-primary/50 hover:bg-accent hover:text-white">
           Gemeenten beheren
         </a>
-        <a href="/cms/municipalities/new" className="p-6 border border-stone-300 rounded-lg bg-secondary  hover:bg-accent hover:text-white">
+        <a href="/cms/municipalities/new" className="p-6 border border-stone-300 rounded-lg bg-primary/50   hover:bg-accent hover:text-white">
           Nieuwe gemeente
         </a>
-        <a href="/cms/account" className="p-6 border border-stone-300 rounded-lg bg-secondary hover:bg-accent hover:text-white">
+        <a href="/cms/account" className="p-6 border border-stone-300 rounded-lg bg-primary/50  hover:bg-accent hover:text-white">
           Mijn account beheren
         </a>
-        <a href="/cms/account/invite" className="p-6 border border-stone-300 rounded-lg bg-secondary hover:bg-accent hover:text-white">
+        <a href="/cms/account/invite" className="p-6 border border-stone-300 rounded-lg bg-primary/50  hover:bg-accent hover:text-white">
           Admin uitnodigen
         </a>
       </div>
