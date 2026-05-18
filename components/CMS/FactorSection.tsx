@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { updateFactor } from '@/lib/actions/factor-actions';
+import { updateFactor, deleteFactor } from '@/lib/actions/factor-actions';
 import { Factor } from '@/types/cms';
 
 import Button from '@/components/Button';
@@ -12,6 +12,7 @@ export default function FactorSection({ factor }: { factor: Factor }) {
   const [form, setForm] = useState({ label: factor.label, text: factor.text, type: factor.type });
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
+  const [deleting, setDeleting] = useState(false);
 
   const dirty =
     form.label !== factor.label ||
@@ -39,6 +40,21 @@ export default function FactorSection({ factor }: { factor: Factor }) {
     }
   }
 
+  async function handleDelete() {
+    const confirmed = confirm('Weet je zeker dat je deze factor wilt verwijderen?');
+    if (!confirmed) return;
+
+    setDeleting(true);
+
+    try {
+      await deleteFactor(factor.id);
+
+      window.location.reload();
+    } finally {
+      setDeleting(false);
+    }
+  }
+
   return (
     <div className="bg-white border border-stone-200 rounded-lg p-4">
 
@@ -57,6 +73,7 @@ export default function FactorSection({ factor }: { factor: Factor }) {
           >
             {isEditing ? 'Annuleren' : 'Bewerken'}
           </Button>
+          
         )}
       </div>
 
@@ -121,8 +138,11 @@ export default function FactorSection({ factor }: { factor: Factor }) {
               </div>
 
               <div className="flex items-center gap-4 pt-1">
-                <Button variant="secondary" onClick={handleSave} disabled={!dirty || saving}>
+                <Button variant="small" onClick={handleSave} disabled={!dirty || saving}>
                   {saving ? 'Opslaan...' : 'Opslaan'}
+                </Button>
+                <Button variant="delete" onClick={handleDelete} disabled={deleting}>
+                  {deleting ? 'Verwijderen...' : 'Verwijderen'}
                 </Button>
                 {dirty && !saving && (
                   <span className="text-sm text-stone-400">Onopgeslagen wijzigingen</span>

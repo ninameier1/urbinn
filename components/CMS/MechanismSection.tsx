@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { updateMechanism } from '@/lib/actions/mechanism-actions';
+import { updateMechanism, deleteMechanism } from '@/lib/actions/mechanism-actions';
 import { Mechanism } from '@/types/cms';
 
 import Button from '@/components/Button';
@@ -12,6 +12,7 @@ export default function MechanismSection({ mechanism }: { mechanism: Mechanism }
   const [form, setForm] = useState({ label: mechanism.label, text: mechanism.text });
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
+  const [deleting, setDeleting] = useState(false);
 
   const dirty = form.label !== mechanism.label || form.text !== mechanism.text;
 
@@ -34,6 +35,21 @@ export default function MechanismSection({ mechanism }: { mechanism: Mechanism }
       setSaving(false);
     }
   }
+
+  async function handleDelete() {
+      const confirmed = confirm('Weet je zeker dat je dit mechanisme wilt verwijderen?');
+      if (!confirmed) return;
+  
+      setDeleting(true);
+  
+      try {
+        await deleteMechanism(mechanism.id);
+  
+        window.location.reload();
+      } finally {
+        setDeleting(false);
+      }
+    }
 
   return (
     <div className="bg-white border border-stone-200 rounded-lg p-4">
@@ -94,6 +110,9 @@ export default function MechanismSection({ mechanism }: { mechanism: Mechanism }
               <div className="flex items-center gap-4 pt-1">
                 <Button variant="small" onClick={handleSave} disabled={!dirty || saving}>
                   {saving ? 'Opslaan...' : 'Opslaan'}
+                </Button>
+                <Button variant="delete" onClick={handleDelete} disabled={deleting}>
+                  {deleting ? 'Verwijderen...' : 'Verwijderen'}
                 </Button>
                 {dirty && !saving && (
                   <span className="text-sm text-stone-400">Onopgeslagen wijzigingen</span>
