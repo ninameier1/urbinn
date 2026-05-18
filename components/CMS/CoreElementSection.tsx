@@ -15,15 +15,27 @@ export default function CoreElementSection({ coreElement }: { coreElement: CoreE
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
 
-  const dirty = title !== coreElement.title;
+  const [savedTitle, setSavedTitle] = useState(coreElement.title);
+  const dirty = title !== savedTitle;
+
+  function handleCancel() {
+    setTitle(savedTitle);
+    setIsEditing(false);
+  }
 
   async function handleSave() {
     setSaving(true);
+
     try {
       const fd = new FormData();
       fd.set('title', title);
+
       await updateCoreElement(coreElement.id, fd);
+
+      setSavedTitle(title);
       setSaved(true);
+      setIsEditing(false);
+
       setTimeout(() => setSaved(false), 3000);
     } finally {
       setSaving(false);
@@ -40,13 +52,9 @@ export default function CoreElementSection({ coreElement }: { coreElement: CoreE
           </p>
         </button>
         {isExpanded && (
-          <Button
-            variant={isEditing ? 'cancel' : 'small'}
-            onClick={() => {
-              if (isEditing && dirty) setTitle(coreElement.title);
-              setIsEditing((v) => !v);
-            }}
-          >
+          <Button 
+          variant={isEditing ? 'cancel' : 'small'} 
+          onClick={isEditing ? handleCancel : () => setIsEditing(true)}>
             {isEditing ? 'Annuleren' : 'Bewerken'}
           </Button>
           
@@ -56,14 +64,19 @@ export default function CoreElementSection({ coreElement }: { coreElement: CoreE
       {/* CONTENT */}
       {isExpanded && (
         <div className="mt-4 space-y-5">
-          <div>
-                <span className="text-xs font-medium tracking-wide uppercase text-accent block mb-1">
-                  Titel
-                </span>
-                <p className="text-sm text-stone-600 leading-relaxed">
-                  {title || 'Geen tekst beschikbaar.'}
-                </p>
-              </div>
+          {/* VIEW MODE */}
+          {!isEditing && (
+            <>
+              <span className="text-xs font-medium tracking-wide uppercase text-accent block mb-1">
+                Titel
+              </span>
+              <p className="text-sm text-stone-600 leading-relaxed">
+                {title || 'Geen tekst beschikbaar.'}
+              </p>
+              {saved && <p className="text-sm text-green-600">Opgeslagen!</p>}
+            </>
+          )}
+
           {/* EDIT MODE */}
           {isEditing && (
           <div className="bg-accent/10 border border-accent rounded-lg p-6">
@@ -88,10 +101,6 @@ export default function CoreElementSection({ coreElement }: { coreElement: CoreE
                 <Button variant="secondary" onClick={handleSave} disabled={!dirty || saving}>
                   {saving ? 'Opslaan...' : 'Opslaan'}
                 </Button>
-                {saved && 
-                <span className="text-sm text-green-600">
-                  Opgeslagen!
-                </span>}
                 {dirty && !saving && (
                   <span className="text-sm text-stone-400">
                     Onopgeslagen wijzigingen
