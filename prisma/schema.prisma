@@ -120,7 +120,6 @@ model CoreElement {
 model Mechanism {
   id              Int         @id @default(autoincrement())
   core_element_id Int
-  label           String
   text            String      @db.Text
   
   created_at      DateTime    @default(now())
@@ -128,7 +127,7 @@ model Mechanism {
   
   created_by      Int
   
-  core_element    CoreElement @relation(fields: [core_element_id], references: [id])
+  core_element CoreElement @relation(fields: [core_element_id], references: [id], onDelete: Cascade)
   creator         User        @relation("MechanismCreatedBy", fields: [created_by], references: [id])
 
   @@index([core_element_id], map: "Mechanism_core_element_id_fkey")
@@ -138,7 +137,6 @@ model Mechanism {
 model Factor {
   id              Int         @id @default(autoincrement())
   core_element_id Int
-  label           String
   text            String      @db.Text
   type            FactorType
   
@@ -147,7 +145,7 @@ model Factor {
   created_by      Int
   updated_at      DateTime    @updatedAt
   
-  core_element    CoreElement @relation(fields: [core_element_id], references: [id])
+  core_element CoreElement @relation(fields: [core_element_id], references: [id], onDelete: Cascade)
   creator         User        @relation("FactorCreatedBy", fields: [created_by], references: [id])
 
   @@index([core_element_id], map: "Factor_core_element_id_fkey")
