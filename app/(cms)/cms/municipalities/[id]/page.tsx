@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import { prisma } from '@/lib/prisma';
 
 import TitleSection from '@/components/TitleSection';
-import MunicipalityForm from '@components/CMS/MunicipalityForm';
+import UpdateMunicipalityForm from '@components/CMS/UpdateMunicipalityForm';
 
 export default async function EditMunicipalityPage({ params }: { params: Promise<{ id: string }> }) {
   const { id: rawId } = await params;
@@ -26,7 +26,7 @@ export default async function EditMunicipalityPage({ params }: { params: Promise
   return (
     <>
       <TitleSection title={municipality.name} />
-      <MunicipalityForm municipality={municipality} />
+      <UpdateMunicipalityForm municipality={municipality} />
     </>
   );
 }
