@@ -1,10 +1,11 @@
 import TitleSection from "@/components/TitleSection";
+import CreateMunicipalityForm from "@/components/CMS/CreateMunicipalityForm";
 
 export default function CreateMunicipalityPage() {
   return (
     <>
       <TitleSection />
-      <p className="text-muted-foreground mt-4">Binnenkort beschikbaar.</p>
+      <CreateMunicipalityForm />
     </>
   );
 }

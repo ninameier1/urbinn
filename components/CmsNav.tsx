@@ -15,7 +15,7 @@ export default function CmsNav({ userLabel }: CmsNavProps) {
         <NavLink href="/cms/municipalities">
           Alle gemeenten
         </NavLink>
-        <NavLink href="/cms/new">
+        <NavLink href="/cms/municipalities/new">
           Nieuwe gemeente
         </NavLink>
       </div>

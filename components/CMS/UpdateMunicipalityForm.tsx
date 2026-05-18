@@ -5,7 +5,7 @@ import { Municipality } from '@/types/cms';
 import MunicipalitySection from './MunicipalitySection';
 import CoreElementSection from './CoreElementSection';
 
-export default function MunicipalityForm({ municipality }: { municipality: Municipality }) {
+export default function UpdateMunicipalityForm({ municipality }: { municipality: Municipality }) {
   return (
     <div className="mt-6 space-y-8 max-w-7xl">
       <MunicipalitySection municipality={municipality} />
