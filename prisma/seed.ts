@@ -24,7 +24,6 @@ function generateFakeCoreElement() {
     mechanisms: Array.from(
       { length: faker.number.int({ min: 1, max: 5 }) },
       () => ({
-        label: faker.lorem.word(),
         text: faker.lorem.sentence(),
       })
     ),
@@ -32,7 +31,6 @@ function generateFakeCoreElement() {
       ...Array.from(
         { length: faker.number.int({ min: 1, max: 4 }) },
         () => ({
-          label: faker.lorem.word(),
           text: faker.lorem.sentence(),
           type: "plus" as const,
         })
@@ -40,7 +38,6 @@ function generateFakeCoreElement() {
       ...Array.from(
         { length: faker.number.int({ min: 1, max: 4 }) },
         () => ({
-          label: faker.lorem.word(),
           text: faker.lorem.sentence(),
           type: "min" as const,
         })
@@ -64,14 +61,12 @@ async function seedCoreElements(
         created_by: adminId,
         mechanisms: {
           create: el.mechanisms.map((m) => ({
-            label: m.label,
             text: m.text,
             created_by: adminId,
           })),
         },
         factors: {
           create: el.factors.map((f) => ({
-            label: f.label,
             text: f.text,
             type: f.type,
             created_by: adminId,

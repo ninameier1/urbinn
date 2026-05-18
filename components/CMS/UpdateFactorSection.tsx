@@ -9,18 +9,17 @@ import Button from '@/components/Button';
 export default function UpdateFactorSection({ factor }: { factor: Factor }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
-  const [form, setForm] = useState({ label: factor.label, text: factor.text, type: factor.type });
+  const [form, setForm] = useState({ text: factor.text, type: factor.type });
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
   const [deleting, setDeleting] = useState(false);
 
   const dirty =
-    form.label !== factor.label ||
     form.text !== factor.text ||
     form.type !== factor.type;
 
   function handleCancel() {
-    setForm({ label: factor.label, text: factor.text, type: factor.type });
+    setForm({ text: factor.text, type: factor.type });
     setIsEditing(false);
   }
 
@@ -28,7 +27,6 @@ export default function UpdateFactorSection({ factor }: { factor: Factor }) {
     setSaving(true);
     try {
       const fd = new FormData();
-      fd.set('label', form.label);
       fd.set('text', form.text);
       fd.set('type', form.type);
       await updateFactor(factor.id, fd);

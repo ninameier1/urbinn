@@ -9,15 +9,15 @@ import Button from '@/components/Button';
 export default function UpdateMechanismSection({ mechanism }: { mechanism: Mechanism }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
-  const [form, setForm] = useState({ label: mechanism.label, text: mechanism.text });
+  const [form, setForm] = useState({text: mechanism.text });
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
   const [deleting, setDeleting] = useState(false);
 
-  const dirty = form.label !== mechanism.label || form.text !== mechanism.text;
+  const dirty =  form.text !== mechanism.text;
 
   function handleCancel() {
-    setForm({ label: mechanism.label, text: mechanism.text });
+    setForm({ text: mechanism.text });
     setIsEditing(false);
   }
 
@@ -25,7 +25,6 @@ export default function UpdateMechanismSection({ mechanism }: { mechanism: Mecha
     setSaving(true);
     try {
       const fd = new FormData();
-      fd.set('label', form.label);
       fd.set('text', form.text);
       await updateMechanism(mechanism.id, fd);
       setSaved(true);
