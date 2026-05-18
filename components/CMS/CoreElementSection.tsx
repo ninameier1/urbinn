@@ -49,12 +49,21 @@ export default function CoreElementSection({ coreElement }: { coreElement: CoreE
           >
             {isEditing ? 'Annuleren' : 'Bewerken'}
           </Button>
+          
         )}
       </div>
 
       {/* CONTENT */}
       {isExpanded && (
         <div className="mt-4 space-y-5">
+          <div>
+                <span className="text-xs font-medium tracking-wide uppercase text-accent block mb-1">
+                  Titel
+                </span>
+                <p className="text-sm text-stone-600 leading-relaxed">
+                  {title || 'Geen tekst beschikbaar.'}
+                </p>
+              </div>
           {/* EDIT MODE */}
           {isEditing && (
           <div className="bg-accent/10 border border-accent rounded-lg p-6">
