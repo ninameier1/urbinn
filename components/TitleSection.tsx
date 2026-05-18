@@ -11,7 +11,7 @@ export default function TitleSection() {
 
   return (
     <div className="pb-4 border-b border-stone-200 mb-4">
-      <h1 className="text-3xl font-semibold tracking-tight">
+      <h1 className="text-3xl font-serif text-dark font-semibold tracking-tight">
         {title}
       </h1>
     </div>
