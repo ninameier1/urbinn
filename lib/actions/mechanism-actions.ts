@@ -23,8 +23,7 @@ export async function createMechanism(coreElementId: number, formData: FormData)
   await prisma.mechanism.create({
     data: {
       core_element_id: coreElementId,
-      label: parsed.data.label,
-      text: parsed.data.text,
+      ...parsed.data,
       created_by: userId,
     },
   })
@@ -54,13 +53,14 @@ export async function updateMechanism(id: number, formData: FormData) {
     label: formData.get('label'),
     text: formData.get('text'),
   })
-if (!parsed.success) throw new Error(parsed.error.issues[0].message)
+  
+  if (!parsed.success) 
+  throw new Error(parsed.error.issues[0].message)
 
   await prisma.mechanism.update({
     where: { id },
     data: {
-      label: parsed.data.label,
-      text: parsed.data.text,
+      ...parsed.data,
     },
   })
 }

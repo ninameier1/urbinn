@@ -10,18 +10,20 @@ import { MunicipalitySchema } from '@validations/zodSchemas'
 export async function createMunicipality(formData: FormData) {
   const session = await requireAuth()
   const userId = Number(session.user.id)
-
+ 
   const parsed = MunicipalitySchema.safeParse({
     name: formData.get('name'),
+    description: formData.get('description'),
+    image: formData.get('image'),
   })
 
   if (!parsed.success) {
   throw new Error(parsed.error.issues[0].message)
   }
-
+ 
   await prisma.municipality.create({
     data: {
-      name: parsed.data.name,
+      ...parsed.data,
       created_by: userId,
     },
   })
@@ -36,20 +38,24 @@ export async function getMunicipality(id: number) {
 
 // update
 export async function updateMunicipality(id: number, formData: FormData) {
-  await requireAuth()
+  await requireAuth();
 
   const parsed = MunicipalitySchema.safeParse({
     name: formData.get('name'),
-  })
-  
+    description: formData.get('description'),
+    image: formData.get('image'),
+  });
+
   if (!parsed.success) {
-  throw new Error(parsed.error.issues[0].message)
+    throw new Error(parsed.error.issues[0].message);
   }
 
   await prisma.municipality.update({
     where: { id },
-    data: { name: parsed.data.name },
-  })
+    data: {
+      ...parsed.data,
+    },
+  });
 }
 
 // delete

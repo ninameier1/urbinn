@@ -23,8 +23,7 @@ export async function createCoreElement(municipalityId: number, formData: FormDa
   await prisma.coreElement.create({
     data: {
       municipality_id: municipalityId,
-      title: parsed.data.title,
-      slug: parsed.data.slug,
+      ...parsed.data,
       created_by: userId,
     },
   })
@@ -60,7 +59,9 @@ export async function updateCoreElement(id: number, formData: FormData) {
 
   await prisma.coreElement.update({
     where: { id },
-    data: { title: parsed.data.title },
+    data: { 
+      ...parsed.data, 
+    },
   })
 }
 

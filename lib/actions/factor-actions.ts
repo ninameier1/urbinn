@@ -24,9 +24,7 @@ export async function createFactor(coreElementId: number, formData: FormData) {
   await prisma.factor.create({
     data: {
       core_element_id: coreElementId,
-      label: parsed.data.label,
-      text: parsed.data.text,
-      type: parsed.data.type,
+      ...parsed.data,
       created_by: userId,
     },
   })
@@ -65,9 +63,7 @@ export async function updateFactor(id: number, formData: FormData) {
   await prisma.factor.update({
     where: { id },
     data: {
-      label: parsed.data.label,
-      text: parsed.data.text,
-      type: parsed.data.type,
+      ...parsed.data,
     },
   })
 }
