@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { updateCoreElement } from '@/lib/actions/core-element-actions';
+import { updateCoreElement, deleteCoreElement } from '@/lib/actions/core-element-actions';
 import { CoreElement } from '@/types/cms';
 
 import MechanismSection from './MechanismSection';
@@ -14,6 +14,7 @@ export default function CoreElementSection({ coreElement }: { coreElement: CoreE
   const [title, setTitle] = useState(coreElement.title);
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
+  const [deleting, setDeleting] = useState(false);
 
   const [savedTitle, setSavedTitle] = useState(coreElement.title);
   const dirty = title !== savedTitle;
@@ -41,6 +42,21 @@ export default function CoreElementSection({ coreElement }: { coreElement: CoreE
       setSaving(false);
     }
   }
+
+    async function handleDelete() {
+      const confirmed = confirm('Weet je zeker dat je dit kernelement wilt verwijderen?');
+      if (!confirmed) return;
+  
+      setDeleting(true);
+  
+      try {
+        await deleteCoreElement(coreElement.id);
+  
+        window.location.reload();
+      } finally {
+        setDeleting(false);
+      }
+    }
 
   return (
     <div className="bg-white border border-accent rounded-lg p-6">
@@ -98,8 +114,11 @@ export default function CoreElementSection({ coreElement }: { coreElement: CoreE
                 />
               </div>
               <div className="flex items-center gap-4 pt-1">
-                <Button variant="secondary" onClick={handleSave} disabled={!dirty || saving}>
+                <Button variant="small" onClick={handleSave} disabled={!dirty || saving}>
                   {saving ? 'Opslaan...' : 'Opslaan'}
+                </Button>
+                <Button variant="delete" onClick={handleDelete} disabled={deleting}>
+                  {deleting ? 'Verwijderen...' : 'Verwijderen'}
                 </Button>
                 {dirty && !saving && (
                   <span className="text-sm text-stone-400">
