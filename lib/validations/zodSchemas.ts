@@ -12,12 +12,10 @@ export const CoreElementSchema = z.object({
 })
 
 export const MechanismSchema = z.object({
-  label: z.string().min(1, 'Label is required').max(100),
   text: z.string().min(1, 'Text is required'),
 })
 
 export const FactorSchema = z.object({
-  label: z.string().min(1, 'Label is required').max(100),
   text: z.string().min(1, 'Text is required'),
   type: z.enum(['plus', 'min']),
 })
