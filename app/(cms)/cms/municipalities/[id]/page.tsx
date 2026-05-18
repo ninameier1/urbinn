@@ -25,7 +25,7 @@ export default async function EditMunicipalityPage({ params }: { params: Promise
 
   return (
     <>
-      <TitleSection />
+      <TitleSection title={municipality.name} />
       <MunicipalityForm municipality={municipality} />
     </>
   );
