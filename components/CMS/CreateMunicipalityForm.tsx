@@ -1,129 +1,126 @@
 "use client";
 
-import { useRef, useState, useTransition } from "react";
+import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
+
 import { createMunicipality } from "@/lib/actions/municipality-actions";
-import { uploadImage } from '@/lib/actions/upload-actions';
+import { uploadImage } from "@/lib/actions/upload-actions";
 
-import ImageUpload from "../ImageUpload";
 import Button from "../Button";
+import CreateMunicipalitySection, { MunicipalityFormState } from "./CreateMunicipalitySection";
+import CreateCoreElementSection, { CoreElementFormState } from "./CreateCoreElementSection";
 
-interface FormState {
-  name: string;
-  description: string;
-  image: string | null;
+function uid() {
+  return Math.random().toString(36).slice(2, 9);
+}
+
+function emptyCoreElement(): CoreElementFormState {
+  return { id: uid(), slug: "", title: "", factors: [], mechanisms: [] };
 }
 
 export default function CreateMunicipalityForm() {
   const router = useRouter();
-  const [form, setForm] = useState<FormState>({
+  const [isPending, startTransition] = useTransition();
+
+  const [municipality, setMunicipality] = useState<MunicipalityFormState>({
     name: "",
     description: "",
     image: null,
   });
+
+  const [coreElements, setCoreElements] = useState<CoreElementFormState[]>([]);
+
   const [uploading, setUploading] = useState(false);
-  const [uploadError] = useState<string | null>(null);
+  const [uploadError, setUploadError] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [isPending] = useTransition();
 
   async function handleImageUpload(file: File) {
     setUploading(true);
-
+    setUploadError(null);
     try {
       const formData = new FormData();
-      formData.set('image', file);
-
+      formData.set("image", file);
       const url = await uploadImage(formData);
-
-      setForm((prev) => ({
-        ...prev,
-        image: url,
-      }));
+      setMunicipality((prev) => ({ ...prev, image: url }));
+    } catch {
+      setUploadError("Afbeelding uploaden mislukt.");
     } finally {
       setUploading(false);
     }
   }
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  function updateCoreElement(id: string, updated: CoreElementFormState) {
+    setCoreElements((prev) => prev.map((ce) => (ce.id === id ? updated : ce)));
+  }
+
+  function removeCoreElement(id: string) {
+    setCoreElements((prev) => prev.filter((ce) => ce.id !== id));
+  }
+
+    async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setError(null);
 
-    const formData = new FormData();
-    formData.set("name", form.name);
-    formData.set("description", form.description);
-    if (form.image) formData.set("image", form.image);
+    startTransition(async () => {
+      try {
+        const municipalityData = new FormData();
+        municipalityData.set("name", municipality.name);
+        municipalityData.set("description", municipality.description);
+        if (municipality.image) municipalityData.set("image", municipality.image);
 
-    try {
-      await createMunicipality(formData);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Er is iets misgegaan.");
-    }
+        const municipalityId = await createMunicipality(municipalityData, coreElements);
+
+        router.push(`/cms/municipalities/${municipalityId}`);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "Er is iets misgegaan.");
+      }
+    });
   }
 
   const isBusy = isPending || uploading;
 
   return (
-  <section className="space-y-6">
-    {/* MUNICIPALITY CARD */}
-    <div className="bg-white border border-stone-200 rounded-lg p-6">
-    <form onSubmit={handleSubmit} className="mt-8 max-w-7xl space-y-6">
-      {/* Name field */}
-      <div className="space-y-1.5">
-        <label
-          htmlFor="name"
-          className="block text-sm font-medium text-foreground"
-        >
-          Naam gemeente <span className="text-destructive">*</span>
-        </label>
-        <input
-          id="name"
-          name="name"
-          type="text"
-          required
-          maxLength={100}
-          placeholder="bijv. Almere"
-          value={form.name}
-          onChange={(e) => setForm((p) => ({ ...p, name: e.target.value }))}
-          disabled={isBusy}
-          className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm shadow-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
-        />
-        <p className="text-xs text-muted-foreground">Maximaal 100 tekens.</p>
-      </div>
-
-            <div>
-              <span className="text-xs font-medium tracking-wide uppercase text-accent block mb-1">
-                Beschrijving
-              </span>
-              <textarea
-                value={form.description}
-                onChange={(e) => setForm((p) => ({ ...p, description: e.target.value }))}
-                rows={4}
-                className="border p-2 w-full text-sm px-3 py-2 bg-stone-50 border-stone-300 rounded-md text-stone-900"
-              />
-            </div>
-
-      <ImageUpload
-        value={form.image}
+    <form onSubmit={handleSubmit} className="space-y-6">
+      {/* MUNICIPALITY & CORE ELEMENT */}
+      <CreateMunicipalitySection
+        value={municipality}
+        onChange={setMunicipality}
         uploading={uploading}
-        error={uploadError}
-        onChange={handleImageUpload}
-        onRemove={() => setForm((p) => ({ ...p, image: null }))}
+        uploadError={uploadError}
+        onImageUpload={handleImageUpload}
+        disabled={isBusy}
       />
 
-      {/* Submit error */}
+      {coreElements.map((ce, index) => (
+        <CreateCoreElementSection
+          key={ce.id}
+          coreElement={ce}
+          index={index}
+          onChange={(updated) => updateCoreElement(ce.id, updated)}
+          onRemove={() => removeCoreElement(ce.id)}
+          disabled={isBusy}
+        />
+      ))}
+
+      {/* ADD CORE ELEMENT */}
+      <Button
+        type="button"
+        variant="secondary"
+        disabled={isBusy}
+        onClick={() => setCoreElements((prev) => [...prev, emptyCoreElement()])}
+      >
+        + Kernelement toevoegen
+      </Button>
+
       {error && (
         <p className="rounded-md border border-destructive/30 bg-destructive/10 px-3 py-2 text-sm text-destructive">
           {error}
         </p>
       )}
 
-      {/* Actions */}
+      {/* SAVE & CANCEL ACTIONSSS */}
       <div className="flex items-center gap-3">
-        <Button
-          type="submit"
-          variant="primary"
-          disabled={isBusy}
-        >
+        <Button type="submit" variant="primary" disabled={isBusy}>
           {isPending ? (
             <>
               <span className="h-4 w-4 animate-spin rounded-full border-2 border-primary-foreground border-t-transparent" />
@@ -135,15 +132,14 @@ export default function CreateMunicipalityForm() {
         </Button>
 
         <Button
-          variant="secondary"
+          type="button"
+          variant="cancel"
           disabled={isBusy}
           onClick={() => router.back()}
-      >
+        >
           Annuleren
         </Button>
       </div>
     </form>
-    </div>
-    </section>
   );
 }
