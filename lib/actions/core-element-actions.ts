@@ -20,13 +20,14 @@ export async function createCoreElement(municipalityId: number, formData: FormDa
   throw new Error(parsed.error.issues[0].message)
   }
 
-  await prisma.coreElement.create({
+  const coreElement = await prisma.coreElement.create({
     data: {
       municipality_id: municipalityId,
       ...parsed.data,
       created_by: userId,
     },
-  })
+  });
+  return coreElement.id;
 }
 
 // read
