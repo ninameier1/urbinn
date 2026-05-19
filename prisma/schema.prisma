@@ -109,7 +109,7 @@ model CoreElement {
   created_by      Int
   creator         User         @relation("CoreElementCreatedBy", fields: [created_by], references: [id])
  
-  municipality    Municipality @relation(fields: [municipality_id], references: [id])
+  municipality    Municipality @relation(fields: [municipality_id], references: [id], onDelete: Cascade)
   factors         Factor[]
   mechanisms      Mechanism[]
 
