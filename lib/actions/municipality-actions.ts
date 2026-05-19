@@ -1,5 +1,6 @@
 'use server'
 
+import { redirect } from "next/navigation";
 import { prisma } from '@/lib/prisma'
 import { requireAuth } from '@/lib/auth/auth-guard'
 import { MunicipalitySchema } from '@validations/zodSchemas'
@@ -21,12 +22,14 @@ export async function createMunicipality(formData: FormData) {
   throw new Error(parsed.error.issues[0].message)
   }
  
-  await prisma.municipality.create({
+  const municipality = await prisma.municipality.create({
     data: {
       ...parsed.data,
       created_by: userId,
     },
-  })
+  });
+  
+  redirect(`/cms/municipalities/${municipality.id}`);
 }
 
 // read
