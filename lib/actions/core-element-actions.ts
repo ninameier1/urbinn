@@ -3,6 +3,7 @@
 import { prisma } from '@/lib/prisma'
 import { requireAuth } from '@/lib/auth/auth-guard'
 import { CoreElementSchema } from '@validations/zodSchemas'
+import { slugify } from '@/utils/helpers'
 
 // ------- CORE ELEMENT CRUD --------
 
@@ -13,7 +14,7 @@ export async function createCoreElement(municipalityId: number, formData: FormDa
 
   const parsed = CoreElementSchema.safeParse({
     title: formData.get('title'),
-    slug: formData.get('slug'),
+    slug: slugify(String(formData.get('title'))),
   })
 
   if (!parsed.success) {

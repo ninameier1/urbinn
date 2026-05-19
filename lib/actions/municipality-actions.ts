@@ -4,16 +4,9 @@ import { prisma } from '@/lib/prisma'
 import { requireAuth } from '@/lib/auth/auth-guard'
 import { MunicipalitySchema } from '@validations/zodSchemas'
 import { FactorType } from "@/components/CMS/CreateFactorSection";
+import { slugify } from '@/utils/helpers';
 
 // ------- MUNICIPALITY CRUD --------
-
-function toSlug(value: string) {
-  return value
-    .toLowerCase()
-    .trim()
-    .replace(/\s+/g, "-")
-    .replace(/[^a-z0-9-]/g, "");
-}
 
 export interface CreateCoreElementInput {
   title: string;
@@ -45,7 +38,7 @@ export async function createMunicipality(
         data: {
           municipality_id: municipality.id,
           title: ce.title,
-          slug: toSlug(ce.title),
+          slug: slugify(ce.title),
           created_by: userId,
         },
       });
