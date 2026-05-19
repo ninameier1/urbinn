@@ -33,7 +33,7 @@ export default function ImageUpload({
 
   return (
     <div className="space-y-1.5">
-      <label className="block text-sm font-medium text-foreground">
+      <label className="text-xs font-medium tracking-wide uppercase text-accent block mb-1">
         Afbeelding{" "}
         <span className="text-muted-foreground font-normal">(optioneel)</span>
       </label>
