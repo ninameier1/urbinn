@@ -139,13 +139,22 @@ export default function UpdateMunicipalitySection({ municipality }: { municipali
         {isEditing && (
         <section className="bg-accent/10 border border-accent rounded-lg p-6">
           <div className="space-y-4">
-            <p className="text-xs font-medium tracking-widest uppercase text-accent mb-4">
-              Bewerken
-            </p>
-            <h2 className="text-base font-semibold text-stone-800 mb-1">Gemeente { municipality.name } aanpassen</h2>
-            <p className="text-sm text-stone-500 mb-5">
-              Pas de basisinformatie van deze gemeente aan.
-            </p>
+            <div className="flex items-start justify-between">
+              <div>
+                <p className="text-xs font-medium tracking-widest uppercase text-accent mb-4">
+                  Bewerken
+                </p>
+                <h2 className="text-base font-semibold text-stone-800 mb-1">
+                  Gemeente "{ municipality.name }" aanpassen
+                </h2>
+                <p className="text-sm text-stone-500 mb-5">
+                  Pas de basisinformatie van deze gemeente aan.
+                </p>
+              </div>
+            <Button variant="delete" onClick={handleDelete} disabled={deleting}>
+              {deleting ? 'Verwijderen...' : 'Verwijder gemeente'}
+            </Button>
+            </div>
 
             <div>
               <span className="text-xs font-medium tracking-wide uppercase text-accent block mb-1">
@@ -182,9 +191,6 @@ export default function UpdateMunicipalitySection({ municipality }: { municipali
             <div className="flex items-center gap-4 pt-2">
               <Button variant="small" onClick={handleSave} disabled={!dirty || saving}>
                 {saving ? 'Opslaan...' : 'Opslaan'}
-              </Button>
-              <Button variant="delete" onClick={handleDelete} disabled={deleting}>
-                {deleting ? 'Verwijderen...' : 'Verwijderen'}
               </Button>
               {dirty && !saving && (
                 <span className="text-sm text-stone-400">Onopgeslagen wijzigingen</span>
