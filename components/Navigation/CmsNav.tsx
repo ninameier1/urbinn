@@ -1,5 +1,7 @@
 import NavLink from "./NavLink";
 import AccountDropdown from "./AccountDropdown";
+import MunicipalityDropdown from "./MunicipalityDropdown";
+import PublicationsDropdown from "./PublicationsDropdown";
 
 type CmsNavProps = {
   userLabel: string;
@@ -12,12 +14,8 @@ export default function CmsNav({ userLabel }: CmsNavProps) {
         <NavLink href="/cms">
         CMS
         </NavLink>
-        <NavLink href="/cms/municipalities">
-          Alle gemeenten
-        </NavLink>
-        <NavLink href="/cms/municipalities/new">
-          Nieuwe gemeente
-        </NavLink>
+        <MunicipalityDropdown />
+        <PublicationsDropdown />
       </div>
 
       <div className="flex h-full items-center border-l border-secondary">
