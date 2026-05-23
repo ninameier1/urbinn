@@ -8,20 +8,29 @@ import { PublicationSchema } from '@validations/zodSchemas'
 
 // create
 export async function createPublication(formData: FormData) {
-  const session = await requireAuth()
-  const userId = Number(session.user.id)
+  const session = await requireAuth();
+  const userId = Number(session.user.id);
+
+  const rawMunicipalityId = formData.get("municipality_id");
+  const rawPublishedAt = formData.get("published_at");
 
   const parsed = PublicationSchema.safeParse({
-    title: formData.get('title'),
-    author: formData.get('author'),
-    description: formData.get('description'),
-    url: formData.get('url'),
-    published_at: formData.get('published_at'),
-    municipality_id: formData.get('municipality_id')
-  })
+    title: formData.get("title")?.toString().trim(),
+    author: formData.get("author")?.toString().trim(),
+    description: formData.get("description")?.toString().trim(),
+    url: formData.get("url")?.toString().trim(),
+
+    municipality_id: !rawMunicipalityId
+      ? null
+      : Number(rawMunicipalityId),
+
+    published_at: !rawPublishedAt
+      ? null
+      : new Date(rawPublishedAt as string),
+  });
 
   if (!parsed.success) {
-  throw new Error(parsed.error.issues[0].message)
+    throw new Error(parsed.error.issues[0].message);
   }
 
   const publication = await prisma.publication.create({
@@ -30,6 +39,7 @@ export async function createPublication(formData: FormData) {
       created_by: userId,
     },
   });
+
   return publication.id;
 }
 
