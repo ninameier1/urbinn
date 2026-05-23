@@ -2,7 +2,7 @@ import { auth } from '@/auth'
 import { redirect } from 'next/navigation'
 
 import LayoutShell from '@/components/LayoutShell'
-import CmsNav from '@/components/CmsNav'
+import CmsNav from '@/components/Navigation/CmsNav'
 
 export default async function CmsLayout({
   children,
