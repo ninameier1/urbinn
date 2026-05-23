@@ -5,8 +5,9 @@ import DropdownMenu from "@/components/Navigation/DropdownMenu";
 
 const links = [
   { href: "/onderzoek", label: "Gezonde Leefomgeving" },
-  { href: "/onderzoek/ontstaan", label: "Ontstaan" },
+  { href: "/onderzoek/themas", label: "Onderzoeksthema's" },
   { href: "/onderzoek/publicaties", label: "Publicaties" },
+  { href: "/onderzoek/ontstaan", label: "Ontstaan" },
 ];
 
 export default function ResearchDropdown() {
