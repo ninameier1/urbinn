@@ -7,28 +7,32 @@ export default function Footer() {
 
         <div>
           <h3 className="text-white font-semibold tracking-wide mb-2">
-            Urban Innovation
+            Let's GLOW Flevoland
           </h3>
           <p className="text-white/60 mb-2">
-            Onderzoek naar inclusieve, veilige en duurzame steden in Flevoland.
+            Samenwerkingsonderzoek naar inclusieve, veilige en duurzame steden in Flevoland.
           </p>
-          <Tag label="Urban Innovation" href="https://www.windesheim.nl/onderzoek/onderzoeksprojecten/urban-innovation/12-jaar-gezonde-stad" />
         </div>
 
         <div>
-          <h4 className="text-white/80 font-medium mb-2">Gezonde Stad</h4>
+          <h4 className="text-white/80 font-medium mb-2">Het Onderzoek</h4>
           <ul className="space-y-1 text-white/60">
-            <li><a href="/" className="hover:text-white transition">Home</a></li>
+            <li><a href="/onderzoek" className="hover:text-white transition">Onderzoek</a></li>
             <li><a href="/gemeenten" className="hover:text-white transition">Gemeenten</a></li>
-            <li><a href="/urban-innovation" className="hover:text-white transition">Urban Innovation</a></li>
+            <li><a href="/onderzoek/publicaties" className="hover:text-white transition">Publicaties</a></li>
+            <li><a href="/onderzoek/ontstaan" className="hover:text-white transition">Ontstaan</a></li>
+
           </ul>
         </div>
 
         <div>
-          <h4 className="text-white/80 font-medium mb-2">Lectoraat</h4>
+          <h4 className="text-white/80 font-medium mb-2">Het Consortium</h4>
           <ul className="space-y-1 text-white/60">
-            <li><a href="/over-ons" className="hover:text-white transition">Over Ons</a></li>
-            <li><a href="/contact" className="hover:text-white transition">Contact</a></li>
+            <li><a href="/consortium" className="hover:text-white transition">Consortium-XL</a></li>
+            <li><a href="/consortium/flever" className="hover:text-white transition">Flever</a></li>
+            <li><a href="/consortium/roc" className="hover:text-white transition">ROC Flevoland</a></li>
+            <li><a href="/consortium/windesheim" className="hover:text-white transition">Windesheim Flevoland</a></li>
+            <li><a href="/consortium/vu" className="hover:text-white transition">Vrije Universiteit Amsterdam</a></li>
           </ul>
         </div>
 
@@ -79,7 +83,7 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-white/10 text-center text-white/50 text-xs py-4">
-        © {new Date().getFullYear()} Lectoraat Urban Innovation · Windesheim
+        © {new Date().getFullYear()} Let's GLOW Flevoland · Consortium-XL
       </div>
       
     </footer>
