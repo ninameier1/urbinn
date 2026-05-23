@@ -14,6 +14,7 @@ model User {
   created_at       DateTime       @default(now())
   emailVerified    DateTime?
 
+  publications     Publication[]  @relation("PublicationCreatedBy")
   municipalities   Municipality[] @relation("MunicipalityCreatedBy")
   core_elements    CoreElement[]  @relation("CoreElementCreatedBy")
   mechanisms       Mechanism[]    @relation("MechanismCreatedBy")
@@ -92,6 +93,7 @@ model Municipality {
   created_by    Int
  
   core_elements CoreElement[]
+  publications  Publication[]
   creator       User          @relation("MunicipalityCreatedBy", fields: [created_by], references: [id])
 
   @@index([created_by], map: "Municipality_created_by_fkey")
@@ -155,4 +157,24 @@ model Factor {
 enum FactorType {
   plus
   min
+}
+
+model Publication {
+  id            Int           @id @default(autoincrement())
+  title         String
+  authors       String
+  description   String        @db.Text
+  url           String?
+
+  created_at    DateTime      @default(now())
+  updated_at    DateTime      @updatedAt
+  
+  created_by    Int
+  creator       User          @relation("PublicationCreatedBy", fields: [created_by], references: [id])
+
+  municipality_id Int?
+  municipality    Municipality? @relation(fields: [municipality_id], references: [id])
+
+  @@index([created_by], map: "Publication_created_by_fkey")
+  @@index([municipality_id], map: "Publication_municipality_id_fkey")
 }

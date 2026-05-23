@@ -81,6 +81,7 @@ async function main() {
   const adminEmail = "s1081087@student.windesheim.nl";
 
   await prisma.$transaction(async (tx) => {
+    await tx.publication.deleteMany()
     await tx.factor.deleteMany()
     await tx.mechanism.deleteMany()
     await tx.coreElement.deleteMany()
@@ -143,6 +144,33 @@ async function main() {
       await seedCoreElements(municipality.id, admin.id, fakeElements, true);
     }
   }
+
+  const municipalities = await prisma.municipality.findMany();
+
+  const globalPublications = Array.from({ length: 3 }, () => ({
+    title: faker.lorem.sentence({ min: 4, max: 8 }),
+    authors: Array.from({ length: faker.number.int({ min: 1, max: 3 }) }, () =>
+      faker.person.fullName()
+    ).join(", "),
+    description: faker.lorem.paragraph(),
+    url: faker.internet.url(),
+    created_by: admin.id,
+  }));
+
+  const linkedPublications = municipalities.map((m) => ({
+    title: faker.lorem.sentence({ min: 4, max: 8 }),
+    authors: Array.from({ length: faker.number.int({ min: 1, max: 3 }) }, () =>
+      faker.person.fullName()
+    ).join(", "),
+    description: faker.lorem.paragraph(),
+    url: faker.internet.url(),
+    created_by: admin.id,
+    municipality_id: m.id,
+  }));
+
+  await prisma.publication.createMany({
+    data: [...globalPublications, ...linkedPublications],
+  });
 
   console.log("Database seeded successfully");
 }
