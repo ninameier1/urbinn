@@ -162,9 +162,10 @@ enum FactorType {
 model Publication {
   id            Int           @id @default(autoincrement())
   title         String
-  authors       String
+  author        String
   description   String        @db.Text
   url           String?
+  published_at  DateTime?
 
   created_at    DateTime      @default(now())
   updated_at    DateTime      @updatedAt

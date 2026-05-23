@@ -149,21 +149,23 @@ async function main() {
 
   const globalPublications = Array.from({ length: 3 }, () => ({
     title: faker.lorem.sentence({ min: 4, max: 8 }),
-    authors: Array.from({ length: faker.number.int({ min: 1, max: 3 }) }, () =>
+    author: Array.from({ length: faker.number.int({ min: 1, max: 3 }) }, () =>
       faker.person.fullName()
     ).join(", "),
     description: faker.lorem.paragraph(),
     url: faker.internet.url(),
+    published_at: faker.date.past(),
     created_by: admin.id,
   }));
 
   const linkedPublications = municipalities.map((m) => ({
     title: faker.lorem.sentence({ min: 4, max: 8 }),
-    authors: Array.from({ length: faker.number.int({ min: 1, max: 3 }) }, () =>
+    author: Array.from({ length: faker.number.int({ min: 1, max: 3 }) }, () =>
       faker.person.fullName()
     ).join(", "),
     description: faker.lorem.paragraph(),
     url: faker.internet.url(),
+    published_at: faker.date.past(),
     created_by: admin.id,
     municipality_id: m.id,
   }));
