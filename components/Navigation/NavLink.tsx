@@ -12,9 +12,9 @@ type NavLinkProps = {
 export default function NavLink({ href, children }: NavLinkProps) {
   const pathname = usePathname();
   const isActive =
-  href === "/cms"
-    ? pathname === href
-    : pathname === href || pathname.startsWith(href + "/");
+    href === "/cms" || href === "/cms/municipalities"
+      ? pathname === href
+      : pathname === href || pathname.startsWith(href + "/");
 
   return (
     <Link
