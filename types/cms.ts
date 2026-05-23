@@ -14,3 +14,10 @@ export type Municipality = Prisma.MunicipalityGetPayload<{
 export type CoreElement = Municipality['core_elements'][number];
 export type Mechanism = CoreElement['mechanisms'][number];
 export type Factor = CoreElement['factors'][number];
+
+export type Publication = Prisma.PublicationGetPayload<{
+  include: {
+    creator: true;
+    municipality: true;
+  };
+}>;
