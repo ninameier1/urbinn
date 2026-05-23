@@ -14,7 +14,7 @@ const links = [
 export default function ConsortiumDropdown() {
   const pathname = usePathname();
   const isActive = links.some(({ href }) =>
-    href === "/onderzoek"
+    href === "/consortium"
       ? pathname === href || pathname.startsWith(href + "/")
       : pathname === href
   );
