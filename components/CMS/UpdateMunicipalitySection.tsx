@@ -131,7 +131,9 @@ export default function UpdateMunicipalitySection({ municipality }: { municipali
                 className="rounded-md border object-cover"
               />
             )}
-            {saved && <p className="mt-3 text-sm text-green-600">Opgeslagen!</p>}
+            {saved && <p className="rounded-md border border-green-200 bg-green-50 px-3 py-2 text-sm text-green-700">
+              Opgeslagen!
+            </p>}
           </div>
         )}
 

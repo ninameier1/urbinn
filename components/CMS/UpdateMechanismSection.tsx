@@ -81,7 +81,9 @@ export default function UpdateMechanismSection({ mechanism }: { mechanism: Mecha
               <p className="text-sm text-stone-600 leading-relaxed">
                 {form.text || 'Geen tekst beschikbaar.'}
               </p>
-              {saved && <p className="text-sm text-green-600">Opgeslagen!</p>}
+              {saved && <p className="rounded-md border border-green-200 bg-green-50 px-3 py-2 text-sm text-green-700">
+                Opgeslagen!
+              </p>}
             </>
           )}
 
