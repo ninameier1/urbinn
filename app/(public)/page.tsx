@@ -36,32 +36,46 @@ export default async function HomePage() {
   const municipalities = await getNewestMunicipalities();
   const [featured, ...rest] = municipalities;
 
-  return (
+return (
   <>
     <section className="relative overflow-hidden -mt-8">
-        <div className="absolute inset-0 z-0">
-                <Image
-                    src="/assets/images/header.jpg"
-                    alt="Gezonde Stad"
-                    fill
-                    priority
-                    sizes="100vw"
-                    className="object-cover"
-                    unoptimized
-                />
-            <div className="absolute inset-0 bg-white/60" />
-        </div>
+      <div className="absolute inset-0 z-0">
+                  <Image
+                      src="/assets/images/header.jpg"
+                      alt="Gezonde Stad"
+                      fill
+                      priority
+                      sizes="100vw"
+                      className="object-cover"
+                      unoptimized
+                  />
+        <div className="absolute inset-0 bg-white/60" />
+     </div>
 
-        <div className="relative z-10 px-6 lg:px-16 pt-20 pb-16 max-w-3xl mx-auto text-center">
+    <div className="relative z-10 px-6 lg:px-16 pt-16 pb-20 max-w-3xl mx-auto text-center">
             <p className="text-xs font-semibold tracking-[.18em] uppercase text-primary mb-5">
-            Samenwerkingsonderzoek · Flevoland
+            Consortium-XL · Flevoland
             </p>
 
-            <h1 className="font-serif text-[clamp(2.8rem,7vw,5rem)] font-bold leading-[1.07] tracking-tight text-dark mb-6">
+            <div className="relative leading-none select-none min-h-[18rem] flex items-center justify-center mb-6 mt-4">
+              <span className="absolute top-0 left-0 font-serif text-[clamp(4rem,7vw,7rem)] font-bold tracking-tight text-dark">
+                Let's
+              </span>
+
+              <h1 className="font-serif text-[clamp(8rem,16vw,18rem)] font-bold tracking-tight text-primary text-center py-16">
+                <em className="not-italic">GLOW</em>
+              </h1>
+
+              <span className="absolute bottom-0 right-0 font-serif text-[clamp(4rem,7vw,7rem)] font-bold tracking-tight text-dark">
+                Flevoland
+              </span>
+            </div>
+
+            {/* <h1 className="font-serif text-[clamp(1.5rem,2.5vw,2rem)] font-bold leading-[1.07] tracking-tight text-dark mb-6 mt-4">
             Samen bouwen aan de{" "}
             <em className="not-italic text-primary">gezonde leefomgeving</em>
             {" "}van morgen
-            </h1>
+            </h1> */}
 
             <p className="text-base text-text/60 leading-relaxed max-w-md mx-auto mb-10">
             Een samenwerking tussen Windesheim, de VU, ROC Flevoland en Flever.
@@ -82,7 +96,7 @@ export default async function HomePage() {
       </section>
 
       <div className="bg-white border-y border-text/10 py-6 px-6 lg:px-16 text-center">
-        <Tag label="Samenwerkingspartners" href="/partners" />
+        <Tag label="Consortiumpartners" href="/consortium" />
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 max-w-2xl mx-auto">
           {partners.map((p) => (
@@ -180,10 +194,10 @@ export default async function HomePage() {
       <section className="px-6 lg:px-16 py-14">
         <div className="flex justify-between items-end mb-7">
           <div>
-            <Tag label="Onderzoeksthema's" href="/onderzoeksthemas" />
+            <Tag label="Onderzoeksthema's" href="/onderzoek/themas" />
             <h2 className="font-serif text-3xl font-bold text-dark">Wat we onderzoeken</h2>
           </div>
-          <Button variant="primary" href="/onderzoeksthemas">
+          <Button variant="primary" href="/onderzoek/themas">
             Alle Onderzoeksthema's →
           </Button>
         </div>
@@ -207,7 +221,7 @@ export default async function HomePage() {
 
       <section className="px-6 lg:px-16 py-16 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div className="flex flex-col items-start">
-        <Tag label="Publicaties" href="/publicaties" />
+        <Tag label="Publicaties" href="/onderzoek/publicaties" />
           <span className="inline-block bg-primary/10 text-primary text-[10px] font-bold tracking-wide uppercase rounded px-2.5 py-1 mb-5">
             Nieuw rapport · 2026
           </span>
@@ -259,7 +273,7 @@ export default async function HomePage() {
           <div className="w-10 h-10 rounded-xl bg-secondary/50 flex items-center justify-center mb-3">
             <NotebookPen />
           </div>
-          <Tag label="Over ons" href="/over-ons" />
+          <Tag label="Consortium-XL" href="/consortium" />
           <h3 className="font-serif text-xl font-bold text-dark mb-3">Wie zijn wij?</h3>
           <p className="text-sm text-text/60 leading-relaxed">
             Pionieren, vernieuwen, vooruitgaan. Steden in Flevoland doen het dagelijks, samen met het lectoraat Urban Innovation. 
@@ -270,7 +284,7 @@ export default async function HomePage() {
           <div className="w-10 h-10 rounded-xl bg-secondary/50 flex items-center justify-center mb-3">
             <Microscope />
           </div>
-          <Tag label="Urban Innovation" href="/urban-innovation" />
+          <Tag label="Het Onderzoek" href="/onderzoek" />
           <h3 className="font-serif text-xl font-bold text-dark mb-3">Wat doen wij?</h3>
           <p className="text-sm text-text/60 leading-relaxed">
             Het lectoraat Urban Innovation verzamelt en initieert innovatievoorbeelden en -verhalen uit de nieuwe stad. 
@@ -282,7 +296,7 @@ export default async function HomePage() {
 
       <hr className="border-text/10" />
 
-      <section className="px-6 lg:px-16 py-16 max-w-7xl mx-auto">
+      {/* <section className="px-6 lg:px-16 py-16 max-w-7xl mx-auto">
         <div className="bg-dark rounded-3xl px-8 py-12 md:px-14 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           <div>
             <p className="text-xs font-semibold tracking-[.16em] uppercase text-secondary mb-3">Nieuwsbrief</p>
@@ -296,7 +310,7 @@ export default async function HomePage() {
           </div>
           <NewsletterForm />
         </div>
-      </section>
+      </section> */}
 
     </>
   );
