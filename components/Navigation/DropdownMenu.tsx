@@ -2,19 +2,9 @@
 
 import { useState, ReactNode } from "react";
 
-type DropdownMenuProps = {
-  trigger: ReactNode;
-  children: ReactNode;
-  width?: string;
-  align?: "left" | "right";
-};
+type DropdownMenuProps = { trigger: ReactNode; children: ReactNode; width?: string; align?: "left" | "right"; };
 
-export default function DropdownMenu({
-  trigger,
-  children,
-  width = "w-56",
-  align = "right",
-}: DropdownMenuProps) {
+export default function DropdownMenu({ trigger, children, width = "w-56", align = "right", }: DropdownMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
