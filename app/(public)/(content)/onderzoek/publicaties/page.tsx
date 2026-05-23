@@ -2,7 +2,7 @@ import TitleSection from "@/components/TitleSection";
 
 export const revalidate = 60;
 
-export default async function AboutPage() {
+export default async function PublicationsPage() {
   return (
     <>
       <TitleSection />
