@@ -175,10 +175,10 @@ export default function UpdatePublicationForm({
             {form.description || 'Geen beschrijving'}
           </p>
         </div>
-        
+
         {saved && (
           <div className="rounded-md border border-green-200 bg-green-50 px-3 py-2 text-sm text-green-700">
-            Publicatie opgeslagen.
+            Publicatie opgeslagen!
           </div>
         )}
       </section>

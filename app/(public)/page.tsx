@@ -52,7 +52,7 @@ return (
         <div className="absolute inset-0 bg-white/60" />
      </div>
 
-    <div className="relative z-10 px-6 lg:px-16 pt-16 pb-20 max-w-3xl mx-auto text-center">
+    <div className="relative z-10 px-6 lg:px-16 pt-16 pb-16 max-w-3xl mx-auto text-center">
             <p className="text-xs font-semibold tracking-[.18em] uppercase text-primary mb-5">
             Consortium-XL · Flevoland
             </p>
@@ -236,8 +236,8 @@ return (
             Iedereen kan die informatie (her)gebruiken.
 
           </p>
-          <Button href="/rapporten/flevoland-in-beeld" variant="secondary">
-            Download rapport (PDF)
+          <Button href="/onderzoek/publicaties" variant="secondary">
+            Bekijk alle Publicaties →
           </Button>
         </div>
 
