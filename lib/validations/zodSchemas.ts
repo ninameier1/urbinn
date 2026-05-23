@@ -19,3 +19,12 @@ export const FactorSchema = z.object({
   text: z.string().min(1, 'Text is required'),
   type: z.enum(['plus', 'min']),
 })
+
+export const PublicationSchema = z.object({
+  title: z.string().min(1, 'Title is required').max(100),
+  author: z.string().min(1, 'At least one author is required').max(100),
+  description: z.string().min(1, 'Description is required'),
+  url: z.string().optional().nullable(),
+  published_at: z.coerce.date().optional().nullable(),
+  municipality_id: z.number().optional().nullable(),
+})
