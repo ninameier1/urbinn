@@ -18,18 +18,16 @@ export default function MunicipalityCard({ name, image, href, description, tags 
   const [src, setSrc] = useState(image || "/assets/images/placeholder.jpg");
 
   return (
-    <Link href={href} className="group block max-w-7xl bg-white border border-stone-200 rounded-2xl overflow-hidden hover:border-stone-300 transition-colors">
+    <Link href={href} className="group block max-w-7xl bg-white border border-stone-200 rounded-2xl overflow-hidden hover:border-accent transition-colors">
       <div className={`relative flex items-end ${featured ? "h-56 p-5" : "h-64 p-5"}`}>
-        {image && (
-          <Image
-            src={src}
-            alt={name}
-            fill
-            className="object-cover group-hover:opacity-80 transition-opacity"
-            unoptimized
-            onError={() => setSrc("/assets/images/placeholder.jpg")}
-          />
-        )}
+        <Image
+          src={src}
+          alt={name}
+          fill
+          className="object-cover group-hover:opacity-80 transition-opacity"
+          unoptimized
+          onError={() => setSrc("/assets/images/placeholder.jpg")}
+        />
 
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
 
