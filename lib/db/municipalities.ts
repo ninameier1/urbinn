@@ -66,11 +66,13 @@ export async function getAllMunicipalities(sort: string, query: string) {
   } as const;
 
   return prisma.municipality.findMany({
-    where: query
-      ? { name: { contains: query } }
-      : undefined,
+    where: {
+      NOT: { name: 'Zwolle' },
+      ...(query ? { name: { contains: query } }
+        : {}),
+    },
     orderBy: orderMap[sort as keyof typeof orderMap] ?? { name: 'asc' },
-  });
+});
 }
 
 
@@ -89,7 +91,8 @@ export function getMunicipalityByName(name: string) {
 
 export function getNewestMunicipalities(take: number = 3) {
   return prisma.municipality.findMany({
-    orderBy: { created_at: "desc" },
+    where: { NOT: { name: 'Zwolle' } },
+    orderBy: { created_at: 'desc' },
     take,
   });
 }
