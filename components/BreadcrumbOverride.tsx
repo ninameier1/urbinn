@@ -1,15 +1,15 @@
 "use client";
-import { useEffect } from "react";
 
-export default function BreadcrumbOverride({ segment, label }: {
-  segment: string;
-  label: string;
-}) {
+import { useEffect } from "react";
+import { usePathname } from "next/navigation";
+
+export default function BreadcrumbOverride({ label }: { label: string }) {
+  const pathname = usePathname();
+
   useEffect(() => {
-    sessionStorage.setItem(`breadcrumb_${segment}`, label);
-    // breadcrumb is dumb and needs to know it has been overwritten
+    sessionStorage.setItem(`breadcrumb_${pathname}`, label);
     window.dispatchEvent(new Event("breadcrumb-updated"));
-  }, [segment, label]);
+  }, [pathname, label]);
 
   return null;
 }

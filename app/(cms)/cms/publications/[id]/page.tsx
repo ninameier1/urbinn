@@ -4,6 +4,7 @@ import { getAllMunicipalities } from "@/lib/db/municipalities";
 
 import TitleSection from '@/components/TitleSection';
 import UpdatePublicationForm from '@components/CMS/UpdatePublicationForm';
+import BreadcrumbOverride from '@/components/BreadcrumbOverride';
 
 export default async function EditPublicationPage({ params }: { params: Promise<{ id: string }> }) {
   const { id: rawId } = await params;
@@ -17,6 +18,7 @@ export default async function EditPublicationPage({ params }: { params: Promise<
 
   return (
     <>
+      <BreadcrumbOverride label={publication.title} />
       <TitleSection title={publication.title} />
       <UpdatePublicationForm publication={publication} municipalities={municipalities} />
     </>

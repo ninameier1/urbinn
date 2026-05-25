@@ -3,6 +3,7 @@ import { prisma } from '@/lib/prisma';
 
 import TitleSection from '@/components/TitleSection';
 import UpdateMunicipalityForm from '@components/CMS/UpdateMunicipalityForm';
+import BreadcrumbOverride from '@/components/BreadcrumbOverride';
 
 export default async function EditMunicipalityPage({ params }: { params: Promise<{ id: string }> }) {
   const { id: rawId } = await params;
@@ -25,6 +26,7 @@ export default async function EditMunicipalityPage({ params }: { params: Promise
 
   return (
     <>
+      <BreadcrumbOverride label={municipality.name} />
       <TitleSection title={municipality.name} />
       <UpdateMunicipalityForm municipality={municipality} />
     </>
