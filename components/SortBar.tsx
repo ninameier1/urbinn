@@ -41,7 +41,7 @@ export default function SortBar({ sortOptions, defaultSort = 'name_asc', placeho
           placeholder={placeholder}
           defaultValue={query}
           onChange={(e) => update('query', e.target.value)}
-          className="border border-primary rounded-lg bg-white px-4 py-2 pr-10 text-sm w-full focus:outline-none focus:ring-2 focus:ring-accent"
+          className="border border-stone-200 rounded-lg bg-white px-4 py-2 pr-10 text-sm w-full focus:outline-none focus:ring-2 focus:ring-accent"
         />
         {query && (
           <button
@@ -58,7 +58,7 @@ export default function SortBar({ sortOptions, defaultSort = 'name_asc', placeho
       <select
         value={current}
         onChange={(e) => update('sort', e.target.value)}
-        className="border border-primary rounded-lg bg-white px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-accent"
+        className="border border-stone-200 rounded-lg bg-white px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-accent"
       >
         {sortOptions.map((opt) => (
           <option key={opt.value} value={opt.value}>
