@@ -77,12 +77,13 @@ export default function Footer() {
                 Windesheim.nl
               </a>
             </li>
+            <li><a href="/contact" className="hover:text-white transition">Contact</a></li>
           </ul>
         </div>
       </div>
 
       <div className="border-t border-white/10 text-center text-white/50 text-xs py-4">
-        © {new Date().getFullYear()} Let's GLOW Flevoland · Consortium-XL
+        © {new Date().getFullYear()} Let's GLOW Flevoland! · Consortium-XL
       </div>
       
     </footer>
