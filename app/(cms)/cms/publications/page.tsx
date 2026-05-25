@@ -19,21 +19,28 @@ export default async function PublicationsCMSPage({ searchParams }: {
   const publications = await getAllPublicationsCMS(sort, query);
   
   const PUBLICATION_SORT_OPTIONS = [
-    { value: 'title_asc',    label: 'Titel A–Z' },
-    { value: 'title_desc',   label: 'Titel Z–A' },
+    { value: 'updated_desc', label: 'Recentst bijgewerkt' },
     { value: 'created_desc', label: 'Nieuwste aangemaakt' },
     { value: 'created_asc',  label: 'Oudste aangemaakt' },
+    { value: 'title_asc',    label: 'Titel A–Z' },
+    { value: 'title_desc',   label: 'Titel Z–A' },
+    { value: 'author_asc',    label: 'Auteur A–Z' },
+    { value: 'author_desc',   label: 'Auteur Z–A' },
     { value: 'published_desc', label: 'Nieuwste publicatiedatum' },
     { value: 'published_asc',  label: 'Oudste publicatiedatum' },
     { value: 'creator_asc',  label: 'Aangemaakt door A–Z' },
     { value: 'creator_desc', label: 'Aangemaakt door Z–A' },
-    { value: 'updated_desc', label: 'Recentst bijgewerkt' },
   ];
 
   return (
     <>
       <TitleSection />
-      <SortBar sortOptions={PUBLICATION_SORT_OPTIONS} defaultSort="title_asc" placeholder="Zoek publicatie..." />
+
+      <SortBar 
+      sortOptions={PUBLICATION_SORT_OPTIONS} 
+      defaultSort="updated_desc" 
+      placeholder="Zoek publicatie..." 
+      />
 
       {!publications.length ? (
           <p className="mt-6 text-sm text-red-900">

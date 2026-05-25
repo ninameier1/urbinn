@@ -11,25 +11,29 @@ export const revalidate = 0;
 export default async function MunicipalitiesPage({ searchParams }: {
   searchParams: { sort?: string; query?: string };
 }) {
-  const { sort = 'name_asc', query = '' } = await searchParams;
+  const { sort = 'updated_desc', query = '' } = await searchParams;
 
   const municipalities = await getAllMunicipalitiesCMS(sort, query);
 
   const MUNICIPALITY_SORT_OPTIONS = [
-    { value: 'name_asc',     label: 'Naam A–Z' },
-    { value: 'name_desc',    label: 'Naam Z–A' },
+    { value: 'updated_desc', label: 'Recentst bijgewerkt' },
     { value: 'created_desc', label: 'Nieuwste eerst' },
     { value: 'created_asc',  label: 'Oudste eerst' },
+    { value: 'name_asc',     label: 'Naam A–Z' },
+    { value: 'name_desc',    label: 'Naam Z–A' },
     { value: 'creator_asc',  label: 'Aangemaakt door A–Z' },
     { value: 'creator_desc', label: 'Aangemaakt door Z–A' },
-    { value: 'updated_desc', label: 'Recentst bijgewerkt' },
   ];
 
   return (
     <>
       <TitleSection />
 
-      <SortBar sortOptions={MUNICIPALITY_SORT_OPTIONS} placeholder="Zoek gemeente..." />
+      <SortBar 
+      sortOptions={MUNICIPALITY_SORT_OPTIONS}
+      defaultSort="published_desc" 
+      placeholder="Zoek gemeente..." 
+      />
 
       {!municipalities.length ? (
           <p className="mt-6 text-sm text-red-900">
