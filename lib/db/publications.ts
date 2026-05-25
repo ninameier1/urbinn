@@ -131,3 +131,10 @@ export function getPublicationsByMunicipality(municipalityId: number) {
 export async function getNewestPublication() {
   return prisma.publication.findFirst({ orderBy: { published_at: 'desc' } });
 }
+
+export function getNewestPublications(take: number = 3) {
+  return prisma.publication.findMany({
+    orderBy: { created_at: 'desc' },
+    take,
+  });
+}
