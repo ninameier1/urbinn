@@ -88,10 +88,11 @@ export default function CreatePublicationForm({ municipalities }: CreatePublicat
               value={publication.title}
               onChange={handleChange}
               disabled={isPending}
-              className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm shadow-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+              className="w-full rounded-md border border-stone-300 bg-stone-50 px-3 py-2 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent disabled:cursor-not-allowed disabled:opacity-50"
             />
           </div>
 
+          <div className="grid gap-5 sm:grid-cols-2">
           {/* AUTHOR */}
           <div className="space-y-1.5">
             <label htmlFor="author" className="text-xs font-medium tracking-wide uppercase text-accent block mb-1">
@@ -107,65 +108,31 @@ export default function CreatePublicationForm({ municipalities }: CreatePublicat
               value={publication.author}
               onChange={handleChange}
               disabled={isPending}
-              className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm shadow-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+              className="w-full rounded-md border border-stone-300 bg-stone-50 px-3 py-2 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent disabled:cursor-not-allowed disabled:opacity-50"
             />
             <p className="text-xs text-muted-foreground">Meerdere auteurs scheiden met een komma.</p>
           </div>
 
-          {/* Published at */}
-          {/* <div className="space-y-1.5">
-            <label htmlFor="published_at" className="text-xs font-medium tracking-wide uppercase text-accent block mb-1">
-              Publicatiedatum
-            </label>
-            <input
-              id="published_at"
-              name="published_at"
-              type="date"
-              value={publication.published_at}
-              onChange={handleChange}
-              disabled={isPending}
-              className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
-            />
-          </div> */}
-
-          {/* URL */}
-          {/* <div className="space-y-1.5">
-            <label htmlFor="url" className="text-xs font-medium tracking-wide uppercase text-accent block mb-1">
-              URL / DOI
-            </label>
-            <input
-              id="url"
-              name="url"
-              type="url"
-              placeholder="https://..."
-              value={publication.url}
-              onChange={handleChange}
-              disabled={isPending}
-              className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm shadow-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
-            />
-          </div> */}
-
-          {/* Municipality (optional) */}
-          {/* <div className="space-y-1.5">
-            <label htmlFor="municipality_id" className="text-xs font-medium tracking-wide uppercase text-accent block mb-1">
-              Gemeente (optioneel)
-            </label>
-            <select
-                id="municipality_id"
-                name="municipality_id"
-                value={publication.municipality_id}
-                onChange={handleChange}
-                disabled={isPending}
-                className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+              {/* PUBLISHED */}
+              <div className="space-y-1.5">
+                <label
+                  htmlFor="published_at"
+                  className="text-xs font-medium tracking-wide uppercase text-accent block mb-1"
                 >
-                <option value="">— Geen gemeente —</option>
-                {municipalities.map((m) => (
-                    <option key={m.id} value={m.id}>
-                    {m.name}
-                </option>
-                ))}
-            </select>
-          </div> */}
+                  Publicatiedatum <span className="text-destructive">*</span>
+                </label>
+
+                <input
+                  id="published_at"
+                  name="published_at"
+                  type="date"
+                  value={publication.published_at}
+                  onChange={handleChange}
+                  disabled={isPending}
+                  className="border p-2 w-full text-sm px-3 py-2 bg-stone-50 border-stone-300 rounded-md placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50"
+                />
+              </div>
+            </div>
 
           {/* DESCRIPTION */}
           <div className="space-y-1.5">
@@ -180,7 +147,7 @@ export default function CreatePublicationForm({ municipalities }: CreatePublicat
               onChange={handleChange}
               rows={4}
               disabled={isPending}
-              className="border p-2 w-full text-sm px-3 py-2 bg-stone-50 border-stone-300 rounded-md text-stone-900 disabled:cursor-not-allowed disabled:opacity-50"
+              className="border p-2 w-full text-sm px-3 py-2 bg-stone-50 border-stone-300 rounded-md text-stone-900 focus:outline-none focus:ring-2 focus:ring-accent disabled:cursor-not-allowed disabled:opacity-50"
             />
           </div>
 
@@ -195,7 +162,7 @@ export default function CreatePublicationForm({ municipalities }: CreatePublicat
 
 
                 <p className="text-sm text-stone-500">
-                  URL, publicatiedatum en gekoppelde gemeente.
+                  URL en gekoppelde gemeente.
                 </p>
               </div>
 
@@ -205,26 +172,6 @@ export default function CreatePublicationForm({ municipalities }: CreatePublicat
             </summary>
 
             <div className="px-6 pb-6 space-y-6">
-              {/* PUBLISHED */}
-              <div className="space-y-1.5">
-                <label
-                  htmlFor="published_at"
-                  className="text-xs font-medium tracking-wide uppercase text-accent block mb-1"
-                >
-                  Publicatiedatum
-                </label>
-
-                <input
-                  id="published_at"
-                  name="published_at"
-                  type="date"
-                  value={publication.published_at}
-                  onChange={handleChange}
-                  disabled={isPending}
-                  className="border p-2 w-full text-sm px-3 py-2 bg-stone-50 border-stone-300 rounded-md text-stone-900 disabled:cursor-not-allowed disabled:opacity-50"
-                />
-              </div>
-
               {/* URL */}
               <div className="space-y-1.5">
                 <label
@@ -242,7 +189,7 @@ export default function CreatePublicationForm({ municipalities }: CreatePublicat
                   value={publication.url}
                   onChange={handleChange}
                   disabled={isPending}
-                  className="border p-2 w-full text-sm px-3 py-2 bg-stone-50 border-stone-300 rounded-md text-stone-900 disabled:cursor-not-allowed disabled:opacity-50"
+                  className="border p-2 w-full text-sm px-3 py-2 bg-stone-50 border-stone-300 rounded-md text-stone-900 focus:ring-accent disabled:cursor-not-allowed disabled:opacity-50"
                 />
               </div>
 

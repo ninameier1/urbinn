@@ -90,16 +90,13 @@ export default function UpdatePublicationForm({
   }
 
   return (
-    <div className="bg-white border border-stone-200 rounded-lg p-6">
+    <div className="bg-white border border-stone-200 rounded-lg p-6 space-y-6">
       <div className="flex items-start justify-between mb-4">
         <div>
           <p className="text-xs font-medium tracking-widest uppercase text-accent mb-2">
             Publicatie
           </p>
-          <h2 className="text-base font-semibold text-stone-800 mb-1">
-            {form.title || 'Onbekende publicatie'}
-          </h2>
-          <p className="text-sm text-stone-500">Basisinformatie over de publicatie</p>
+          <p className="text-sm text-stone-500">Basisinformatie over de publicatie.</p>
         </div>
 
         <Button
@@ -113,7 +110,17 @@ export default function UpdatePublicationForm({
     {/* VIEW MODE */}
     {!isEditing && (
       <section className="space-y-6">
-        <div className="grid gap-4 sm:grid-cols-2">
+        <div className="rounded-lg border border-stone-200 bg-stone-50 p-4">
+          <p className="text-xs font-medium tracking-widest  uppercase text-accent mb-2">
+            Titel
+          </p>
+
+          <p className="text-sm leading-7 text-stone-700 whitespace-pre-wrap">
+            {form.title || 'Geen titel'}
+          </p>
+        </div>
+        
+        <div className="grid gap-5 sm:grid-cols-2">
           <div className="rounded-lg border border-stone-200 bg-stone-50 p-4">
             <p className="text-xs font-medium tracking-widest uppercase text-accent mb-2">
               Auteur(s)
@@ -134,7 +141,18 @@ export default function UpdatePublicationForm({
             </p>
           </div>
 
-          <div className="rounded-lg border border-stone-200 bg-stone-50 p-4 sm:col-span-2">
+
+        <div className="rounded-lg border border-stone-200 bg-stone-50 p-4 sm:col-span-2">
+          <p className="text-xs font-medium tracking-widest  uppercase text-accent mb-3">
+            Beschrijving
+          </p>
+
+          <p className="text-sm leading-7 text-stone-700 whitespace-pre-wrap">
+            {form.description || 'Geen beschrijving'}
+          </p>
+        </div>
+
+          <div className="rounded-lg border border-stone-200 bg-stone-50 p-4">
             <p className="text-xs font-medium tracking-widest uppercase text-accent mb-2">
               URL / DOI
             </p>
@@ -153,7 +171,7 @@ export default function UpdatePublicationForm({
             )}
           </div>
 
-          <div className="rounded-lg border border-stone-200 bg-stone-50 p-4 sm:col-span-2">
+          <div className="rounded-lg border border-stone-200 bg-stone-50 p-4">
             <p className="text-xs font-medium tracking-widest uppercase text-accent mb-2">
               Gemeente
             </p>
@@ -164,16 +182,6 @@ export default function UpdatePublicationForm({
               )?.name ?? 'Geen gekoppelde gemeente'}
             </p>
           </div>
-        </div>
-
-        <div className="rounded-lg border border-stone-200 bg-white p-5">
-          <p className="text-xs font-medium tracking-widest uppercase text-accent mb-3">
-            Beschrijving
-          </p>
-
-          <p className="text-sm leading-7 text-stone-700 whitespace-pre-wrap">
-            {form.description || 'Geen beschrijving'}
-          </p>
         </div>
 
         {saved && (
@@ -245,10 +253,24 @@ export default function UpdatePublicationForm({
             />
           </div>
 
-          {/* URL */}
+          {/* DESCRIPTION */}
           <div>
             <span className="text-xs font-medium tracking-wide uppercase text-accent block mb-1">
-              URL / DOI
+              Beschrijving
+            </span>
+            <textarea
+              name="description"
+              value={form.description}
+              onChange={handleChange}
+              rows={4}
+              className="border p-2 w-full text-sm px-3 py-2 bg-stone-50 border-stone-300 rounded-md text-stone-900"
+            />
+          </div>
+
+          {/* URL OPTIONAL */}
+          <div>
+            <span className="text-xs font-medium tracking-wide uppercase text-accent block mb-1">
+              URL / DOI (optioneel)
             </span>
             <input
               name="url"
@@ -277,20 +299,6 @@ export default function UpdatePublicationForm({
                 </option>
               ))}
             </select>
-          </div>
-
-        {/* DESCRIPTION */}
-          <div>
-            <span className="text-xs font-medium tracking-wide uppercase text-accent block mb-1">
-              Beschrijving
-            </span>
-            <textarea
-              name="description"
-              value={form.description}
-              onChange={handleChange}
-              rows={4}
-              className="border p-2 w-full text-sm px-3 py-2 bg-stone-50 border-stone-300 rounded-md text-stone-900"
-            />
           </div>
 
           <div className="flex items-center gap-4 pt-2">
