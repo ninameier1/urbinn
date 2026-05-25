@@ -18,10 +18,30 @@ export async function getAllMunicipalitiesCMS(
     creator_desc: { creator: { username: 'desc' } },
   } as const;
 
+    const yearMatch = query.match(/\b(20\d{2})\b/);
+    const year = yearMatch ? parseInt(yearMatch[1]) : null;
+
   return prisma.municipality.findMany({
     where: query
-      ? { OR: [{ name: { contains: query }},
-            { creator: { username: { contains: query }}}
+      ? { OR: [
+            { name: { contains: query }},
+            { creator: { username: { contains: query }}},
+            ...(year
+            ? [
+                {
+                  updated_at: {
+                    gte: new Date(`${year}-01-01`),
+                    lt: new Date(`${year + 1}-01-01`),
+                  },
+                },
+                {
+                  created_at: {
+                    gte: new Date(`${year}-01-01`),
+                    lt: new Date(`${year + 1}-01-01`),
+                  },
+                },
+              ]
+            : []),
           ],
         }
       : undefined,
