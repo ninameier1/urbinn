@@ -47,7 +47,7 @@ function MechanismRow({ mechanism, index, onChange, onRemove, disabled, }: Mecha
         value={mechanism.text}
         onChange={(e) => onChange(e.target.value)}
         disabled={disabled}
-        className="w-full rounded-md border border-input bg-white px-3 py-2 text-sm shadow-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring disabled:opacity-50"
+        className="w-full rounded-md border border-stone-200 bg-white px-3 py-2 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent disabled:opacity-50"
       />
     </div>
   );

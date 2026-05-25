@@ -61,7 +61,7 @@ return (
   <div className="mt-6 space-y-8 max-w-7xl">
     <UpdateMunicipalitySection municipality={municipality} />
 
-    <div className="bg-secondary/10 border border-stone-200 rounded-lg p-6 space-y-6">
+    <div className="bg-stone-50 border border-stone-200 rounded-lg p-6 space-y-6">
       <h3 className="text-xs font-medium tracking-widest uppercase text-accent">
         Kernelementen
       </h3>

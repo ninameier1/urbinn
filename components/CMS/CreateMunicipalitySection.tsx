@@ -49,7 +49,7 @@ export default function CreateMunicipalitySection({ value, onChange, uploading, 
             value={value.name}
             onChange={(e) => onChange({ ...value, name: e.target.value })}
             disabled={disabled}
-            className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm shadow-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+            className="w-full rounded-md border border-stone-200 bg-stone-50 px-3 py-2 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent disabled:cursor-not-allowed disabled:opacity-50"
           />
           <p className="text-xs text-muted-foreground">Maximaal 100 tekens.</p>
         </div>
@@ -65,7 +65,7 @@ export default function CreateMunicipalitySection({ value, onChange, uploading, 
             onChange={(e) => onChange({ ...value, description: e.target.value })}
             rows={4}
             disabled={disabled}
-            className="border p-2 w-full text-sm px-3 py-2 bg-stone-50 border-stone-300 rounded-md text-stone-900 disabled:cursor-not-allowed disabled:opacity-50"
+            className="border p-2 w-full text-sm px-3 py-2 bg-stone-50 border-stone-200 rounded-md placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent disabled:cursor-not-allowed disabled:opacity-50"
           />
         </div>
 
