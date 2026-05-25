@@ -16,7 +16,8 @@ export function getBreadcrumbs(
     const href = "/" + segments.slice(0, index + 1).join("/")
     const label =
       overrides[href] ??
-      labels[segment] ??
+      labels[href.slice(1)] ?? 
+      labels[segment] ??         
       formatSegment(segment)
     return {
       href,
