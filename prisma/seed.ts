@@ -123,6 +123,7 @@ async function main() {
       data: {
         name: data.name,
         image: data.image,
+        description: faker.lorem.paragraph(),
         created_by: admin.id,
       },
     });
