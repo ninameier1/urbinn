@@ -96,13 +96,11 @@ export default function UpdateMunicipalitySection({ municipality }: { municipali
       {/* MUNICIPALITY CARD */}
       <div className="bg-white border border-stone-200 rounded-lg p-6">
         <div className="flex items-start justify-between mb-4">
+          
           <div>
             <p className="text-xs font-medium tracking-widest uppercase text-accent mb-2">
               Gemeente
             </p>
-            <h2 className="text-base font-semibold text-stone-800 mb-1">
-              {form.name || 'Onbekende gemeente'}
-            </h2>
             <p className="text-sm text-stone-500">
               Basisinformatie en beschrijving
             </p>
@@ -118,9 +116,31 @@ export default function UpdateMunicipalitySection({ municipality }: { municipali
 
         {/* VIEW MODE */}
         {!isEditing && (
-          <div>
-            <p className="text-sm text-stone-600 mb-4">
-              {form.description || 'Geen beschrijving'}
+          <section className="space-y-6">
+            <div className="rounded-lg border border-stone-200 bg-stone-50 p-4">
+              <p className="text-xs font-medium tracking-widest  uppercase text-accent mb-2">
+                Naam gemeente
+              </p>
+
+              <p className="text-sm leading-7 text-stone-700 whitespace-pre-wrap">
+                {form.name || 'Geen gemeente'}
+              </p>
+            </div>
+
+
+        <div className="rounded-lg border border-stone-200 bg-stone-50 p-4">
+          <p className="text-xs font-medium tracking-widest  uppercase text-accent mb-3">
+            Beschrijving
+          </p>
+
+          <p className="text-sm leading-7 text-stone-700 whitespace-pre-wrap">
+            {form.description || 'Geen beschrijving'}
+          </p>
+        </div>
+
+          <div className="rounded-lg border border-stone-200 bg-stone-50 p-4">
+            <p className="text-xs font-medium tracking-widest  uppercase text-accent mb-3">
+              Foto
             </p>
             {form.image && (
               <Image
@@ -135,6 +155,8 @@ export default function UpdateMunicipalitySection({ municipality }: { municipali
               Opgeslagen!
             </p>}
           </div>
+
+          </section>
         )}
 
         {/* EDIT MODE */}
