@@ -2,11 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { getNewestMunicipalities } from "@db/municipalities";
+import { getNewestPublication } from "@/lib/db/publications";
+import { formatDateShort } from '@/utils/date';
 import { HouseHeart, Leaf, Users, Heart, Building2, HeartHandshake, Microscope, NotebookPen, Cog } from "lucide-react";
 
 import Button from "@/components/Button";
 import Tag from "@/components/Tag";
-import NewsletterForm from "@/components/NewsletterForm";
 import MunicipalityCard from "@/components/MunicipalityCard";
 
 
@@ -34,6 +35,7 @@ const stats = [
 
 export default async function HomePage() {
   const municipalities = await getNewestMunicipalities();
+  const publication = await getNewestPublication();
   const [featured, ...rest] = municipalities;
 
 return (
@@ -167,7 +169,7 @@ return (
               href={`/gemeenten/${featured.name.toLowerCase()}`}
               featured
               tags={["Wonen", "Inclusiviteit", "Welzijn"]}
-              description="Zeewolde groeit snel en staat voor grote opgaven rondom betaalbaar wonen, diversiteit en sociale cohesie."
+              description={featured.description}
             />
           )}
 
@@ -213,27 +215,25 @@ return (
 
       <hr className="border-text/10" />
 
+
       <section className="px-6 lg:px-16 py-16 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        {publication && (
         <div className="flex flex-col items-start">
         <Tag label="Publicaties" href="/onderzoek/publicaties" />
           <span className="inline-block bg-primary/10 text-primary text-[10px] font-bold tracking-wide uppercase rounded px-2.5 py-1 mb-5">
-            Nieuw rapport · 2026
+            Nieuw rapport · {publication.published_at ? formatDateShort(publication.published_at) : new Date().getFullYear()}
           </span>
           <h2 className="font-serif text-[1.75rem] font-bold text-dark leading-snug mb-4">
-            Flevoland in Beeld: wonen, welzijn en duurzaamheid in cijfers
+            {publication.title ?? 'Flevoland in Beeld: wonen, welzijn en duurzaamheid in cijfers'}
           </h2>
           <p className="text-sm text-text/60 leading-relaxed mb-7">
-            Onze lector en de onderzoekers van het lectoraat Urban Innovation publiceren met regelmaat over hun onderzoek. 
-            Hun publicaties zijn van grote waarde voor de maatschappelijke, economische ontwikkeling van Nederland. 
-            Publicaties worden met regelmaat gepubliceerd op basis van open access. 
-            Dit geeft vrije toegang tot alle resultaten van en handvatten uit ons praktijkgericht onderzoek. 
-            Iedereen kan die informatie (her)gebruiken.
-
+            {publication.description ?? 'De professors, lectoren en onderzoekers van het Consortium-XL publiceren met regelmaat over hun onderzoek. Hun publicaties zijn van grote waarde voor de maatschappelijke, economische ontwikkeling van Nederland. Publicaties worden met regelmaat gepubliceerd op basis van open access. Dit geeft vrije toegang tot alle resultaten van en handvatten uit ons praktijkgericht onderzoek. Iedereen kan die informatie (her)gebruiken.'}
           </p>
           <Button href="/onderzoek/publicaties" variant="secondary">
             Bekijk alle Publicaties →
           </Button>
         </div>
+        )}
 
         <div className="bg-dark rounded-2xl p-7 flex flex-col gap-4">
           {stats.map((stat) => {
@@ -264,26 +264,30 @@ return (
 
       <section className="px-6 lg:px-16 py-16 grid grid-cols-1 md:grid-cols-2 gap-5 ">
         <div className="bg-white border border-text/8 rounded-2xl p-7">
-          <div className="w-10 h-10 rounded-xl bg-secondary/50 flex items-center justify-center mb-3">
-            <NotebookPen />
+          <div className="flex justify-between">
+            <Tag label="Het Consortium" href="/consortium" />
+            <div className="w-10 h-10 rounded-xl bg-secondary/50 flex items-center justify-center mb-3">
+              <NotebookPen />
+            </div>
           </div>
-          <Tag label="Consortium-XL" href="/consortium" />
           <h3 className="font-serif text-xl font-bold text-dark mb-3">Wie zijn wij?</h3>
           <p className="text-sm text-text/60 leading-relaxed">
-            Pionieren, vernieuwen, vooruitgaan. Steden in Flevoland doen het dagelijks, samen met het lectoraat Urban Innovation. 
-            Projecten van het lectoraat zijn circulair, gezond en nabij.
+            Consortium-XL verzamelt en initieert innovatievoorbeelden en -verhalen uit de nieuwe stad. 
+            Met praktijkgericht onderzoek kunnen we leren, begrijpen en delen wat er gebeurt. 
+            Zo dragen we bij aan welbevinden, welzijn en welvaart voor iedereen.
           </p>
         </div>
         <div className="bg-white border border-text/8 rounded-2xl p-7">
-          <div className="w-10 h-10 rounded-xl bg-secondary/50 flex items-center justify-center mb-3">
-            <Microscope />
+          <div className="flex justify-between">
+            <Tag label="Het Onderzoek" href="/onderzoek" />
+            <div className="w-10 h-10 rounded-xl bg-secondary/50 flex items-center justify-center mb-3">
+              <Microscope />
+            </div>
           </div>
-          <Tag label="Het Onderzoek" href="/onderzoek" />
           <h3 className="font-serif text-xl font-bold text-dark mb-3">Wat doen wij?</h3>
           <p className="text-sm text-text/60 leading-relaxed">
-            Het lectoraat Urban Innovation verzamelt en initieert innovatievoorbeelden en -verhalen uit de nieuwe stad. 
-            Met praktijkgericht onderzoek kunnen we leren, begrijpen en delen wat er gebeurt. 
-            Zo dragen we bij aan welbevinden, welzijn en welvaart voor iedereen.
+            Pionieren, vernieuwen, vooruitgaan. Steden in Flevoland doen het dagelijks, samen met het lectoraat Urban Innovation. 
+            Projecten van het lectoraat zijn circulair, gezond en nabij.
           </p>
         </div>
       </section>
