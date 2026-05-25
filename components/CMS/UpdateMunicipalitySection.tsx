@@ -14,11 +14,6 @@ import ImageUpload from "../ImageUpload";
 
 export default function UpdateMunicipalitySection({ municipality }: { municipality: Municipality }) {
   const [isEditing, setIsEditing] = useState(false);
-  const [form, setForm] = useState({
-    name: municipality.name,
-    description: municipality.description ?? '',
-    image: municipality.image ?? null,
-  });
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
   const [uploading, setUploading] = useState(false);
@@ -26,17 +21,22 @@ export default function UpdateMunicipalitySection({ municipality }: { municipali
   const [deleting, setDeleting] = useState(false);
   const router = useRouter();
 
+  const initialData = {
+    name: municipality.name,
+    description: municipality.description ?? '',
+    image: municipality.image ?? null,
+  };
+
+  const [original, setOriginal] = useState(() => initialData);
+  const [form, setForm] = useState(() => initialData);
+
   const dirty =
-    form.name !== municipality.name ||
-    form.description !== (municipality.description ?? '') ||
-    form.image !== (municipality.image ?? null);
+    form.name !== original.name ||
+    form.description !== original.description ||
+    form.image !== original.image;
 
   function handleCancel() {
-    setForm({
-      name: municipality.name,
-      description: municipality.description ?? '',
-      image: municipality.image ?? null,
-    });
+    setForm(original);
     setIsEditing(false);
   }
 
@@ -48,6 +48,9 @@ export default function UpdateMunicipalitySection({ municipality }: { municipali
       if (form.description) fd.set('description', form.description);
       if (form.image) fd.set('image', form.image);
       await updateMunicipality(municipality.id, fd);
+
+      setOriginal({ ...form });
+
       setSaved(true);
       setIsEditing(false);
       setTimeout(() => setSaved(false), 3000);
@@ -74,7 +77,6 @@ export default function UpdateMunicipalitySection({ municipality }: { municipali
     }
   }
 
-  
 
   async function handleDelete() {
     const confirmed = confirm('Weet je zeker dat je deze gemeente wilt verwijderen?');
@@ -151,10 +153,11 @@ export default function UpdateMunicipalitySection({ municipality }: { municipali
                 className="rounded-md border object-cover"
               />
             )}
-            {saved && <p className="rounded-md border border-green-200 bg-green-50 px-3 py-2 text-sm text-green-700">
-              Opgeslagen!
-            </p>}
           </div>
+        
+        {saved && <p className="rounded-md border border-green-200 bg-green-50 px-3 py-2 text-sm text-green-700">
+              Opgeslagen!
+          </p>}
 
           </section>
         )}
@@ -169,7 +172,7 @@ export default function UpdateMunicipalitySection({ municipality }: { municipali
                   Bewerken
                 </p>
                 <h2 className="text-base font-semibold text-stone-800 mb-1">
-                  Gemeente "{ municipality.name }" aanpassen
+                  Gemeente "{ form.name }" aanpassen
                 </h2>
                 <p className="text-sm text-stone-500 mb-5">
                   Pas de basisinformatie van deze gemeente aan.
@@ -211,7 +214,8 @@ export default function UpdateMunicipalitySection({ municipality }: { municipali
               onChange={handleImageUpload}
               onRemove={() => setForm((p) => ({ ...p, image: null }))}
             />
-            
+          
+          </div>
             <div className="flex items-center gap-4 pt-2">
               <Button variant="small" onClick={handleSave} disabled={!dirty || saving}>
                 {saving ? 'Opslaan...' : 'Opslaan'}
@@ -220,7 +224,6 @@ export default function UpdateMunicipalitySection({ municipality }: { municipali
                 <span className="text-sm text-stone-400">Onopgeslagen wijzigingen</span>
               )}
             </div>
-          </div>
           </section>
         )}
       </div>

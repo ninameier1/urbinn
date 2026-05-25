@@ -9,27 +9,40 @@ import Button from '@/components/Button';
 export default function UpdateMechanismSection({ mechanism }: { mechanism: Mechanism }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
-  const [form, setForm] = useState({text: mechanism.text });
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
   const [deleting, setDeleting] = useState(false);
 
-  const dirty =  form.text !== mechanism.text;
+  const initialData = {
+    text: mechanism.text,
+  };
+
+  const [original, setOriginal] = useState(() => initialData);
+  const [form, setForm] = useState(() => initialData);
+
+  const dirty = form.text !== original.text;
 
   function handleCancel() {
-    setForm({ text: mechanism.text });
+    setForm(original);
     setIsEditing(false);
   }
 
   async function handleSave() {
     setSaving(true);
+
     try {
       const fd = new FormData();
+
       fd.set('text', form.text);
+
       await updateMechanism(mechanism.id, fd);
+
+      setOriginal({ ...form });
+
       setSaved(true);
       setIsEditing(false);
-      setTimeout(() => setSaved(false), 3000);
+
+      setTimeout(() => setSaved(false), 3000); 
     } finally {
       setSaving(false);
     }

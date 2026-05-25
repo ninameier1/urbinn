@@ -18,18 +18,19 @@ export default function CoreElementSection({ coreElement }: { coreElement: CoreE
   const router = useRouter();
   const [isExpanded, setIsExpanded] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
-  const [title, setTitle] = useState(coreElement.title);
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
   const [deleting, setDeleting] = useState(false);
   const [newMechanisms, setNewMechanisms] = useState<MechanismFormState[]>([]);
   const [newFactors, setNewFactors] = useState<FactorFormState[]>([]);
 
-  const [savedTitle, setSavedTitle] = useState(coreElement.title);
-  const dirty = title !== savedTitle;
+  const [title, setTitle] = useState(coreElement.title);
+  const [originalTitle, setOriginalTitle] = useState(coreElement.title);
+
+  const dirty = title !== originalTitle;
 
   function handleCancel() {
-    setTitle(savedTitle);
+    setTitle(originalTitle);
     setIsEditing(false);
   }
 
@@ -42,7 +43,8 @@ export default function CoreElementSection({ coreElement }: { coreElement: CoreE
 
       await updateCoreElement(coreElement.id, fd);
 
-      setSavedTitle(title);
+      setOriginalTitle(title);
+
       setSaved(true);
       setIsEditing(false);
 
@@ -145,7 +147,7 @@ export default function CoreElementSection({ coreElement }: { coreElement: CoreE
                     Bewerken
                   </p>
                   <h2 className="text-base font-semibold text-stone-800 mb-1">
-                    Kernelement "{ coreElement.title }" aanpassen
+                    Kernelement "{ title }" aanpassen
                   </h2>
                   <p className="text-sm text-stone-500 mb-5">
                     Bewerk hier de titel van het kernelement.

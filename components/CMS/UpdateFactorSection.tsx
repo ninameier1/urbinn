@@ -9,34 +9,48 @@ import Button from '@/components/Button';
 export default function UpdateFactorSection({ factor }: { factor: Factor }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
-  const [form, setForm] = useState({ text: factor.text, type: factor.type });
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
   const [deleting, setDeleting] = useState(false);
 
+  const initialData = {
+    text: factor.text,
+    type: factor.type,
+  };
+
+  const [original, setOriginal] = useState(() => initialData);
+  const [form, setForm] = useState(() => initialData);
+
   const dirty =
-    form.text !== factor.text ||
-    form.type !== factor.type;
+    form.text !== original.text ||
+    form.type !== original.type;
 
   function handleCancel() {
-    setForm({ text: factor.text, type: factor.type });
+    setForm(original);
     setIsEditing(false);
   }
 
-  async function handleSave() {
-    setSaving(true);
-    try {
-      const fd = new FormData();
-      fd.set('text', form.text);
-      fd.set('type', form.type);
-      await updateFactor(factor.id, fd);
-      setSaved(true);
-      setIsEditing(false);
-      setTimeout(() => setSaved(false), 3000);
-    } finally {
-      setSaving(false);
-    }
+async function handleSave() {
+  setSaving(true);
+
+  try {
+    const fd = new FormData();
+
+    fd.set('text', form.text);
+    fd.set('type', form.type);
+
+    await updateFactor(factor.id, fd);
+
+    setOriginal({ ...form });
+
+    setSaved(true);
+    setIsEditing(false);
+
+    setTimeout(() => setSaved(false), 3000);
+  } finally {
+    setSaving(false);
   }
+}
 
   async function handleDelete() {
     const confirmed = confirm('Weet je zeker dat je deze factor wilt verwijderen?');

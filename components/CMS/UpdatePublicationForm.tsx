@@ -6,13 +6,7 @@ import { updatePublication, deletePublication } from '@/lib/actions/publication-
 import { Publication } from '@/types/cms';
 import Button from '@/components/Button';
 
-export default function UpdatePublicationForm({
-  publication,
-  municipalities,
-}: {
-  publication: Publication;
-  municipalities: { id: number; name: string }[];
-}) {
+export default function UpdatePublicationForm({ publication, municipalities,}: { publication: Publication; municipalities: { id: number; name: string }[];}) {
   const router = useRouter();
 
   const [isEditing, setIsEditing] = useState(false);
@@ -20,23 +14,27 @@ export default function UpdatePublicationForm({
   const [saved, setSaved] = useState(false);
   const [deleting, setDeleting] = useState(false);
 
-  const [form, setForm] = useState({
-    title: publication.title,
-    author: publication.author,
-    description: publication.description,
-    url: publication.url ?? '',
-    published_at: publication.published_at
-      ? new Date(publication.published_at).toISOString().split('T')[0]
-      : '',
-    municipality_id: publication.municipality_id?.toString() ?? '',
-  });
+const initialData = {
+  title: publication.title,
+  author: publication.author,
+  description: publication.description,
+  url: publication.url ?? '',
+  published_at: publication.published_at
+    ? new Date(publication.published_at).toISOString().split('T')[0]
+    : '',
+  municipality_id: publication.municipality_id?.toString() ?? '',
+};
 
-  const dirty =
-    form.title !== publication.title ||
-    form.author !== publication.author ||
-    form.description !== publication.description ||
-    form.url !== (publication.url ?? '') ||
-    form.municipality_id !== (publication.municipality_id?.toString() ?? '');
+const [original, setOriginal] = useState(() => initialData);
+const [form, setForm] = useState(() => initialData);
+
+const dirty =
+  form.title !== original.title ||
+  form.author !== original.author ||
+  form.description !== original.description ||
+  form.url !== original.url ||
+  form.published_at !== original.published_at ||
+  form.municipality_id !== original.municipality_id;
 
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -44,19 +42,10 @@ export default function UpdatePublicationForm({
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   }
 
-  function handleCancel() {
-    setForm({
-      title: publication.title,
-      author: publication.author,
-      description: publication.description,
-      url: publication.url ?? '',
-      published_at: publication.published_at
-        ? new Date(publication.published_at).toISOString().split('T')[0]
-        : '',
-      municipality_id: publication.municipality_id?.toString() ?? '',
-    });
-    setIsEditing(false);
-  }
+function handleCancel() {
+  setForm(original);
+  setIsEditing(false);
+}
 
   async function handleSave() {
     setSaving(true);
@@ -69,6 +58,9 @@ export default function UpdatePublicationForm({
       fd.set('published_at', form.published_at);
       fd.set('municipality_id', form.municipality_id);
       await updatePublication(publication.id, fd);
+
+      setOriginal({ ...form });
+
       setSaved(true);
       setIsEditing(false);
       setTimeout(() => setSaved(false), 3000);
@@ -201,7 +193,7 @@ export default function UpdatePublicationForm({
                 Bewerken
               </p>
               <h2 className="text-base font-semibold text-stone-800 mb-1">
-                Publicatie "{publication.title}" aanpassen
+                Publicatie "{form.title}" aanpassen
               </h2>
               <p className="text-sm text-stone-500 mb-5">
                 Pas de basisinformatie van deze publicatie aan.
