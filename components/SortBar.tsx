@@ -39,7 +39,7 @@ export default function SortBar({ sortOptions, defaultSort = 'name_asc', placeho
         <input
           type="search"
           placeholder={placeholder}
-          defaultValue={query}
+          value={query}
           onChange={(e) => update('query', e.target.value)}
           className="border border-stone-200 rounded-lg bg-white px-4 py-2 pr-10 text-sm w-full focus:outline-none focus:ring-2 focus:ring-accent"
         />
