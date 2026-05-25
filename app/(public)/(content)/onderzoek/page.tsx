@@ -1,4 +1,9 @@
 import TitleSection from "@/components/TitleSection";
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: "Onderzoek",
+}
 
 export const revalidate = 60;
 

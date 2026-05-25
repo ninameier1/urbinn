@@ -1,8 +1,13 @@
 import { auth } from '@/auth'
 import { redirect } from 'next/navigation'
+import type { Metadata } from 'next'
 
 import LayoutShell from '@/components/LayoutShell'
 import CmsNav from '@/components/Navigation/CmsNav'
+
+export const metadata: Metadata = {
+  title: "CMS",
+}
 
 export default async function CmsLayout({
   children,

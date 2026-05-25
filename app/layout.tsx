@@ -3,8 +3,11 @@ import { montserrat } from '@fonts/fonts'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: "Let's GLOW Flevoland",
-  description: "Samen bouwen aan de gezonde leefomgevind van morgen",
+  title: {
+    default: "Let's GLOW Flevoland!",
+    template: "%s | Let's GLOW Flevoland!",
+  },
+  description: "Gezonde Leefomgeving op Wijkniveau",
 }
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

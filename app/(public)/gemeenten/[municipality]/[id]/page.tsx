@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import { getCoreElementBySlug, getCoreElementsByMunicipalityId } from '@db/core-elements';
 import { getThemeForIndex } from '@utils/helpers';
+import type { Metadata } from 'next'
 
 import Mechanism from '@components/Mechanism/Mechanism';
 import Factor from '@/components/Factor/Factor';
@@ -8,7 +9,10 @@ import Gear from '@/components/Gear/Gear';
 import ElementBar from '@/components/ElementBar/ElementBar';
 import BreadcrumbOverride from '@/components/BreadcrumbOverride';
 import styles from './CoreElement.module.css';
-import Image from "next/image";
+
+export const metadata: Metadata = {
+  title: "Kernelement",
+}
 
 export const revalidate = 60;
 
@@ -35,16 +39,8 @@ export default async function CoreElementPage({ params }: CoreElementProps) {
 
   return (
     <div className="relative w-full h-[90vh]">
-          {/* <Image
-            src="/assets/images/newbg.png"
-            alt="Background"
-            fill
-            className="object-contain mt-16"
-            unoptimized={true}
-            priority
-          /> */}
 
-      <BreadcrumbOverride segment={id} label={element.title} />
+      <BreadcrumbOverride label={element.title} />
       <div className="relative w-full h-screen">
         <div className={`${styles.bigGearWrapper} flex-shrink-0`}>
           <Gear colour={mainColour} teeth={18} variant="big" />

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import type { Metadata } from 'next'
 
 import { getThemeForIndex, slugify } from '@utils/helpers';
 import { getMunicipalityByName } from '@db/municipalities';
@@ -6,6 +7,12 @@ import { getMunicipalityByName } from '@db/municipalities';
 import Gear from '@/components/Gear/Gear';
 import Image from "next/image";
 import styles from './Municipality.module.css';
+
+
+
+export const metadata: Metadata = {
+  title: "Gemeente",
+}
 
 export const revalidate = 60;
 
