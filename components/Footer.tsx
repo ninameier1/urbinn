@@ -10,15 +10,16 @@ export default function Footer() {
             Let's GLOW Flevoland
           </h3>
           <p className="text-white/60 mb-2">
-            Samenwerkingsonderzoek naar inclusieve, veilige en duurzame steden in Flevoland.
+            Samenwerkingsverband voor onderzoek naar een gezonde leefomgeving op wijkniveau in Flevoland.
           </p>
         </div>
 
         <div>
           <h4 className="text-white/80 font-medium mb-2">Het Onderzoek</h4>
           <ul className="space-y-1 text-white/60">
-            <li><a href="/onderzoek" className="hover:text-white transition">Onderzoek</a></li>
+            <li><a href="/onderzoek" className="hover:text-white transition">GLOW</a></li>
             <li><a href="/gemeenten" className="hover:text-white transition">Gemeenten</a></li>
+            <li><a href="/onderzoek/themas" className="hover:text-white transition">Onderzoeksthema's</a></li>
             <li><a href="/onderzoek/publicaties" className="hover:text-white transition">Publicaties</a></li>
             <li><a href="/onderzoek/ontstaan" className="hover:text-white transition">Ontstaan</a></li>
 

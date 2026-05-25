@@ -71,12 +71,6 @@ return (
               </span>
             </div>
 
-            {/* <h1 className="font-serif text-[clamp(1.5rem,2.5vw,2rem)] font-bold leading-[1.07] tracking-tight text-dark mb-6 mt-4">
-            Samen bouwen aan de{" "}
-            <em className="not-italic text-primary">gezonde leefomgeving</em>
-            {" "}van morgen
-            </h1> */}
-
             <p className="text-base text-text/60 leading-relaxed max-w-md mx-auto mb-10">
             Een samenwerking tussen Windesheim, de VU, ROC Flevoland en Flever.
             Samen onderzoeken we hoe steden in Flevoland inclusiever, veiliger
@@ -295,23 +289,6 @@ return (
       </section>
 
       <hr className="border-text/10" />
-
-      {/* <section className="px-6 lg:px-16 py-16 max-w-7xl mx-auto">
-        <div className="bg-dark rounded-3xl px-8 py-12 md:px-14 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          <div>
-            <p className="text-xs font-semibold tracking-[.16em] uppercase text-secondary mb-3">Nieuwsbrief</p>
-            <h2 className="font-serif text-2xl font-bold text-background leading-snug mb-3">
-              Blijf op de hoogte van ons onderzoek
-            </h2>
-            <p className="text-sm text-background/55 leading-relaxed">
-              Ontvang updates over nieuwe dashboards, rapporten en evenementen
-              direct in je inbox.
-            </p>
-          </div>
-          <NewsletterForm />
-        </div>
-      </section> */}
-
     </>
   );
 }

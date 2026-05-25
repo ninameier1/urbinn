@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import DropdownMenu from "@/components/Navigation/DropdownMenu";
 
 const links = [
-  { href: "/onderzoek", label: "Gezonde Leefomgeving" },
+  { href: "/onderzoek", label: "GLOW" },
   { href: "/onderzoek/themas", label: "Onderzoeksthema's" },
   { href: "/onderzoek/publicaties", label: "Publicaties" },
   { href: "/onderzoek/ontstaan", label: "Ontstaan" },
