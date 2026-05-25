@@ -18,7 +18,7 @@ export default function MunicipalityCard({ name, image, href, description, tags 
   const [src, setSrc] = useState(image || "/assets/images/placeholder.jpg");
 
   return (
-    <Link href={href} className="group bg-white border border-text/8 rounded-2xl overflow-hidden hover:border-text/20 transition-colors">
+    <Link href={href} className="group block max-w-7xl bg-white border border-stone-200 rounded-2xl overflow-hidden hover:border-stone-300 transition-colors">
       <div className={`relative flex items-end ${featured ? "h-56 p-5" : "h-64 p-5"}`}>
         {image && (
           <Image
