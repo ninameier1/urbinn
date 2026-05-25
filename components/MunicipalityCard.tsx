@@ -1,66 +1,3 @@
-// 'use client';
-
-// import Image from 'next/image';
-// import Link from 'next/link';
-
-// import { useState } from 'react';
-
-// type MunicipalityCardProps = {
-//   name: string;
-//   image: string;
-//   href: string;
-//   color: string;
-// };
-
-// export default function MunicipalityCard({ name, image, href, color }: MunicipalityCardProps) {
-//   const [src, setSrc] = useState(image || "/assets/images/placeholder.jpg");
-
-
-//   return (
-//     <Link
-//       href={href}
-//       className="group bg-white border border-text/8 rounded-2xl overflow-hidden hover:border-text/20 transition-colors"
-//     >
-//       <div
-//         className={`h-32 ${color} relative flex items-end p-4`}
-//       >
-//         {image && (
-          
-//           <Image
-//             src={src}
-//             alt={name}
-//             fill
-//             className="object-cover opacity-20 group-hover:opacity-30 transition-opacity"
-//             unoptimized
-//             onError={() => setSrc("/assets/images/placeholder.jpg")}
-//           />
-//         )}
-
-//         <p className="relative font-serif text-2xl font-bold text-background z-10">
-//           {name}
-//         </p>
-//       </div>
-
-//       <div className="p-4">
-//         <div className="flex gap-2 flex-wrap mb-3">
-//           {["Veiligheid", "Duurzaamheid", "Inclusiviteit"].map((tag) => (
-//             <span
-//               key={tag}
-//               className="text-[10px] font-semibold bg-secondary/10 text-secondary rounded-full px-3 py-1"
-//             >
-//               {tag}
-//             </span>
-//           ))}
-//         </div>
-
-//         <p className="text-[11px] font-bold tracking-[.1em] uppercase text-primary group-hover:text-accent transition-colors">
-//           Bekijk dashboard →
-//         </p>
-//       </div>
-//     </Link>
-//   );
-// }
-
 'use client';
 
 import Image from 'next/image';
@@ -72,13 +9,12 @@ type MunicipalityCardProps = {
   name: string;
   image?: string | null;
   href: string;
-  description?: string;
+  description?: string | null;
   tags?: string[];
   featured?: boolean;
 };
 
-export default function MunicipalityCard({ name, image, href, description, tags = [], featured = false,
-}: MunicipalityCardProps) {
+export default function MunicipalityCard({ name, image, href, description, tags = [], featured = false, }: MunicipalityCardProps) {
   const [src, setSrc] = useState(image || "/assets/images/placeholder.jpg");
 
   return (
