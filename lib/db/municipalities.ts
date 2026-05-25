@@ -1,6 +1,6 @@
 import { prisma } from "@/lib/prisma";
 
-export async function getAllMunicipalities(
+export async function getAllMunicipalitiesCMS(
   sort: string,
   query: string
 ) {
@@ -20,20 +20,8 @@ export async function getAllMunicipalities(
 
   return prisma.municipality.findMany({
     where: query
-      ? {
-          OR: [
-            {
-              name: {
-                contains: query,
-              },
-            },
-            {
-              creator: {
-                username: {
-                  contains: query,
-                },
-              },
-            },
+      ? { OR: [{ name: { contains: query }},
+            { creator: { username: { contains: query }}}
           ],
         }
       : undefined,
@@ -43,9 +31,25 @@ export async function getAllMunicipalities(
         name: 'asc',
       },
 
-    include: {
-      creator: true,
-    },
+    include: { creator: true },
+  });
+}
+
+export async function getAllMunicipalities(sort: string, query: string) {
+  const orderMap = {
+    name_asc:     { name: 'asc' },
+    name_desc:    { name: 'desc' },
+    created_asc:  { created_at: 'asc' },
+    created_desc: { created_at: 'desc' },
+    updated_asc:  { updated_at: 'asc' },
+    updated_desc: { updated_at: 'desc' },
+  } as const;
+
+  return prisma.municipality.findMany({
+    where: query
+      ? { name: { contains: query } }
+      : undefined,
+    orderBy: orderMap[sort as keyof typeof orderMap] ?? { name: 'asc' },
   });
 }
 

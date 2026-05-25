@@ -1,6 +1,6 @@
 import { prisma } from "@/lib/prisma";
 
-export async function getAllPublications(
+export async function getAllPublicationsCMS(
   sort: string,
   query: string
 ) {
@@ -10,6 +10,9 @@ export async function getAllPublications(
 
     published_asc: { published_at: 'asc' },
     published_desc: { published_at: 'desc' },
+
+    author_asc:   { author: 'asc' },
+    author_desc:  {author: 'desc'},
 
     created_asc: { created_at: 'asc' },
     created_desc: { created_at: 'desc' },
@@ -40,6 +43,29 @@ export async function getAllPublications(
     include: {
       creator: true,
     },
+  });
+}
+
+export async function getAllPublications(sort: string, query: string) {
+  const orderMap = {
+    title_asc:     { title: 'asc' },
+    title_desc:    { title: 'desc' },
+
+    published_asc: { published_at: 'asc' },
+    published_desc: { published_at: 'desc' },
+
+    created_asc:  { created_at: 'asc' },
+    created_desc: { created_at: 'desc' },
+
+    updated_asc:  { updated_at: 'asc' },
+    updated_desc: { updated_at: 'desc' },
+  } as const;
+
+  return prisma.publication.findMany({
+    where: query
+      ? { title: { contains: query } }
+      : undefined,
+    orderBy: orderMap[sort as keyof typeof orderMap] ?? { title: 'asc' },
   });
 }
 

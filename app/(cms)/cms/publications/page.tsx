@@ -1,164 +1,115 @@
 import Link from 'next/link';
 
-import { getAllPublications } from '@/lib/db/publications';
-import { formatDate } from '@/utils/date';
+import { getAllPublicationsCMS } from '@/lib/db/publications';
+import { formatDate, formatDateShort } from '@/utils/date';
 
-import Button from '@/components/Button';
-import TitleSection from "@/components/TitleSection";
+import TitleSection from '@/components/TitleSection';
+import SortBar from '@/components/SortBar';
 
 export const revalidate = 0;
 
-export default async function PublicationsPage({
-  searchParams,
-}: {
+export default async function PublicationsCMSPage({ searchParams }: {
   searchParams: Promise<{
     sort?: string;
     query?: string;
   }>;
 }) {
-  const params = await searchParams;
+  const { sort = 'title_asc', query = '' } = await searchParams;
 
-  const sort = params?.sort ?? 'title';
-  const query = params?.query ?? '';
-
-  const publications = await getAllPublications(sort, query);
-
-function SortHeader({
-  label,
-  column,
-  currentSort,
-}: {
-  label: string;
-  column: string;
-  currentSort: string;
-}) {
-  const isAsc = currentSort === `${column}_asc`;
-  const isDesc = currentSort === `${column}_desc`;
-
-  const nextSort = isAsc
-    ? `${column}_desc`
-    : `${column}_asc`;
-
-  return (
-    <Link
-      href={`?sort=${nextSort}`}
-      className={`inline-flex items-center gap-1 text-xs font-medium tracking-widest uppercase cursor-pointer transition-colors ${
-        isAsc || isDesc
-          ? 'text-primary'
-          : 'text-accent hover:text-primary'
-      }`}
-    >
-      {label}
-
-      <span className="text-[10px] opacity-60">
-        {isAsc ? '↑' : isDesc ? '↓' : '↕'}
-      </span>
-    </Link>
-  );
-}
-
-  if (!publications.length) return <h2>Geen publicaties gevonden</h2>;
+  const publications = await getAllPublicationsCMS(sort, query);
+  
+  const PUBLICATION_SORT_OPTIONS = [
+    { value: 'title_asc',    label: 'Titel A–Z' },
+    { value: 'title_desc',   label: 'Titel Z–A' },
+    { value: 'created_desc', label: 'Nieuwste aangemaakt' },
+    { value: 'created_asc',  label: 'Oudste aangemaakt' },
+    { value: 'published_desc', label: 'Nieuwste publicatiedatum' },
+    { value: 'published_asc',  label: 'Oudste publicatiedatum' },
+    { value: 'creator_asc',  label: 'Aangemaakt door A–Z' },
+    { value: 'creator_desc', label: 'Aangemaakt door Z–A' },
+    { value: 'updated_desc', label: 'Recentst bijgewerkt' },
+  ];
 
   return (
     <>
       <TitleSection />
+      <SortBar sortOptions={PUBLICATION_SORT_OPTIONS} defaultSort="title_asc" placeholder="Zoek publicatie..." />
 
-      <form className="mb-4 flex items-center gap-2">
-        <input
-          type="text"
-          name="query"
-          defaultValue={query}
-          placeholder="Zoek publicatie..."
-          className="border rounded px-3 py-2"
-        />
+      {!publications.length ? (
+          <p className="mt-6 text-sm text-red-900">
+            Geen publicaties gevonden voor "{query}".
+          </p>
+      ) : (
+        <div className="mt-6 overflow-x-auto rounded-lg border border-stone-200">
+          <table className="min-w-full text-sm">
+            <thead>
+              <tr className="bg-gray-100 border-b border-stone-200">
+                <th className="px-4 py-3 text-left text-xs font-medium tracking-widest uppercase text-accent">
+                  Titel
+                </th>
 
-        <input type="hidden" name="sort" value={sort} />
+                <th className="px-4 py-3 text-left text-xs font-medium tracking-widest uppercase text-accent">
+                  Auteur(s)
+                </th>
 
-        <Button type="submit" variant="small" >
-          Zoeken
-        </Button>
+                <th className="px-4 py-3 text-left text-xs font-medium tracking-widest uppercase text-accent">
+                  Publicatiedatum
+                </th>
 
-        {query && (
-          <Link
-            href={`?sort=${sort}`}
-            className="px-4 py-2 rounded border border-stone-300 text-stone-600 hover:bg-stone-100 transition-colors"
-          >
-            Wissen
-          </Link>
-        )}
-      </form>
+                <th className="px-4 py-3 text-left text-xs font-medium tracking-widest uppercase text-accent">
+                  Aangemaakt op
+                </th>
 
-      <div className="mt-6 overflow-x-auto rounded-lg border border-stone-200">
-        <table className="min-w-full text-sm">
-          <thead>
-            <tr className="bg-gray-100 border-b border-stone-200">
-              
-              <th className="px-4 py-3 text-left">
-                <SortHeader
-                  label="Titel"
-                  column="title"
-                  currentSort={sort}
-                />
-              </th>
+                <th className="px-4 py-3 text-left text-xs font-medium tracking-widest uppercase text-accent">
+                  Aangepast op
+                </th>
 
-              <th className="px-4 py-3 text-left">
-                <SortHeader
-                  label="Aangemaakt op"
-                  column="created"
-                  currentSort={sort}
-                />
-              </th>
-
-              <th className="px-4 py-3 text-left">
-                <SortHeader
-                  label="Aangepast op"
-                  column="updated"
-                  currentSort={sort}
-                />
-              </th>
-
-              <th className="px-4 py-3 text-left">
-                <SortHeader
-                  label="Aangemaakt door"
-                  column="creator"
-                  currentSort={sort}
-                />
-              </th>
-
-              <th className="px-4 py-3 text-left text-xs font-medium tracking-widest uppercase text-accent">
-                Acties
-              </th>
-            </tr>
-          </thead>
-
-          <tbody className="divide-y divide-stone-100 bg-white">
-            {publications.map((m) => (
-              <tr key={m.id} className="hover:bg-stone-50 transition-colors">
-                <td className="px-4 py-3 font-medium uppercase text-primary">
-                  {m.title}
-                </td>
-                <td className="px-4 py-3 text-stone-500">
-                  {formatDate(m.created_at)}
-                </td>
-                <td className="px-4 py-3 text-stone-500">
-                  {formatDate(m.updated_at)}
-                </td>
-                <td className="px-4 py-3 text-stone-500">
-                  {m.creator.username}
-                </td>
-                <td className="px-4 py-3">
-                  <Link
-                    href={`/cms/publications/${m.id}`}
-                    className="inline-block rounded px-3 py-1.5 text-xs font-medium bg-primary text-white hover:bg-accent transition-colors"
-                  >
-                    Bewerken
-                  </Link>
-                </td>
+                <th className="px-4 py-3 text-left text-xs font-medium tracking-widest uppercase text-accent">
+                  Aangemaakt door
+                </th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+            </thead>
+
+            <tbody className="divide-y divide-stone-100 bg-white">
+              {publications.map((p) => (
+                <tr
+                  key={p.id}
+                  className="hover:bg-stone-50 transition-colors"
+                >
+                  <td className="px-4 py-3 font-medium">
+                    <Link
+                      href={`/cms/publications/${p.id}`}
+                      className="text-primary hover:text-accent transition-colors"
+                    >
+                      {p.title}
+                    </Link>
+                  </td>
+
+                  <td className="px-4 py-3 text-stone-500">
+                    {p.author}
+                  </td>
+
+                  <td className="px-4 py-3 text-stone-500">
+                    {formatDateShort(p.published_at)}
+                  </td>
+
+                  <td className="px-4 py-3 text-stone-500">
+                    {formatDate(p.created_at)}
+                  </td>
+
+                  <td className="px-4 py-3 text-stone-500">
+                    {formatDate(p.updated_at)}
+                  </td>
+
+                  <td className="px-4 py-3 text-stone-500">
+                    {p.creator.username}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
     </>
   );
 }
