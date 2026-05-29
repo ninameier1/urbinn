@@ -1,7 +1,7 @@
 import { validateInviteToken } from '@/lib/actions/invite-actions'
-import { RegisterClient } from '@/components/RegisterClient'
+import { RegisterClient } from '@/components/Account/RegisterClient'
 
-import AuthCard from '@/components/AuthCard'
+import AuthCard from '@/components/Account/AuthCard'
 
 export default async function RegisterPage({
   searchParams,

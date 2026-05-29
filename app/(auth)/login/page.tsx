@@ -4,7 +4,7 @@ import { useActionState } from 'react'
 import { handleLogin } from '@/lib/actions/account-actions'
 
 import Button from '@/components/Button'
-import AuthCard from '@/components/AuthCard'
+import AuthCard from '@/components/Account/AuthCard'
 
 export default function LoginPage() {
   const [state, action, pending] = useActionState(handleLogin, null)
