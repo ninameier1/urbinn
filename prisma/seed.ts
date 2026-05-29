@@ -171,6 +171,34 @@ async function main() {
     municipality_id: m.id,
   }));
 
+  const partnerData = [
+  { name: "Windesheim", logo: "/assets/images/windesheim.png", website: "https://www.windesheim.nl/" },
+  { name: "Vrije Universiteit Amsterdam", logo: "/assets/images/vu.png", website: "https://vu.nl" },
+  { name: "ROC Flevoland", logo: "/assets/images/roc.png", website: "https://www.rocvanflevoland.nl/" },
+  { name: "Flever", logo: "/assets/images/flever.png.png", website: "https://flever.nl/" },
+];
+
+const images = [
+  "/assets/images/lectoraat.jpg",
+  "/assets/images/lectoraat2.jpg",
+  "/assets/images/lectoraat3.jpg",
+];
+
+for (const data of partnerData) {
+  await prisma.partner.create({
+    data: {
+      name: data.name,
+      logo: data.logo,
+      website: data.website, 
+      description: faker.lorem.paragraph(),
+      researchRole: faker.lorem.paragraph(),
+      image1: images[0],
+      image2: images[1],
+      image3: images[2],
+    },
+  });
+}
+
   await prisma.publication.createMany({
     data: [...globalPublications, ...linkedPublications],
   });

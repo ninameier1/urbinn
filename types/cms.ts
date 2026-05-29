@@ -21,3 +21,9 @@ export type Publication = Prisma.PublicationGetPayload<{
     municipality: true;
   };
 }>;
+
+export type Partner = Prisma.PartnerGetPayload<{
+    include: {
+    creator: true;
+  };
+}>;

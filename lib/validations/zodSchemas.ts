@@ -28,3 +28,16 @@ export const PublicationSchema = z.object({
   published_at: z.coerce.date().optional().nullable(),
   municipality_id: z.number().optional().nullable(),
 })
+
+export const PartnerSchema = z.object({
+  name: z.string().min(1, 'Partner name is required').max(100),
+  logo: z.string().min(1, 'A logo is required'),
+  website: z.string().min(1, 'Website is required').max(100),
+  description: z.string().min(1, 'Description is required'),
+  partnerInfo: z.string().min(1, 'Partner Info is required'),
+  researchRole: z.string().min(1, 'Research role is required'),
+
+  image1: z.string().optional().nullable(),
+  image2: z.string().optional().nullable(),
+  image3: z.string().optional().nullable(),
+});

@@ -15,6 +15,7 @@ model User {
   emailVerified    DateTime?
 
   publications     Publication[]  @relation("PublicationCreatedBy")
+  partners         Partner[]      @relation("PartnerCreatedBy")
   municipalities   Municipality[] @relation("MunicipalityCreatedBy")
   core_elements    CoreElement[]  @relation("CoreElementCreatedBy")
   mechanisms       Mechanism[]    @relation("MechanismCreatedBy")
@@ -178,4 +179,23 @@ model Publication {
 
   @@index([created_by], map: "Publication_created_by_fkey")
   @@index([municipality_id], map: "Publication_municipality_id_fkey")
+}
+
+model Partner {
+  id             String   @id @default(cuid())
+  name           String
+  logo           String
+  description    String
+  partnerInfo    String
+  researchRole   String
+
+  image1         String?
+  image2         String?
+  image3         String?
+
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  created_by    Int
+  creator       User      @relation("PartnerCreatedBy", fields: [created_by], references: [id])
 }
