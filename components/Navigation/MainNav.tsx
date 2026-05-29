@@ -1,5 +1,5 @@
 import NavLink from "./NavLink";
-import ResearchDropdown from "./ResearchDropdown";
+import Dropdown from "./Dropdown";
 import ConsortiumDropdown from "./ConsortiumDropdown";
 
 import { prisma } from '@/lib/prisma';
@@ -13,7 +13,16 @@ export default function MainNav() {
 
   return (
     <nav className="flex h-full items-center divide-x divide-secondary">
-        <ResearchDropdown />
+      <Dropdown
+        title="Het Onderzoek"
+        baseHref="/onderzoek"
+        links={[
+          { href: "/onderzoek", label: "GLOW", },
+          { href: "/onderzoek/themas", label: "Onderzoeksthema's", },
+          { href: "/onderzoek/publicaties", label: "Publicaties", },
+          { href: "/onderzoek/ontstaan", label: "Ontstaan", },
+        ]}
+      />
         <ConsortiumDropdown partners={partners} />
         <NavLink href="/gemeenten">Gemeenten</NavLink>
     </nav>
