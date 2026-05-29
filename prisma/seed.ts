@@ -192,9 +192,11 @@ for (const data of partnerData) {
       website: data.website, 
       description: faker.lorem.paragraph(),
       researchRole: faker.lorem.paragraph(),
+      partnerInfo: faker.lorem.paragraph(),
       image1: images[0],
       image2: images[1],
       image3: images[2],
+      created_by: admin.id,
     },
   });
 }
