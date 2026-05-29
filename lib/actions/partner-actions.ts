@@ -33,13 +33,13 @@ export async function createPartner(formData: FormData) {
 }
 
 // read
-export async function getPartner(id: string) {
+export async function getPartner(id: number) {
   await requireAuth()
   return await prisma.partner.findUnique({ where: { id } })
 }
 
 // update
-export async function updatePartner(id: string, formData: FormData) {
+export async function updatePartner(id: number, formData: FormData) {
   await requireAuth()
 
   const parsed = PartnerSchema.safeParse({
@@ -62,7 +62,7 @@ export async function updatePartner(id: string, formData: FormData) {
 }
 
 // delete
-export async function deletePartner(id: string) {
+export async function deletePartner(id: number) {
   await requireAuth()
   await prisma.partner.delete({ where: { id } })
 }

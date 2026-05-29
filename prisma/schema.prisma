@@ -182,13 +182,13 @@ model Publication {
 }
 
 model Partner {
-  id             String   @id @default(cuid())
+  id             Int          @id @default(autoincrement())
   name           String
   logo           String
   website        String
-  description    String
-  partnerInfo    String
-  researchRole   String
+  description    String       @db.Text
+  partnerInfo    String       @db.Text
+  researchRole   String       @db.Text
 
   image1         String?
   image2         String?
