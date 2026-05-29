@@ -50,7 +50,7 @@ export async function getAllPartners(sort: string, query: string) {
   });
 }
 
-export async function getPartner(id: string) {
+export async function getPartner(id: number) {
   return prisma.partner.findUnique({ where: { id } });
 }
 

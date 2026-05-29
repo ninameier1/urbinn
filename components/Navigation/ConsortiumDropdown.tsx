@@ -1,18 +1,31 @@
 "use client";
 import Link from "next/link";
+
 import { usePathname } from "next/navigation";
+
 import DropdownMenu from "@/components/Navigation/DropdownMenu";
+import { slugify } from "@/utils/helpers";
 
-const links = [
-  { href: "/consortium", label: "Consortium-XL" },
-  { href: "/consortium/flever", label: "Flever" },
-  { href: "/consortium/roc", label: "ROC Flevoland" },
-  { href: "/consortium/windesheim", label: "Windesheim Flevoland" },
-  { href: "/consortium/vu", label: "Vrije Universiteit" },
-];
+type Partner = {
+  id: number;
+  name: string;
+};
 
-export default function ConsortiumDropdown() {
+type DropdownProps = {
+  partners: Partner[];
+};
+
+export default function ConsortiumDropdown({ partners }: DropdownProps) {
   const pathname = usePathname();
+
+  const links = [
+    { href: "/consortium", label: "Consortium-XL" },
+    ...partners.map((p) => ({
+      href: `/consortium/${slugify(p.name)}`,
+      label: p.name,
+    })),
+  ];
+
   const isActive = links.some(({ href }) =>
     href === "/consortium"
       ? pathname === href || pathname.startsWith(href + "/")
