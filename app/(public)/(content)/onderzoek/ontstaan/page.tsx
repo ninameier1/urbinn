@@ -1,5 +1,5 @@
 import { getMunicipalityByName } from '@db/municipalities';
-import TitleSection from "@/components/TitleSection";
+import TitleSection from "@/components/Sections/TitleSection";
 import MunicipalityCard from "@/components/MunicipalityCard";
 
 export const revalidate = 60;

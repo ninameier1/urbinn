@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { getAllMunicipalitiesCMS } from '@db/municipalities';
 import { formatDate } from '@/utils/date';
 
-import TitleSection from '@/components/TitleSection';
+import TitleSection from '@/components/Sections/TitleSection';
 import SortBar from '@/components/SortBar';
 
 export const revalidate = 0;

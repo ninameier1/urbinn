@@ -1,4 +1,4 @@
-import TitleSection from "@/components/TitleSection";
+import TitleSection from "@/components/Sections/TitleSection";
 
 export const revalidate = 60;
 

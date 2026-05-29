@@ -1,4 +1,4 @@
-import TitleSection from "@/components/TitleSection";
+import TitleSection from "@/components/Sections/TitleSection";
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {

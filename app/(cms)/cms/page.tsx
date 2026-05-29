@@ -1,7 +1,7 @@
 import { auth } from "@/auth";
 import { getNewestMunicipalities } from "@db/municipalities";
 import { getNewestPublications } from "@/lib/db/publications";
-import TitleSection from "@/components/TitleSection";
+import TitleSection from "@/components/Sections/TitleSection";
 import { formatDate } from "@/utils/date";
 import Link from "next/link";
 

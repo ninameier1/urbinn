@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import { getPublication } from '@/lib/actions/publication-actions';
 import { getAllMunicipalities } from "@/lib/db/municipalities";
 
-import TitleSection from '@/components/TitleSection';
+import TitleSection from '@/components/Sections/TitleSection';
 import UpdatePublicationForm from '@components/CMS/UpdatePublicationForm';
 import BreadcrumbOverride from '@/components/BreadcrumbOverride';
 

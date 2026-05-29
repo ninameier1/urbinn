@@ -4,7 +4,7 @@ import { useActionState } from 'react';
 import { inviteUser } from '@/lib/actions/invite-actions';
 
 import InviteSection from '@components/Account/InviteSection';
-import TitleSection from '@/components/TitleSection';
+import TitleSection from '@/components/Sections/TitleSection';
 
 type State = {
   ok: boolean

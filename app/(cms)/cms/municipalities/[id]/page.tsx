@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import { prisma } from '@/lib/prisma';
 
-import TitleSection from '@/components/TitleSection';
+import TitleSection from '@/components/Sections/TitleSection';
 import UpdateMunicipalityForm from '@components/CMS/UpdateMunicipalityForm';
 import BreadcrumbOverride from '@/components/BreadcrumbOverride';
 

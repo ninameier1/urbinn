@@ -1,7 +1,7 @@
 import InfoSection from './InfoSection'
 import UsernameSection from './UsernameSection'
 import DeleteAccountSection from './DeleteSection'
-import TitleSection from '../TitleSection'
+import TitleSection from '../Sections/TitleSection'
 
 export default function AccountSettings({
   currentUsername,

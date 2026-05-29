@@ -1,4 +1,4 @@
-import TitleSection from "@/components/TitleSection";
+import TitleSection from "@/components/Sections/TitleSection";
 import CreatePublicationForm from '@components/CMS/CreatePublicationForm';
 
 import { getAllMunicipalities } from "@/lib/db/municipalities";

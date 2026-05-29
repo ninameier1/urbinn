@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { getAllPublications } from '@/lib/db/publications';
 import { formatDateShort } from '@/utils/date';
 
-import TitleSection from '@/components/TitleSection';
+import TitleSection from '@/components/Sections/TitleSection';
 import SortBar from '@/components/SortBar';
 
 export const revalidate = 60;

@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { getAllMunicipalities } from '@db/municipalities';
 
 import MunicipalityCard from '@/components/MunicipalityCard';
-import TitleSection from '@/components/TitleSection';
+import TitleSection from '@/components/Sections/TitleSection';
 import SortBar from '@/components/SortBar';
 
 export const metadata: Metadata = {
