@@ -40,7 +40,7 @@ export default function ImageUpload({
 
       {value ? (
         <div
-          className="relative w-full overflow-hidden rounded-md border border-stone-200"
+          className="relative w-112 overflow-hidden rounded-md border border-stone-200"
           style={{ aspectRatio: '16/9' }}
         >
           <Image
