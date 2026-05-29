@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { getNewestMunicipalities } from "@db/municipalities";
 import { getNewestPublication } from "@/lib/db/publications";
+import { getAllPartners } from "@/lib/db/partners";
 import { formatDateShort } from '@/utils/date';
 import { HouseHeart, Leaf, Users, Heart, Building2, HeartHandshake, Microscope, NotebookPen, Cog } from "lucide-react";
 
@@ -12,13 +13,6 @@ import MunicipalityCard from "@/components/MunicipalityCard";
 
 
 export const revalidate = 60;
-
-const partners = [
-  { name: "Windesheim", logo: "/assets/images/windesheim.png", href: "https://www.windesheim.nl" },
-  { name: "VU Amsterdam", logo: "/assets/images/vu.png", href: "https://www.vu.nl" },
-  { name: "ROC Flevoland", logo: "/assets/images/roc.png", href: "https://www.rocflevoland.nl" },
-  { name: "Flever", logo: "/assets/images/flever.png", href: "https://www.flever.nl" },
-];
 
 const themes = [
   { icon: HouseHeart, label: "Wonen", description: "Betaalbaar, toegankelijk en divers" },
@@ -36,6 +30,7 @@ const stats = [
 export default async function HomePage() {
   const municipalities = await getNewestMunicipalities();
   const publication = await getNewestPublication();
+  const partners = await getAllPartners('name_asc', '');
   const [featured, ...rest] = municipalities;
 
 return (
@@ -103,22 +98,21 @@ return (
 
       <div className="bg-white border-y border-text/10 py-6 px-6 lg:px-16 text-center">
         <Tag label="Consortiumpartners" href="/consortium" />
-
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 max-w-2xl mx-auto">
           {partners.map((p) => (
             <Link
               key={p.name}
-              href={p.href}
+              href={p.website ?? '#'}
               target="_blank"
               rel="noopener noreferrer"
               className="relative bg-background border border-text/10 hover:opacity-60 transition rounded-xl h-20 flex items-center justify-center hover:border-accent transition-colors"
             >
-                <Image
-                  src={p.logo}
-                  alt={p.name}
-                  fill
-                  className="object-contain p-2"
-                />
+              <Image
+                src={p.logo}
+                alt={p.name}
+                fill
+                className="object-contain p-2"
+              />
             </Link>
           ))}
         </div>
