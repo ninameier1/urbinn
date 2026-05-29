@@ -185,6 +185,7 @@ model Partner {
   id             String   @id @default(cuid())
   name           String
   logo           String
+  website        String
   description    String
   partnerInfo    String
   researchRole   String
