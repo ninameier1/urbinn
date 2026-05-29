@@ -1,4 +1,4 @@
-import TitleSection from "@/components/TitleSection";
+import TitleSection from "@/components/Sections/TitleSection";
 import CreateMunicipalityForm from "@/components/CMS/CreateMunicipalityForm";
 
 export default function NewMunicipalityPage() {
