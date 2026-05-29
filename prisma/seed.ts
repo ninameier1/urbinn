@@ -172,15 +172,15 @@ async function main() {
   }));
 
   const partnerData = [
-  { name: "Windesheim", logo: "/assets/images/windesheim.png", website: "https://www.windesheim.nl/" },
+  { name: "Windesheim Flevoland", logo: "/assets/images/windesheim.png", website: "https://www.windesheim.nl/" },
   { name: "Vrije Universiteit Amsterdam", logo: "/assets/images/vu.png", website: "https://vu.nl" },
-  { name: "ROC Flevoland", logo: "/assets/images/roc.png", website: "https://www.rocvanflevoland.nl/" },
-  { name: "Flever", logo: "/assets/images/flever.png.png", website: "https://flever.nl/" },
+  { name: "ROC van Flevoland", logo: "/assets/images/roc.png", website: "https://www.rocvanflevoland.nl/" },
+  { name: "Flever", logo: "/assets/images/flever.png", website: "https://flever.nl/" },
 ];
 
 const images = [
-  "/assets/images/lectoraat.jpg",
   "/assets/images/lectoraat2.jpg",
+  "/assets/images/lectoraat.jpg",
   "/assets/images/lectoraat3.jpg",
 ];
 
