@@ -10,14 +10,14 @@ export default function AuthCard({ children }: { children: React.ReactNode }) {
 
           <Link href="/" className="flex flex-col items-center">
             <img
-              src="/assets/images/tree.png"
-              alt="Urban Innovation Logo"
+              src="/assets/images/logo.png"
+              alt="GLOW Logo"
               className="h-36 w-auto mb-2"
             />
 
-            <h1 className="text-2xl text-center tracking-widest text-white font-medium uppercase">
-              Urban Innovation
-            </h1>
+            {/* <h1 className="text-2xl text-center tracking-widest text-white font-medium uppercase">
+              
+            </h1> */}
           </Link>
 
         </div>

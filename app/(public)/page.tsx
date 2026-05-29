@@ -54,6 +54,16 @@ return (
         <div className="absolute inset-0 bg-white/60" />
      </div>
 
+  <div className="absolute inset-0 z-10 pointer-events-none">
+    <Image
+      src="/assets/images/glowgears.png"
+      alt=""
+      width={500}
+      height={500}
+      className="absolute left-0 top-1/2 -translate-y-1/2 opacity-50"
+    />
+  </div>
+
     <div className="relative z-10 px-6 lg:px-16 pt-16 pb-16 max-w-3xl mx-auto text-center">
             <p className="text-xs font-semibold tracking-[.18em] uppercase text-primary mb-5">
             Consortium-XL · Flevoland

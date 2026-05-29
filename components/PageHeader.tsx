@@ -27,8 +27,8 @@ export default function PageHeader({ nav }: { nav: React.ReactNode }) {
       <div className="mx-auto flex h-16 divide-x divide-secondary">
         <Link href="/" className="flex items-end group ">
           <Image
-            src="/assets/images/tree.png"
-            alt="Urban Innovation Logo"
+            src="/assets/images/logo.png"
+            alt="GLOW Logo"
             width={0}
             height={0}
             sizes="64px"
