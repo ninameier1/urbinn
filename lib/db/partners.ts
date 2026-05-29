@@ -4,10 +4,10 @@ export async function getAllPartnersCMS(sort: string, query: string) {
   const orderMap = {
     name_asc:     { name: 'asc' },
     name_desc:    { name: 'desc' },
-    created_asc:  { createdAt: 'asc' },
-    created_desc: { createdAt: 'desc' },
-    updated_asc:  { updatedAt: 'asc' },
-    updated_desc: { updatedAt: 'desc' },
+    created_asc:  { created_at: 'asc' },
+    created_desc: { created_at: 'desc' },
+    updated_asc:  { updated_at: 'asc' },
+    updated_desc: { updated_at: 'desc' },
     creator_asc:  { creator: { username: 'asc' } },
     creator_desc: { creator: { username: 'desc' } },
   } as const;
@@ -31,10 +31,10 @@ export async function getAllPartners(sort: string, query: string) {
   const orderMap = {
     name_asc:     { name: 'asc' },
     name_desc:    { name: 'desc' },
-    created_asc:  { createdAt: 'asc' },
-    created_desc: { createdAt: 'desc' },
-    updated_asc:  { updatedAt: 'asc' },
-    updated_desc: { updatedAt: 'desc' },
+    created_asc:  { created_at: 'asc' },
+    created_desc: { created_at: 'desc' },
+    updated_asc:  { updated_at: 'asc' },
+    updated_desc: { updated_at: 'desc' },
   } as const;
 
   return prisma.partner.findMany({
