@@ -33,8 +33,8 @@ export default function InviteSection({ state, action, pending }: InviteProps) {
 
         <p className="text-sm text-stone-500 mb-4">
             Nodig iemand uit om een admin te worden. 
-            Deze persoon krijgt volledige toegang tot het gehele CMS van Urban Innovation. 
-            Wees voorzichtig wie je uitnodigd.
+            Deze persoon krijgt volledige toegang tot het gehele CMS van Let's GLOW Flevoland. 
+            Wees voorzichtig met wie je uitnodigd.
         </p>
 
         {state.ok && (
