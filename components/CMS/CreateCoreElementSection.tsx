@@ -42,10 +42,6 @@ export default function CreateCoreElementSection({ coreElement, index, onChange,
             Kernelement {index + 1}
           </p>
 
-          <h2 className="mb-1 text-base font-semibold text-stone-800">
-            {coreElement.title || "Nieuw kernelement"}
-          </h2>
-
           <p className="text-sm text-stone-500">
             Vul de titel van het kernelement in.
           </p>
@@ -65,10 +61,7 @@ export default function CreateCoreElementSection({ coreElement, index, onChange,
         {/* TITLE */}
         <div className="space-y-1.5">
           <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-accent">
-            Titel{" "}
-            <span className="text-destructive">
-              *
-            </span>
+            Titel <span className="text-destructive">*</span>
           </label>
 
           <input

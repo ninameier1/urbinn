@@ -25,10 +25,6 @@ export default function ImageUpload({ value, onChange, onRemove, uploading = fal
 
   return (
     <div className="space-y-1.5">
-      <label className="text-xs font-medium tracking-wide uppercase text-accent block mb-1">
-        Afbeelding
-      </label>
-
       {value ? (
         <div className="relative inline-block">
           <Image

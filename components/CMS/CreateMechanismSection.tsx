@@ -41,9 +41,13 @@ function MechanismRow({ mechanism, index, onChange, onRemove, disabled, }: Mecha
         </Button>
       </div>
 
+                  <label htmlFor="title" className="text-xs font-medium tracking-wide uppercase text-accent block mb-1">
+              Toelichting <span className="text-destructive">*</span>
+            </label>
+
       <textarea
         rows={2}
-        placeholder="Toelichting"
+        placeholder="Vul in..."
         value={mechanism.text}
         onChange={(e) => onChange(e.target.value)}
         disabled={disabled}

@@ -4,6 +4,8 @@ export const labels: Record<string, string> = {
   onderzoeken: 'Onderzoeken',
   'urban-innovation': 'Urban Innovation',
 
+  consortium: 'Consortium-XL',
+
   cms: 'CMS',
 
   municipalities: 'Gemeenten beheren',
@@ -11,6 +13,9 @@ export const labels: Record<string, string> = {
 
   publications: 'Publicaties beheren',
   'cms/publications/new': 'Nieuwe publicatie aanmaken',
+
+  partners: 'Partners beheren',
+  'cms/partners/new': 'Nieuwe partner aanmaken',
 
   invite: 'Nieuwe admin uitnodigen',
 };
