@@ -42,7 +42,7 @@ export default function PartnerSection({ name, logo, website, images = [], descr
               src={logo}
               alt={`${name} logo`}
               fill
-              className="object-contain p-3"
+              className="object-contain p-2"
             />
           </Link>
         </div>
@@ -56,6 +56,7 @@ export default function PartnerSection({ name, logo, website, images = [], descr
                 src={image.src}
                 alt={image.alt || `${name} image ${index + 1}`}
                 fill
+                sizes="448px"
                 className="object-cover"
               />
             </div>

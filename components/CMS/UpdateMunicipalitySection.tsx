@@ -142,16 +142,18 @@ export default function UpdateMunicipalitySection({ municipality }: { municipali
 
           <div className="rounded-lg border border-stone-200 bg-stone-50 p-4">
             <p className="text-xs font-medium tracking-widest  uppercase text-accent mb-3">
-              Foto
+              Afbeelding
             </p>
             {form.image && (
+            <div className="relative h-[250px] w-[350px] bg-stone-100">
               <Image
                 src={form.image}
                 alt={form.name}
-                width={260}
-                height={160}
-                className="rounded-md border object-cover"
+                fill
+                sizes="350px"
+                className="object-cover"
               />
+              </div>
             )}
           </div>
         
@@ -206,7 +208,6 @@ export default function UpdateMunicipalitySection({ municipality }: { municipali
               />
             </div>
 
-            {/* Image upload field */}
             <ImageUpload
               value={form.image}
               uploading={uploading}

@@ -3,23 +3,14 @@
 import { useRef } from 'react';
 import Image from 'next/image';
 
-type ImageProps = {
-  value?: string | null;
-  onChange: (file: File) => void;
-  onRemove?: () => void;
+type ImageProps = { 
+  value?: string | null; onChange: (file: File) => void; onRemove?: () => void;
   uploading?: boolean;
   error?: string | null;
   disabled?: boolean;
 };
 
-export default function ImageUpload({
-  value,
-  onChange,
-  onRemove,
-  uploading = false,
-  error,
-  disabled = false,
-}: ImageProps) {
+export default function ImageUpload({ value, onChange, onRemove, uploading = false,error, disabled = false, }: ImageProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -34,21 +25,18 @@ export default function ImageUpload({
   return (
     <div className="space-y-1.5">
       <label className="text-xs font-medium tracking-wide uppercase text-accent block mb-1">
-        Afbeelding{" "}
-        <span className="text-muted-foreground font-normal">(optioneel)</span>
+        Afbeelding
       </label>
 
       {value ? (
-        <div
-          className="relative w-112 overflow-hidden rounded-md border border-stone-200"
-          style={{ aspectRatio: '16/9' }}
-        >
-          <Image
-            src={value}
-            alt="Preview"
-            fill
-            className="object-cover"
-          />
+          <div className="overflow-hidden">
+            <Image
+              src={value}
+              alt="Preview"
+              width={448}
+              height={448}
+              className="h-auto max-h-112 w-auto max-w-full"
+            />
 
           {onRemove && (
             <button
