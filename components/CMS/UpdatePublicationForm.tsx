@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { updatePublication, deletePublication } from '@/lib/actions/publication-actions';
 import { Publication } from '@/types/cms';
+import { normalizeUrl } from "@/utils/helpers";
+
 import Button from '@/components/Button';
 
 export default function UpdatePublicationForm({ publication, municipalities,}: { publication: Publication; municipalities: { id: number; name: string }[];}) {
@@ -52,7 +54,7 @@ function handleCancel() {
       fd.set('title', form.title);
       fd.set('author', form.author);
       fd.set('description', form.description);
-      fd.set('url', form.url);
+      fd.set('url', normalizeUrl(form.url));
       fd.set('published_at', form.published_at);
       fd.set('municipality_id', form.municipality_id);
       await updatePublication(publication.id, fd);
@@ -262,7 +264,7 @@ function handleCancel() {
             </span>
             <input
               name="url"
-              type="url"
+              type="text"
               value={form.url}
               onChange={handleChange}
               className="border p-2 w-full text-sm px-3 py-2 bg-stone-50 border-stone-300 rounded-md text-stone-900"

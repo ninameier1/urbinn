@@ -7,16 +7,13 @@ import { useRouter } from "next/navigation";
 import { updatePartner, deletePartner } from "@/lib/actions/partner-actions";
 import { uploadImage } from "@/lib/actions/upload-actions";
 import { Partner } from "@/types/cms";
+import { normalizeUrl } from "@/utils/helpers";
 
 
 import Button from "@/components/Button";
 import ImageUpload from "@/components/ImageUpload";
 
-export default function UpdatePartnerForm({
-  partner,
-}: {
-  partner: Partner;
-}) {
+export default function UpdatePartnerForm({ partner }: { partner: Partner; }) {
   const router = useRouter();
 
   const [isPending, startTransition] = useTransition();
@@ -97,7 +94,7 @@ const initialData = {
     setUploadError(null);
   }
 
-  async function handleSave() {
+  function handleSave() {
     setError(null);
 
     startTransition(async () => {
@@ -105,7 +102,7 @@ const initialData = {
         const fd = new FormData();
 
         fd.set("name", form.name);
-        fd.set("website", form.website);
+        fd.set("website", normalizeUrl(form.website));
         fd.set("description", form.description);
         fd.set("partnerInfo", form.partnerInfo);
         fd.set("researchRole", form.researchRole);
@@ -325,7 +322,7 @@ const initialData = {
               </label>
               <input
                 name="website"
-                type="url"
+                type="text"
                 required
                 placeholder="https://..."
                 value={form.website}

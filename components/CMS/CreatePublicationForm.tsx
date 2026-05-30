@@ -3,6 +3,8 @@
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { createPublication } from "@/lib/actions/publication-actions";
+import { normalizeUrl } from "@/utils/helpers";
+
 import Button from "../Button";
 
 export interface PublicationFormState {
@@ -47,7 +49,7 @@ export default function CreatePublicationForm({ municipalities }: CreatePublicat
         formData.set("title", publication.title);
         formData.set("author", publication.author);
         formData.set("description", publication.description);
-        formData.set("url", publication.url);
+        formData.set("url", normalizeUrl(publication.url));
         formData.set("published_at", publication.published_at);
         formData.set("municipality_id", publication.municipality_id);
 
@@ -66,9 +68,6 @@ export default function CreatePublicationForm({ municipalities }: CreatePublicat
           <p className="text-xs font-medium tracking-widest uppercase text-accent mb-2">
             Publicatie
           </p>
-          <h2 className="text-base font-semibold text-stone-800 mb-1">
-            Publicatie informatie
-          </h2>
           <p className="text-sm text-stone-500">Basisinformatie over de publicatie</p>
         </div>
 
@@ -184,7 +183,7 @@ export default function CreatePublicationForm({ municipalities }: CreatePublicat
                 <input
                   id="url"
                   name="url"
-                  type="url"
+                  type="text"
                   placeholder="https://..."
                   value={publication.url}
                   onChange={handleChange}

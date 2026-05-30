@@ -24,3 +24,18 @@ export function slugify(title: string, maxWords = 6) {
     .slice(0, maxWords)
     .join('-');
 }
+
+export function normalizeUrl(value: string) {
+  if (!value) return value;
+
+  const trimmed = value.trim();
+
+  if (
+    trimmed.startsWith("http://") ||
+    trimmed.startsWith("https://")
+  ) {
+    return trimmed;
+  }
+
+  return `https://${trimmed}`;
+}

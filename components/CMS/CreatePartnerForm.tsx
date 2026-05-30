@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 
 import { createPartner } from "@/lib/actions/partner-actions";
 import { uploadImage } from "@/lib/actions/upload-actions";
+import { normalizeUrl } from "@/utils/helpers";
 
 import Button from "../Button";
 import ImageUpload from "../ImageUpload";
@@ -86,7 +87,7 @@ export default function CreatePartnerForm() {
   }
 }
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
     setError(null);
@@ -96,7 +97,7 @@ export default function CreatePartnerForm() {
         const formData = new FormData();
 
         formData.set("name", partner.name);
-        formData.set("website", partner.website);
+        formData.set("website", normalizeUrl(partner.website));
         formData.set("description", partner.description);
         formData.set("partnerInfo", partner.partnerInfo);
         formData.set("researchRole", partner.researchRole);
@@ -128,10 +129,6 @@ export default function CreatePartnerForm() {
             Partner
           </p>
 
-          <h2 className="mb-1 text-base font-semibold text-stone-800">
-            Partner informatie
-          </h2>
-
           <p className="text-sm text-stone-500">
             Basisinformatie over de partnerorganisatie.
           </p>
@@ -148,6 +145,7 @@ export default function CreatePartnerForm() {
               name="name"
               type="text"
               required
+              placeholder="Naam..."
               value={partner.name}
               onChange={handleChange}
               disabled={isPending}
@@ -163,7 +161,7 @@ export default function CreatePartnerForm() {
 
             <input
               name="website"
-              type="url"
+              type="text"
               required
               placeholder="https://..."
               value={partner.website}
@@ -174,6 +172,10 @@ export default function CreatePartnerForm() {
           </div>
 
           {/* LOGO */}
+          <div>
+            <label className="text-xs font-medium tracking-wide uppercase text-accent block mb-1">
+                Logo <span className="text-destructive">*</span>
+            </label>
           <ImageUpload
             value={partner.logo}
             uploading={uploading}
@@ -186,11 +188,12 @@ export default function CreatePartnerForm() {
               }))
             }
           />
+          </div>
 
           {/* DESCRIPTION */}
           <div className="space-y-1.5">
             <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-accent">
-              Beschrijving
+              Beschrijving <span className="text-destructive">*</span>
             </label>
 
             <textarea
@@ -199,6 +202,7 @@ export default function CreatePartnerForm() {
               value={partner.description}
               onChange={handleChange}
               disabled={isPending}
+              placeholder="Korte beschrijving van de partner."
               className="w-full rounded-md border border-stone-300 bg-stone-50 px-3 py-2 text-sm"
             />
           </div>
@@ -206,7 +210,7 @@ export default function CreatePartnerForm() {
           {/* PARTNER INFO */}
           <div className="space-y-1.5">
             <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-accent">
-              Over de partner
+              Over de partner <span className="text-destructive">*</span>
             </label>
 
             <textarea
@@ -215,6 +219,7 @@ export default function CreatePartnerForm() {
               value={partner.partnerInfo}
               onChange={handleChange}
               disabled={isPending}
+              placeholder="Langere beschrijving van de partner."
               className="w-full rounded-md border border-stone-300 bg-stone-50 px-3 py-2 text-sm"
             />
           </div>
@@ -222,7 +227,7 @@ export default function CreatePartnerForm() {
           {/* RESEARCH ROLE */}
           <div className="space-y-1.5">
             <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-accent">
-              Rol binnen onderzoek
+              Rol binnen onderzoek <span className="text-destructive">*</span>
             </label>
 
             <textarea
@@ -231,6 +236,7 @@ export default function CreatePartnerForm() {
               value={partner.researchRole}
               onChange={handleChange}
               disabled={isPending}
+              placeholder="Korte uitleg over de rol van de partner in het onderzoek."
               className="w-full rounded-md border border-stone-300 bg-stone-50 px-3 py-2 text-sm"
             />
           </div>
