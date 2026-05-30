@@ -1,5 +1,9 @@
-import TitleSection from "@/components/Sections/TitleSection";
 import type { Metadata } from 'next'
+
+import TitleSection from "@/components/Sections/TitleSection";
+import PartnerOverviewSection from "@/components/Sections/PartnerOverviewSection";
+import { getAllPartners } from '@/lib/db/partners';
+
 
 export const metadata: Metadata = {
   title: "Consortium",
@@ -8,10 +12,11 @@ export const metadata: Metadata = {
 export const revalidate = 60;
 
 export default async function ConsortiumPage() {
+  const partners = await getAllPartners();
   return (
     <>
       <TitleSection />
-      <p className="text-muted-foreground mt-4">Binnenkort beschikbaar.</p>
+      <PartnerOverviewSection partners={partners} />
     </>
   );
 }

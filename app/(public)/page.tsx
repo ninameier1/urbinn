@@ -31,7 +31,7 @@ const stats = [
 export default async function HomePage() {
   const municipalities = await getNewestMunicipalities();
   const publication = await getNewestPublication();
-  const partners = await getAllPartners('name_asc', '');
+  const partners = await getAllPartners();
   const [featured, ...rest] = municipalities;
 
 return (

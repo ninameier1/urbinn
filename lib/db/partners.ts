@@ -28,7 +28,7 @@ export async function getAllPartnersCMS(sort: string, query: string) {
   });
 }
 
-export async function getAllPartners(sort: string, query: string) {
+export async function getAllPartnersSort(sort: string, query: string) {
   const orderMap = {
     name_asc:     { name: 'asc' },
     name_desc:    { name: 'desc' },
@@ -48,6 +48,13 @@ export async function getAllPartners(sort: string, query: string) {
         }
       : undefined,
     orderBy: orderMap[sort as keyof typeof orderMap] ?? { name: 'asc' },
+  });
+}
+
+export async function getAllPartners() {
+  return prisma.partner.findMany({
+    orderBy: { name: 'asc' },
+    include: { creator: true },
   });
 }
 

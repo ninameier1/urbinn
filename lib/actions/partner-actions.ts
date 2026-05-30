@@ -24,12 +24,13 @@ export async function createPartner(formData: FormData) {
   })
   if (!parsed.success) throw new Error(parsed.error.issues[0].message)
 
-  await prisma.partner.create({
+  const partner = await prisma.partner.create({
     data: {
       ...parsed.data,
       created_by: userId,
     },
   })
+  return partner.id
 }
 
 // read
