@@ -1,8 +1,8 @@
 import { notFound } from 'next/navigation';
-import { getPublication } from '@/lib/actions/publication-actions';
+import { getPublication } from '@/lib/db/publications';
 import { getAllMunicipalities } from "@/lib/db/municipalities";
 
-import TitleSection from '@/components/TitleSection';
+import TitleSection from '@/components/Sections/TitleSection';
 import PublicationCard from '@/components/PublicationCard';
 
 export default async function PublicationPage({ params }: { params: Promise<{ id: string }> }) {

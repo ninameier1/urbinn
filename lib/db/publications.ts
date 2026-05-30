@@ -138,3 +138,13 @@ export function getNewestPublications(take: number = 3) {
     take,
   });
 }
+
+export async function getPublication(id: number) {
+  return await prisma.publication.findUnique({
+    where: { id },
+    include: {
+      creator: true,
+      municipality: true,
+    },
+  })
+}
