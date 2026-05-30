@@ -27,21 +27,21 @@ export default function Button({
   const isDisabled = disabled || loading;
 
   const base =
-  "inline-flex items-center justify-center gap-2 px-6 py-3 transition uppercase cursor-pointer";
+  "inline-flex items-center justify-center gap-2  transition uppercase cursor-pointer";
 
   const variants = {
     primary:
-      "bg-primary text-white shadow-sm hover:bg-secondary hover:text-text rounded-xl",
+      "bg-primary text-white shadow-sm hover:bg-secondary hover:text-text rounded-xl px-6 py-3",
     secondary:
-      "bg-accent text-white shadow-sm hover:bg-secondary hover:text-text rounded-xl",
+      "bg-accent text-white shadow-sm hover:bg-secondary hover:text-text rounded-xl px-6 py-3",
     small: 
-      "bg-primary text-white text-xs shadow-sm hover:bg-accent hover:text-white rounded-lg px-3 py-1",
+      "bg-primary text-white text-xs shadow-sm hover:bg-accent hover:text-white rounded-lg px-4 py-2",
     cancel: 
-      "bg-secondary text-white text-xs shadow-sm hover:bg-accent hover:text-white rounded-lg px-3 py-1",
+      "bg-secondary text-white text-xs shadow-sm hover:bg-accent hover:text-white rounded-lg px-4 py-2",
     delete: 
-      "bg-red-800 text-white text-xs shadow-sm hover:bg-accent hover:text-white rounded-lg px-3 py-1",
+      "bg-red-800 text-white text-xs shadow-sm hover:bg-accent hover:text-white rounded-lg px-3 py-1.5",
     logout:
-      "bg-primary block px-4 py-3 text-sm text-center w-full text-white hover:bg-accent hover:text-text",
+      "bg-primary block text-sm text-center w-full text-white hover:bg-accent hover:text-text px-4 py-2",
   };
 
   const styles = `
