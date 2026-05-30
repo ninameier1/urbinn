@@ -68,9 +68,7 @@ return (
       {municipality.core_elements.map((ce) => (
         <UpdateCoreElementSection key={ce.id} coreElement={ce} />
       ))}
-    </div>
-
-    <Button
+      <Button
       type="button"
       variant="small"
       onClick={() => setCoreElements((prev) => [...prev, emptyCoreElement()])}
@@ -78,7 +76,7 @@ return (
       + Kernelement toevoegen
     </Button>
 
-    {coreElements.map((ce, index) => (
+{coreElements.map((ce, index) => (
       <div key={ce.id} className="space-y-3">
         <CreateCoreElementSection
           coreElement={ce}
@@ -90,7 +88,7 @@ return (
         <div className="flex justify-start">
           <Button
             type="button"
-            variant="secondary"
+            variant="small"
             onClick={() => handleSaveCoreElement(ce)}
           >
             Kernelement opslaan
@@ -98,6 +96,12 @@ return (
         </div>
       </div>
     ))}
+
+    </div>
+
+
+
+    
   </div>
 );
 }

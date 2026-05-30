@@ -105,7 +105,7 @@ export default function CreateMunicipalityForm() {
       {/* ADD CORE ELEMENT */}
       <Button
         type="button"
-        variant="secondary"
+        variant="small"
         disabled={isBusy}
         onClick={() => setCoreElements((prev) => [...prev, emptyCoreElement()])}
       >
@@ -120,7 +120,7 @@ export default function CreateMunicipalityForm() {
 
       {/* SAVE & CANCEL ACTIONSSS */}
       <div className="flex items-center gap-3">
-        <Button type="submit" variant="primary" disabled={isBusy}>
+        <Button type="submit" variant="small" disabled={isBusy}>
           {isPending ? (
             <>
               <span className="h-4 w-4 animate-spin rounded-full border-2 border-primary-foreground border-t-transparent" />

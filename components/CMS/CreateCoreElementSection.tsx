@@ -88,6 +88,7 @@ export default function CreateCoreElementSection({ coreElement, index, onChange,
         </div>
 
         {/* MECHANISMS */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
         <CreateMechanismSection
           mechanisms={coreElement.mechanisms}
           onChange={(mechanisms) =>
@@ -104,6 +105,7 @@ export default function CreateCoreElementSection({ coreElement, index, onChange,
           }
           disabled={disabled}
         />
+        </div>
       </div>
     </div>
   );

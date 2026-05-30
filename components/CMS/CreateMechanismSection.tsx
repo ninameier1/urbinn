@@ -104,11 +104,11 @@ export default function CreateMechanismSection({ mechanisms, onChange, disabled,
         kernelement te beïnvloeden.
       </p>
 
-      {mechanisms.length === 0 && (
+      {/* {mechanisms.length === 0 && (
         <p className="mt-6 text-sm italic text-stone-400">
           Nog geen mechanismen toegevoegd.
         </p>
-      )}
+      )} */}
 
       {mechanisms.map((mechanism, index) => (
         <MechanismRow

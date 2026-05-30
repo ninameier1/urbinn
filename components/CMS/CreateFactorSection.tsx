@@ -18,6 +18,7 @@ const createFactor = (): FactorFormState => ({
   type: "plus",
 });
 
+
 // ------- FACTOR ROW --------
 
 interface FactorRowProps {
@@ -30,6 +31,7 @@ interface FactorRowProps {
 }
 
 function FactorRow({ factor, index, onTextChange, onTypeChange, onRemove, disabled, }: FactorRowProps) {
+  
   return (
     <div className="rounded-md border border-stone-200 bg-stone-50 p-4 space-y-3">
         <div className="flex items-center justify-between gap-2">
@@ -140,11 +142,11 @@ export default function CreateFactorSection({ factors, onChange, disabled, }: Fa
         Voeg factoren toe die het kernelement beïnvloeden.
       </p>
 
-      {factors.length === 0 && (
+      {/* {factors.length === 0 && (
         <p className="mt-6 text-sm italic text-stone-400">
           Nog geen factoren toegevoegd.
         </p>
-      )}
+      )} */}
 
       {factors.map((factor, index) => (
         <FactorRow

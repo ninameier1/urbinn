@@ -235,16 +235,16 @@ export default function CreatePartnerForm() {
             />
           </div>
 
-          {/* EXTRA IMAGES */}
+          {/* IMAGES */}
           <details className="group overflow-hidden rounded-lg border border-accent bg-accent/10">
             <summary className="flex cursor-pointer items-center justify-between px-6 py-4 list-none">
               <div>
                 <p className="mb-1 text-xs font-medium uppercase tracking-widest text-accent">
-                  Extra afbeeldingen
+                  Optionele afbeeldingen
                 </p>
 
                 <p className="text-sm text-stone-500">
-                  Optionele sfeerbeelden of contentafbeeldingen.
+                  Voeg sfeerbeelden of contentafbeeldingen toe. Maximaal drie toegestaan.
                 </p>
               </div>
 
@@ -285,7 +285,7 @@ export default function CreatePartnerForm() {
       )}
 
       <div className="flex items-center gap-3">
-        <Button type="submit" variant="primary" disabled={isPending}>
+        <Button type="submit" variant="small" disabled={isPending}>
           {isPending ? "Opslaan..." : "Partner aanmaken"}
         </Button>
 
