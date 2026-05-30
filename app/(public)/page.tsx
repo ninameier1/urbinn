@@ -5,6 +5,7 @@ import { getNewestMunicipalities } from "@db/municipalities";
 import { getNewestPublication } from "@/lib/db/publications";
 import { getAllPartners } from "@/lib/db/partners";
 import { formatDateShort } from '@/utils/date';
+import { slugify } from "@/utils/helpers";
 import { HouseHeart, Leaf, Users, Heart, Building2, HeartHandshake, Microscope, NotebookPen, Cog } from "lucide-react";
 
 import Button from "@/components/Button";
@@ -102,9 +103,8 @@ return (
           {partners.map((p) => (
             <Link
               key={p.name}
-              href={p.website ?? '#'}
-              target="_blank"
-              rel="noopener noreferrer"
+              href={`/partner/${slugify(p.name)}`}
+              // href={p.website ?? '#'}
               className="relative bg-background border border-text/10 hover:opacity-60 transition rounded-xl h-20 flex items-center justify-center hover:border-accent transition-colors"
             >
               <Image

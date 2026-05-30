@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma";
+import { slugify } from "@/utils/helpers";
 
 export async function getAllPartnersCMS(sort: string, query: string) {
   const orderMap = {
@@ -50,7 +51,11 @@ export async function getAllPartners(sort: string, query: string) {
   });
 }
 
-export async function getPartner(id: number) {
-  return prisma.partner.findUnique({ where: { id } });
+export async function getPartner(slug: string) {
+  const partners = await prisma.partner.findMany();
+
+  return partners.find(
+    (partner) => slugify(partner.name) === slug
+  );
 }
 

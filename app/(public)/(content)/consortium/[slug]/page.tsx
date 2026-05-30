@@ -1,6 +1,5 @@
 import { notFound } from "next/navigation";
-import { prisma } from "@/lib/prisma";
-import { slugify } from "@/utils/helpers";
+import { getPartner } from "@/lib/db/partners";
 
 import TitleSection from "@/components/Sections/TitleSection";
 import PartnerSection from "@/components/Sections/PartnerSection";
@@ -14,10 +13,8 @@ type PartnerProps = {
 export default async function PartnerPage({ params }: PartnerProps) {
   const { slug } = await params;
   
-  const partners = await prisma.partner.findMany();
-  const partner = partners.find((p) => slugify(p.name) === slug);
-
-  if (!partner) notFound();
+const partner = await getPartner(slug);
+if (!partner) notFound();
 
   return (
     <>
