@@ -2,6 +2,7 @@
 
 import { useRef } from 'react';
 import Image from 'next/image';
+import Button from './Button';
 
 type ImageProps = { 
   value?: string | null; onChange: (file: File) => void; onRemove?: () => void;
@@ -29,24 +30,24 @@ export default function ImageUpload({ value, onChange, onRemove, uploading = fal
       </label>
 
       {value ? (
-          <div className="overflow-hidden">
-            <Image
-              src={value}
-              alt="Preview"
-              width={448}
-              height={448}
-              className="h-auto max-h-112 w-auto max-w-full"
-            />
+        <div className="relative inline-block">
+          <Image
+            src={value}
+            alt="Preview"
+            width={448}
+            height={448}
+            className="block h-auto w-auto"
+          />
 
           {onRemove && (
-            <button
-              type="button"
+            <Button 
+              variant="delete" 
               onClick={onRemove}
               disabled={disabled || uploading}
-              className="absolute top-2 right-2 rounded-md bg-white/80 backdrop-blur border border-stone-200 px-2 py-1 text-xs hover:bg-white transition disabled:opacity-50"
+              className="absolute top-2 right-2"
             >
-              Verwijderen
-            </button>
+              X
+            </Button>
           )}
         </div>
       ) : (
@@ -55,7 +56,7 @@ export default function ImageUpload({ value, onChange, onRemove, uploading = fal
           type="button"
           onClick={() => fileInputRef.current?.click()}
           disabled={disabled || uploading}
-          className="flex w-full flex-col items-center justify-center gap-2 rounded-md border-2 border-dashed border-stone-300 bg-stone-50 px-4 py-8 text-sm text-stone-500 hover:border-stone-400 hover:text-stone-700 transition-colors disabled:opacity-50"
+          className="cursor-pointer flex w-full flex-col items-center justify-center gap-2 rounded-md border-2 border-dashed border-stone-300 bg-stone-50 px-4 py-8 text-sm text-stone-500 hover:border-stone-400 hover:text-stone-700 transition-colors disabled:opacity-50"
         >
           {uploading ? (
             <>
