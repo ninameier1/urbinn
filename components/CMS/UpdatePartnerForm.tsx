@@ -256,9 +256,8 @@ const initialData = {
 
                     (img, i) =>
                       img && (
-                        <div className="relative h-[250px] w-[350px]">
+                        <div key={i} className="relative h-[250px] w-[350px]">
                         <Image
-                            key={i}
                             src={img}
                             alt={`Afbeelding ${i + 1}`}
                             fill
