@@ -121,7 +121,7 @@ export default function UpdateMunicipalitySection({ municipality }: { municipali
           <section className="space-y-6">
             <div className="rounded-lg border border-stone-200 bg-stone-50 p-4">
               <p className="text-xs font-medium tracking-widest  uppercase text-accent mb-2">
-                Naam gemeente
+                Naam
               </p>
 
               <p className="text-sm leading-7 text-stone-700 whitespace-pre-wrap">
@@ -170,15 +170,13 @@ export default function UpdateMunicipalitySection({ municipality }: { municipali
           <div className="space-y-4">
             <div className="flex items-start justify-between">
               <div>
-                <p className="text-xs font-medium tracking-widest uppercase text-accent mb-4">
+                <p className="text-xs font-medium tracking-widest uppercase text-accent mb-2">
                   Bewerken
                 </p>
-                <h2 className="text-base font-semibold text-stone-800 mb-1">
-                  Gemeente "{ form.name }" aanpassen
-                </h2>
-                <p className="text-sm text-stone-500 mb-5">
-                  Pas de basisinformatie van deze gemeente aan.
-                </p>
+
+            <p className="text-sm text-stone-500 mb-5">
+              Je bewerkt momenteel: <span className="font-medium text-green-700">{municipality.name}</span>
+            </p>
               </div>
             <Button variant="delete" onClick={handleDelete} disabled={deleting}>
               {deleting ? 'Verwijderen...' : 'Verwijder gemeente'}

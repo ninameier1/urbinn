@@ -109,12 +109,9 @@ export default function UpdateMechanismSection({ mechanism }: { mechanism: Mecha
                   <p className="text-xs font-medium tracking-widest uppercase text-accent mb-4">
                     Bewerken
                   </p>
-                  <h2 className="text-base font-semibold text-stone-800 mb-1">
-                    Mechanisme "{ mechanism.text }" aanpassen
-                  </h2>
-                  <p className="text-sm text-stone-500">
-                    Bewerk hier de tekst van het mechanisme.
-                  </p>
+            <p className="text-sm text-stone-500 mb-5">
+              Je bewerkt momenteel: <span className="font-medium text-green-700">{mechanism.text}</span>
+            </p>
                 </div>
                 <Button variant="delete" onClick={handleDelete} disabled={deleting}>
                   {deleting ? 'Verwijderen...' : 'Verwijder'}

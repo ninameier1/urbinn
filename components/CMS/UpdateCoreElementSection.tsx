@@ -146,12 +146,9 @@ export default function CoreElementSection({ coreElement }: { coreElement: CoreE
                   <p className="text-xs font-medium tracking-widest uppercase text-accent mb-4">
                     Bewerken
                   </p>
-                  <h2 className="text-base font-semibold text-stone-800 mb-1">
-                    Kernelement "{ title }" aanpassen
-                  </h2>
-                  <p className="text-sm text-stone-500 mb-5">
-                    Bewerk hier de titel van het kernelement.
-                  </p>
+            <p className="text-sm text-stone-500 mb-5">
+              Je bewerkt momenteel: <span className="font-medium text-green-700">{title}</span>
+            </p>
                 </div>
                 <Button variant="delete" onClick={handleDelete} disabled={deleting}>
                   {deleting ? 'Verwijderen...' : 'Verwijder kernelement'}
@@ -184,56 +181,83 @@ export default function CoreElementSection({ coreElement }: { coreElement: CoreE
 
           {/* MECHANISMS + FACTORS */}
           <div className="bg-gray-100 border border-stone-200 rounded-lg p-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {coreElement.mechanisms.length > 0 && (
-              <div className="space-y-3">
-                <h4 className="text-xs font-medium tracking-widest uppercase text-accent">
-                  Mechanismen
-                </h4>
-                <div className="space-y-3">
-                  {coreElement.mechanisms.map((m) => (
-                    <UpdateMechanismSection key={m.id} mechanism={m} />
-                  ))}
-                </div>
-              </div>
-            )}
-            {coreElement.factors.length > 0 && (
-              <div className="space-y-3">
-                <h4 className="text-xs font-medium tracking-widest uppercase text-accent">
-                  Factoren
-                </h4>
-                <div className="space-y-3">
-                  {coreElement.factors.map((f) => (
-                    <UpdateFactorSection key={f.id} factor={f} />
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
-          </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-          {/* NEW MECHANISMS & FACTORS */}
-          <CreateMechanismSection
-            mechanisms={newMechanisms}
-            onChange={setNewMechanisms}
-            disabled={saving}
-          />
-          {newMechanisms.length > 0 && (
-            <Button type="button" variant="small" onClick={handleSaveMechanisms} disabled={saving}>
-              {saving ? 'Opslaan...' : 'Mechanismen opslaan'}
-            </Button>
-          )}
+              {coreElement.mechanisms.length > 0 && (
+                <div className="space-y-3">
+                  <h4 className="text-xs font-medium tracking-widest uppercase text-accent">
+                    Bestaande Mechanismen
+                  </h4>
 
-          <CreateFactorSection
-            factors={newFactors}
-            onChange={setNewFactors}
-            disabled={saving}
-          />
-          {newFactors.length > 0 && (
-            <Button type="button" variant="small" onClick={handleSaveFactors} disabled={saving}>
-              {saving ? 'Opslaan...' : 'Factoren opslaan'}
-            </Button>
-          )}
+                  <div className="space-y-3">
+                    {coreElement.mechanisms.map((m) => (
+                      <UpdateMechanismSection key={m.id} mechanism={m} />
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {coreElement.factors.length > 0 && (
+                <div className="space-y-3">
+                  <h4 className="text-xs font-medium tracking-widest uppercase text-accent">
+                    Bestaande Factoren
+                  </h4>
+
+                  <div className="space-y-3">
+                    {coreElement.factors.map((f) => (
+                      <UpdateFactorSection key={f.id} factor={f} />
+                    ))}
+                  </div>
+                </div>
+              )}
+
+            </div>
+
+
+            {/* NEW MECHANISMS & FACTORS */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+
+              {/* MECHA COLUMN */}
+              <div className="space-y-3">
+                <CreateMechanismSection
+                  mechanisms={newMechanisms}
+                  onChange={setNewMechanisms}
+                  disabled={saving}
+                />
+
+                {newMechanisms.length > 0 && (
+                  <Button
+                    type="button"
+                    variant="small"
+                    onClick={handleSaveMechanisms}
+                    disabled={saving}
+                  >
+                    {saving ? "Opslaan..." : "Mechanismen opslaan"}
+                  </Button>
+                )}
+              </div>
+
+              {/* FACTORS COLUMMNN */}
+              <div className="space-y-3">
+                <CreateFactorSection
+                  factors={newFactors}
+                  onChange={setNewFactors}
+                  disabled={saving}
+                />
+
+                {newFactors.length > 0 && (
+                  <Button
+                    type="button"
+                    variant="small"
+                    onClick={handleSaveFactors}
+                    disabled={saving}
+                  >
+                    {saving ? "Opslaan..." : "Factoren opslaan"}
+                  </Button>
+                )}
+              </div>
+            </div>
+          </div>
         </div>
       )}
     </div>
