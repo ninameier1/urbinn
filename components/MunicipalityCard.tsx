@@ -42,7 +42,7 @@ export default function MunicipalityCard({ name, image, href, description, tags 
 
       <div className={featured ? "p-5" : "p-4"}>
         <div className="relative">
-          <p className={`font-serif font-bold mb-4 ${featured ? "text-3xl" : "text-2xl"} `}>
+          <p className={`font-serif text-dark group-hover:text-primary font-bold mb-4 ${featured ? "text-3xl" : "text-2xl"} `}>
             {name}
           </p>
         </div>
@@ -53,7 +53,7 @@ export default function MunicipalityCard({ name, image, href, description, tags 
           </p>
         )}
 
-        <p className="text-[11px] font-bold tracking-[.1em] uppercase text-primary group-hover:text-accent transition-colors">
+        <p className="text-xs uppercase tracking-wide text-accent group-hover:text-secondary transition-colors">
           Bekijk dashboard →
         </p>
       </div>

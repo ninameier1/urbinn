@@ -88,7 +88,7 @@ return (
             </p>
 
             <div className="flex gap-3 justify-center flex-wrap">
-            <Button href="https://www.windesheim.nl/onderzoek/onderzoeksprojecten/urban-innovation/12-jaar-gezonde-stad" variant="primary">
+            <Button href="/onderzoek" variant="primary">
                 Ontdek het onderzoek
             </Button>
 
