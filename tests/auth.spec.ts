@@ -1,6 +1,22 @@
 import { test, expect } from '@playwright/test'
 
-test('unauthenticated user is redirected to login', async ({ page }) => {
+
+// TC-001
+test('unauthenticated user is redirected to login', async ({ browser }) => {
+  const context = await browser.newContext({ storageState: undefined })
+  const page = await context.newPage()
+
   await page.goto('/cms')
   await expect(page).toHaveURL(/login/)
+
+  await context.close()
+})
+
+// test if we are simulated as logged in 
+test('authenticated user can access CMS', async ({ page }) => {
+  await page.goto('/cms')
+  await expect(page).toHaveURL(/cms/)
+  await expect(
+    page.getByText(/Welkom/)
+  ).toBeVisible()
 })
