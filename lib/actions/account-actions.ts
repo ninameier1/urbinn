@@ -68,18 +68,29 @@ export async function updateUsername(formData: FormData) {
 export async function deleteAccount() {
   const session = await requireAuth()
   const userId = Number(session.user.id)
+
   const user = await prisma.user.findUnique({
     where: { id: userId },
     select: { email: true },
   })
   if (!user) throw new Error("User not found")
 
+  // FAILSAFE OMG
+  const userCount = await prisma.user.count({
+  where: { deletedAt: null }
+})
+  if (userCount <= 1) {
+    throw new Error("Cannot delete the last administrator account")
+  }
+
   if (user.email) {
     await prisma.invite.deleteMany({ where: { email: user.email } })
   }
+
   await prisma.user.update({
     where: { id: userId },
     data: { deletedAt: new Date() },
   })
+
   await signOut({ redirectTo: '/' })
 }
