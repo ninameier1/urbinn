@@ -110,6 +110,15 @@ async function main() {
     },
   });
 
+  await prisma.user.upsert({
+  where: { email: 'test@test.com' },
+  update: {},
+  create: {
+    username: 'testuser',
+    email: 'test@test.com',
+  },
+})
+
   const municipalityData = [
     { name: "Almere",    image: "/assets/images/almere.jpg",   real: false },
     { name: "Zwolle",   image: "/assets/images/zwolle.jpg",   real: true  },
