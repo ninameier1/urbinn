@@ -10,7 +10,8 @@ import {
   Plus,
   User,
   UserPlus, 
-  FileText
+  FileText,
+  Users
  } from "lucide-react";
 
  export const revalidate = 0;
@@ -67,7 +68,7 @@ export default async function CmsPage() {
       <TitleSection />
 
       <p className="text-muted-foreground">
-        Welkom {userLabel} in het CMS van Urban Innovation!
+        Welkom {userLabel} in het CMS van Let's GLOW Flevoland!
       </p>
 
       {/* BUTTONS FOR THE LAZY */}
@@ -130,6 +131,35 @@ export default async function CmsPage() {
             <div>
               <p className="font-medium text-stone-900">Nieuwe publicatie</p>
               <p className="text-xs text-stone-500">Maak een nieuwe publicatie aan</p>
+            </div>
+          </a>
+
+                  {/* PARTNORIO */}
+          <a
+            href="/cms/partners"
+            className="group flex items-center gap-4 p-5 rounded-xl border border-stone-200 bg-white hover:border-stone-300 hover:shadow-sm transition"
+          >
+            <div className="p-3 rounded-lg bg-stone-100 group-hover:bg-primary/10 transition">
+              <Users className="w-5 h-5 text-stone-600 group-hover:text-primary" />
+            </div>
+
+            <div>
+              <p className="font-medium text-stone-900">Partners beheren</p>
+              <p className="text-xs text-stone-500">Bekijk en bewerk bestaande partners</p>
+            </div>
+          </a>
+
+          <a
+            href="/cms/partners/new"
+            className="group flex items-center gap-4 p-5 rounded-xl border border-stone-200 bg-white hover:border-stone-300 hover:shadow-sm transition"
+          >
+            <div className="p-3 rounded-lg bg-stone-100 group-hover:bg-primary/10 transition">
+              <Plus className="w-5 h-5 text-stone-600 group-hover:text-primary" />
+            </div>
+
+            <div>
+              <p className="font-medium text-stone-900">Nieuwe partners</p>
+              <p className="text-xs text-stone-500">Maak een nieuwe partner aan</p>
             </div>
           </a>
 
