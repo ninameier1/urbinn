@@ -7,8 +7,8 @@ test.describe('municipality CRUD', () => {
   const name = `Emmeloord-${timestamp}`
   const updatedName = `Emmeloord-${timestamp}-updated`
 
-  const kernelement = `Veiligheid-${timestamp}`
-  const updatedCoreElement = `${kernelement}-updated`
+  const coreElement = `Veiligheid-${timestamp}`
+  const updatedCoreElement = `${coreElement}-updated`
 
   const mechanism = `Straatverlichting-${timestamp}`
   const updatedMechanism = `${mechanism}-updated`
@@ -24,7 +24,7 @@ test.describe('municipality CRUD', () => {
 
     await page.getByRole('button', { name: '+ Kernelement toevoegen' }).click()
     await page.getByRole('textbox', { name: 'bijv. Veiligheid' }).waitFor()
-    await page.getByRole('textbox', { name: 'bijv. Veiligheid' }).fill(kernelement)
+    await page.getByRole('textbox', { name: 'bijv. Veiligheid' }).fill(coreElement)
 
     await page.getByRole('button', { name: '+ Mechanisme toevoegen' }).click()
     await page.getByRole('textbox', { name: 'Vul in...' }).nth(0).waitFor()
@@ -48,7 +48,8 @@ test.describe('municipality CRUD', () => {
 // TC-003
   test('can update a municipality name', async ({ page }) => {
     await page.goto('/cms/municipalities')
-    await page.getByRole('link', { name: name }).click()
+    await page.getByRole('link').filter({ hasText: name }).click()
+
     await page.getByRole('button', { name: 'Bewerken' }).click()
 
     await page.getByRole('textbox').first().fill(updatedName)
@@ -61,11 +62,11 @@ test.describe('municipality CRUD', () => {
 // TC-004
   test('can update a municipality core element', async ({ page }) => {
     await page.goto('/cms/municipalities')
-    await page.getByRole('link', { name: name }).click()
+    await page.getByRole('link').filter({ hasText: updatedName }).click()
 
-    const element = page.getByTestId('core-element').filter({ hasText: kernelement })
-    await page.getByRole('button', { name: `▸ ${kernelement}`}).click()
-    await element.getByRole('button', { name: 'Bewerken'}).click()
+    await page.getByRole('button', { name: `▸ ${coreElement}` }).click()
+    await page.getByTestId('core-element').filter({ hasText: coreElement }).getByRole('button', { name: 'Bewerken' }).click()
+
     await page.getByRole('textbox').click();
     await page.getByRole('textbox').first().fill(updatedCoreElement)
 
@@ -77,14 +78,14 @@ test.describe('municipality CRUD', () => {
 // TC-005
   test('can update a municipality mechanism', async ({ page }) => {
     await page.goto('/cms/municipalities')
-    await page.getByRole('link', { name: name }).click()
+    await page.getByRole('link').filter({ hasText: updatedName }).click()
 
-    const element = page.getByTestId('core-element').filter({ hasText: kernelement })
-    await page.getByRole('button', { name: `▸ ${kernelement}`}).click()
 
-    const mech = page.getByTestId('mechanism').filter({ hasText: mechanism })
+    await page.getByRole('button', { name: `▸ ${updatedCoreElement}`}).click()
     await page.getByRole('button', { name: `▸ ${mechanism}`}).click()
-    await mech.getByRole('button', { name: 'Bewerken'}).click()
+    await page.getByTestId('mechanism').filter({ hasText: mechanism }).getByRole('button', { name: 'Bewerken' }).click()
+
+
     await page.getByRole('textbox').click();
     await page.getByRole('textbox').first().fill(updatedMechanism)
 
@@ -96,14 +97,13 @@ test.describe('municipality CRUD', () => {
 // TC-006
   test('can update a municipality factor', async ({ page }) => {
     await page.goto('/cms/municipalities')
-    await page.getByRole('link', { name: name }).click()
+    await page.getByRole('link').filter({ hasText: updatedName }).click()
 
-    const element = page.getByTestId('core-element').filter({ hasText: kernelement })
-    await page.getByRole('button', { name: `▸ ${kernelement}`}).click()
 
-    const mech = page.getByTestId('factor').filter({ hasText: factor })
+    await page.getByRole('button', { name: `▸ ${updatedCoreElement}`}).click()
     await page.getByRole('button', { name: `▸ ${factor}`}).click()
-    await mech.getByRole('button', { name: 'Bewerken'}).click()
+    await page.getByTestId('factor').filter({ hasText: factor }).getByRole('button', { name: 'Bewerken' }).click()
+
     await page.getByRole('textbox').click();
     await page.getByRole('textbox').first().fill(updatedFactor)
     await page.getByRole('combobox').selectOption('min');
@@ -117,7 +117,7 @@ test.describe('municipality CRUD', () => {
 // TC-007
   test('can delete a municipality', async ({ page }) => {
     await page.goto('/cms/municipalities')
-    await page.getByRole('link', { name: name }).click()
+    await page.getByRole('link').filter({ hasText: updatedName }).click()
     await page.getByRole('button', { name: 'Bewerken' }).click()
 
     page.once('dialog', dialog => dialog.accept())
@@ -125,7 +125,7 @@ test.describe('municipality CRUD', () => {
 
     await expect(page).toHaveURL(/\/cms\/municipalities$/)
     await expect(page.getByRole('main')).toContainText('Gemeenten')
-    await expect(page.getByRole('main').locator('span').filter({ hasText: name })).not.toBeVisible()
-    await expect(page.getByRole('link', { name: name })).toHaveCount(0)
+    await expect(page.getByRole('main').locator('span').filter({ hasText: updatedName })).not.toBeVisible()
+    await expect(page.getByRole('link').filter({ hasText: updatedName })).toHaveCount(0)
   })
 })
