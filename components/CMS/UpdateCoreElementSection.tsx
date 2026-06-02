@@ -101,7 +101,7 @@ export default function CoreElementSection({ coreElement }: { coreElement: CoreE
     }
 
   return (
-    <div className="bg-white border border-stone-200 rounded-lg p-6">
+    <div className="bg-white border border-stone-200 rounded-lg p-6 " data-testid="core-element">
       {/* HEADER */}
       <div className="flex items-start justify-between gap-3">
         <button onClick={() => setIsExpanded((v) => !v)} className="text-left cursor-pointer">

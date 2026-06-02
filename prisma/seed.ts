@@ -86,6 +86,7 @@ async function main() {
     await tx.mechanism.deleteMany()
     await tx.coreElement.deleteMany()
     await tx.municipality.deleteMany()
+    await tx.partner.deleteMany()
   })
 
   await prisma.invite.upsert({

@@ -6,9 +6,18 @@ test.describe('municipality CRUD', () => {
   const timestamp = Date.now()
   const name = `Emmeloord-${timestamp}`
   const updatedName = `Emmeloord-${timestamp}-updated`
-  const kernelement = `Veiligheid-${timestamp}`
 
-  // TC-002
+  const kernelement = `Veiligheid-${timestamp}`
+  const updatedCoreElement = `${kernelement}-updated`
+
+  const mechanism = `Straatverlichting-${timestamp}`
+  const updatedMechanism = `${mechanism}-updated`
+
+  const factor = `Lantaarnpalen-${timestamp}`
+  const factormin = `Ledlampen-${timestamp}`
+  const updatedFactor = `${factor}-updated`
+
+// TC-002
   test('can create a municipality', async ({ page }) => {
     await page.goto('/cms/municipalities/new')
     await page.getByRole('textbox', { name: 'Naam gemeente *' }).fill(name)
@@ -19,24 +28,25 @@ test.describe('municipality CRUD', () => {
 
     await page.getByRole('button', { name: '+ Mechanisme toevoegen' }).click()
     await page.getByRole('textbox', { name: 'Vul in...' }).nth(0).waitFor()
-    await page.getByRole('textbox', { name: 'Vul in...' }).nth(0).fill('Lantaarnpalen')
+    await page.getByRole('textbox', { name: 'Vul in...' }).nth(0).fill(mechanism)
 
     await page.getByRole('button', { name: '+ Factor toevoegen' }).click()
     await page.getByRole('textbox', { name: 'Vul in...' }).nth(1).waitFor()
-    await page.getByRole('textbox', { name: 'Vul in...' }).nth(1).fill('Verlichting')
+    await page.getByRole('textbox', { name: 'Vul in...' }).nth(1).fill(factor)
 
     await page.getByRole('button', { name: '+ Factor toevoegen' }).click()
     await page.getByRole('button', { name: '− Min' }).nth(1).click()
     await page.getByRole('textbox', { name: 'Vul in...' }).nth(2).waitFor()
-    await page.getByRole('textbox', { name: 'Vul in...' }).nth(2).fill('In de winter is het donker')
+    await page.getByRole('textbox', { name: 'Vul in...' }).nth(2).fill(factormin)
 
     await page.getByRole('button', { name: 'Gemeente aanmaken' }).click()
+
     await expect(page).not.toHaveURL(/new/, { timeout: 10000 })
     await expect(page.getByRole('heading', { name: name })).toBeVisible()
   })
 
-  // TC-003
-    test('can update a municipality', async ({ page }) => {
+// TC-003
+  test('can update a municipality name', async ({ page }) => {
     await page.goto('/cms/municipalities')
     await page.getByRole('link', { name: name }).click()
     await page.getByRole('button', { name: 'Bewerken' }).click()
@@ -44,18 +54,78 @@ test.describe('municipality CRUD', () => {
     await page.getByRole('textbox').first().fill(updatedName)
     await page.getByRole('button', { name: 'Opslaan' }).click()
     await expect(page.getByText('Opgeslagen!')).toBeVisible()
-    })
+    await page.reload()
+    await expect( page.getByRole('heading', { name: updatedName })).toBeVisible()
+  })
 
-    // TC-004
+// TC-004
+  test('can update a municipality core element', async ({ page }) => {
+    await page.goto('/cms/municipalities')
+    await page.getByRole('link', { name: name }).click()
+
+    const element = page.getByTestId('core-element').filter({ hasText: kernelement })
+    await page.getByRole('button', { name: `▸ ${kernelement}`}).click()
+    await element.getByRole('button', { name: 'Bewerken'}).click()
+    await page.getByRole('textbox').click();
+    await page.getByRole('textbox').first().fill(updatedCoreElement)
+
+    await page.getByRole('button', { name: 'Opslaan' }).click()
+    await expect(page.getByText('Opgeslagen!')).toBeVisible()
+    await expect( page.getByRole('button', { name: `▾ ${updatedCoreElement}`})).toBeVisible()
+  })
+
+// TC-005
+  test('can update a municipality mechanism', async ({ page }) => {
+    await page.goto('/cms/municipalities')
+    await page.getByRole('link', { name: name }).click()
+
+    const element = page.getByTestId('core-element').filter({ hasText: kernelement })
+    await page.getByRole('button', { name: `▸ ${kernelement}`}).click()
+
+    const mech = page.getByTestId('mechanism').filter({ hasText: mechanism })
+    await page.getByRole('button', { name: `▸ ${mechanism}`}).click()
+    await mech.getByRole('button', { name: 'Bewerken'}).click()
+    await page.getByRole('textbox').click();
+    await page.getByRole('textbox').first().fill(updatedMechanism)
+
+    await page.getByRole('button', { name: 'Opslaan' }).click()
+    await expect(page.getByText('Opgeslagen!')).toBeVisible()
+    await expect( page.getByRole('button', { name: `▾ ${updatedMechanism}`})).toBeVisible()
+  })
+
+// TC-006
+  test('can update a municipality factor', async ({ page }) => {
+    await page.goto('/cms/municipalities')
+    await page.getByRole('link', { name: name }).click()
+
+    const element = page.getByTestId('core-element').filter({ hasText: kernelement })
+    await page.getByRole('button', { name: `▸ ${kernelement}`}).click()
+
+    const mech = page.getByTestId('factor').filter({ hasText: factor })
+    await page.getByRole('button', { name: `▸ ${factor}`}).click()
+    await mech.getByRole('button', { name: 'Bewerken'}).click()
+    await page.getByRole('textbox').click();
+    await page.getByRole('textbox').first().fill(updatedFactor)
+    await page.getByRole('combobox').selectOption('min');
+
+    await page.getByRole('button', { name: 'Opslaan' }).click()
+    await expect(page.getByText('Opgeslagen!')).toBeVisible()
+    await expect( page.getByRole('button', { name: `▾ ${updatedFactor}`})).toBeVisible()
+    await expect(page.getByText('Type: Min')).toBeVisible()
+  })
+
+// TC-007
   test('can delete a municipality', async ({ page }) => {
     await page.goto('/cms/municipalities')
-    await page.getByRole('link', { name: updatedName }).click()
+    await page.getByRole('link', { name: name }).click()
     await page.getByRole('button', { name: 'Bewerken' }).click()
 
     page.once('dialog', dialog => dialog.accept())
     await page.getByRole('button', { name: 'Verwijder gemeente' }).click()
 
     await expect(page).toHaveURL(/\/cms\/municipalities$/)
-    await expect(page.getByRole('main').locator('span').filter({ hasText: updatedName })).not.toBeVisible()
+    await expect(page.getByRole('main')).toContainText('Gemeenten')
+    await expect(page.getByRole('main').locator('span').filter({ hasText: name })).not.toBeVisible()
+    await expect(page.getByRole('link', { name: name })).toHaveCount(0)
   })
 })

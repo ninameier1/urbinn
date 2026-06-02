@@ -64,7 +64,7 @@ export default function UpdateMechanismSection({ mechanism }: { mechanism: Mecha
     }
 
   return (
-    <div className="bg-white border border-stone-200 rounded-lg p-4">
+    <div className="bg-white border border-stone-200 rounded-lg p-4" data-testid="mechanism">
       {/* HEADER */}
       <div className="flex items-start justify-between gap-3">
         <button onClick={() => setIsExpanded((v) => !v)} className="text-left cursor-pointer">
