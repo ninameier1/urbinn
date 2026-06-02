@@ -14,9 +14,10 @@ export default async function PublicationsCMSPage({ searchParams }: {
     query?: string;
   }>;
 }) {
-  const { sort = 'title_asc', query = '' } = await searchParams;
+const { sort, query = '' } = await searchParams;
+const activeSort = sort ?? (query ? 'title_asc' : 'created_desc');
 
-  const publications = await getAllPublicationsCMS(sort, query);
+  const publications = await getAllPublicationsCMS(activeSort, query);
   
   const PUBLICATION_SORT_OPTIONS = [
     { value: 'updated_desc', label: 'Recentst bijgewerkt' },
