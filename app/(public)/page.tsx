@@ -105,11 +105,10 @@ return (
           {partners.map((p) => (
             <Link
               key={p.name}
-              href={`/partner/${slugify(p.name)}`}
-              // href={p.website ?? '#'}
+              href={`/consortium/${slugify(p.name)}`}
               className="relative bg-background border border-text/10 hover:opacity-60 transition rounded-xl h-20 flex items-center justify-center hover:border-accent transition-colors"
             >
-            {p.logo && (
+            {p.logo ? (
               <Image
                 src={p.logo}
                 alt={p.name}
@@ -117,6 +116,15 @@ return (
                 sizes="200px"
                 className="object-contain p-2"
               />
+            ) : (
+              <div
+                title={p.name}
+                className="text-sm font-serif text-dark p-3 text-center flex items-center justify-center w-full h-full overflow-hidden"
+              >
+                <span className="line-clamp-2 break-words">
+                  {p.name}
+                </span>
+              </div>
             )}
             </Link>
           ))}

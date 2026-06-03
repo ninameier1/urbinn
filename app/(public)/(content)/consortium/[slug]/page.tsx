@@ -4,8 +4,6 @@ import Link from 'next/link';
 import { notFound } from "next/navigation";
 import { getPartner } from "@/lib/db/partners";
 
-import TitleSection from "@/components/Sections/TitleSection";
-
 export const revalidate = 60;
 
 type PartnerProps = {
@@ -47,14 +45,23 @@ const images = [
             rel="noopener noreferrer"
             className="relative w-28 h-28 shrink-0 bg-stone-50 border border-stone-200 rounded-lg overflow-hidden hover:opacity-70 transition-opacity"
           >
-            {partner.logo && (
+            {partner.logo ? (
               <Image
               src={partner.logo}
               alt={`${partner.name} logo`}
               fill
               sizes="112px"
               className="object-contain p-2"
-            />)}
+            />) : (
+                <div
+                  title={partner.name}
+                  className="text-sm font-serif text-dark p-3 text-center flex items-center justify-center w-full h-full overflow-hidden"
+                >
+                  <span className="line-clamp-2 break-words">
+                    {partner.name}
+                  </span>
+                </div>
+            )}
           </Link>
         </div>
       </div>
