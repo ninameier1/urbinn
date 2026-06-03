@@ -137,11 +137,12 @@ function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         <div className="mt-8 space-y-6">
           {/* NAME */}
           <div className="space-y-1.5">
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-accent">
+            <label htmlFor="name" className="mb-1 block text-xs font-medium uppercase tracking-wide text-accent">
               Naam <span className="text-destructive">*</span>
             </label>
 
             <input
+              id="name" 
               name="name"
               type="text"
               required
@@ -155,11 +156,12 @@ function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
 
           {/* WEBSITE */}
           <div className="space-y-1.5">
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-accent">
+            <label htmlFor="website" className="mb-1 block text-xs font-medium uppercase tracking-wide text-accent">
               Website <span className="text-destructive">*</span>
             </label>
 
             <input
+              id="website"
               name="website"
               type="text"
               required

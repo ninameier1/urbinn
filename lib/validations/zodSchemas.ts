@@ -31,7 +31,7 @@ export const PublicationSchema = z.object({
 
 export const PartnerSchema = z.object({
   name: z.string().min(1, 'Partner name is required').max(100),
-  logo: z.string().min(1, 'A logo is required'),
+  logo: z.string().optional().nullable(),
   website: z.string().min(1, 'Website is required').max(100),
   description: z.string().min(1, 'Description is required'),
   partnerInfo: z.string().min(1, 'Partner Info is required'),

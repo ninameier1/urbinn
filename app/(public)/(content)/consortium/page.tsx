@@ -71,13 +71,15 @@ export default async function ConsortiumPage() {
                   `}
                 >
                   <div className="relative h-48 shrink-0 bg-stone-50 border border-stone-200 rounded-lg hover:opacity-70 transition-opacity">
-                    <Image
-                      src={partner.logo}
-                      alt={`${partner.name} logo`}
-                      fill
-                      sizes="400px"
-                      className="object-contain"
-                    />
+                    {partner.logo && (
+                      <Image
+                        src={partner.logo}
+                        alt={`${partner.name} logo`}
+                        fill
+                        sizes="400px"
+                        className="object-contain"
+                      />
+                    )}
                   </div>
                 </div>
 

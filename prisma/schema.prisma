@@ -184,7 +184,7 @@ model Publication {
 model Partner {
   id             Int          @id @default(autoincrement())
   name           String
-  logo           String
+  logo           String?
   website        String
   description    String       @db.Text
   partnerInfo    String       @db.Text

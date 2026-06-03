@@ -47,13 +47,14 @@ const images = [
             rel="noopener noreferrer"
             className="relative w-28 h-28 shrink-0 bg-stone-50 border border-stone-200 rounded-lg overflow-hidden hover:opacity-70 transition-opacity"
           >
-            <Image
+            {partner.logo && (
+              <Image
               src={partner.logo}
               alt={`${partner.name} logo`}
               fill
               sizes="112px"
               className="object-contain p-2"
-            />
+            />)}
           </Link>
         </div>
       </div>

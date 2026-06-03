@@ -9,8 +9,9 @@ import SortBar from '@/components/SortBar';
 export const revalidate = 0;
 
 export default async function PartnersCMSPage({ searchParams }: { searchParams: Promise<{ sort?: string; query?: string; }>; }) {
-  const { sort = 'name_asc', query = '' } = await searchParams;
-  const partners = await getAllPartnersCMS(sort, query);
+    const { sort, query = '' } = await searchParams;
+  const activeSort = sort ?? (query ? 'title_asc' : 'created_desc');
+  const partners = await getAllPartnersCMS(activeSort, query);
 
   const PARTNER_SORT_OPTIONS = [
     { value: 'updated_desc', label: 'Recentst bijgewerkt' },
@@ -28,7 +29,7 @@ export default async function PartnersCMSPage({ searchParams }: { searchParams: 
 
       <SortBar
         sortOptions={PARTNER_SORT_OPTIONS}
-        defaultSort="name_asc"
+        defaultSort={activeSort}
         placeholder="Zoek partner..."
       />
 

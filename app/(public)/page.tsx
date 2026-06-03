@@ -109,6 +109,7 @@ return (
               // href={p.website ?? '#'}
               className="relative bg-background border border-text/10 hover:opacity-60 transition rounded-xl h-20 flex items-center justify-center hover:border-accent transition-colors"
             >
+            {p.logo && (
               <Image
                 src={p.logo}
                 alt={p.name}
@@ -116,6 +117,7 @@ return (
                 sizes="200px"
                 className="object-contain p-2"
               />
+            )}
             </Link>
           ))}
         </div>
