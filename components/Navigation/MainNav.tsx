@@ -4,12 +4,11 @@ import ConsortiumDropdown from "./ConsortiumDropdown";
 
 import { prisma } from '@/lib/prisma';
 
+  export default async function MainNav() {
   const partners = await prisma.partner.findMany({
-  select: { id: true, name: true },
-  orderBy: { name: 'asc' },
+    select: { id: true, name: true },
+    orderBy: { name: 'asc' },
   });
-
-export default function MainNav() {
 
   return (
     <nav className="flex h-full items-center divide-x divide-secondary">
