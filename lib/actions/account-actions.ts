@@ -73,14 +73,14 @@ export async function deleteAccount() {
     where: { id: userId },
     select: { email: true },
   })
-  if (!user) throw new Error("User not found")
+  if (!user) throw new Error("Gebruiker niet gevonden")
 
   // FAILSAFE OMG
   const userCount = await prisma.user.count({
   where: { deletedAt: null }
 })
   if (userCount <= 1) {
-    throw new Error("Cannot delete the last administrator account")
+    throw new Error("Het laatste admin account kan niet verwijderd worden")
   }
 
   if (user.email) {
