@@ -10,6 +10,7 @@ import TitleSection from '@/components/Sections/TitleSection';
 type State = {
   ok: boolean
   error: string | null
+  refreshed?: boolean
 }
 
 const initialState: State = {
@@ -20,16 +21,16 @@ const initialState: State = {
 export default function InviteShell({ children }: { children: React.ReactNode }) {
   const router = useRouter()
   const [state, action, pending] = useActionState<State, FormData>(
-    async (_, formData) => {
-      const email = (formData.get('email') as string).toLowerCase().trim()
-      try {
-        await inviteUser(email)
-        return { ok: true, error: null }
-      } catch (err: unknown) {
-        const message = err instanceof Error ? err.message : 'Oepsie! Er ging iets mis'
-        return { ok: false, error: message }
-      }
-    },
+  async (_, formData) => {
+    const email = (formData.get('email') as string).toLowerCase().trim()
+    try {
+      const result = await inviteUser(email)
+      return { ok: true, error: null, refreshed: result.refreshed }
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : 'Oepsie! Er ging iets mis'
+      return { ok: false, error: message }
+    }
+  },
     initialState
   )
 

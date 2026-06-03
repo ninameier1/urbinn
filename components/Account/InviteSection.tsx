@@ -7,6 +7,7 @@ import Button from '../Button'
 type State = {
   ok: boolean
   error: string | null
+  refreshed?: boolean
 }
 
 type InviteProps = {
@@ -26,10 +27,7 @@ export default function InviteSection({ state, action, pending }: InviteProps) {
           <h1 className="text-xs font-medium tracking-widest uppercase text-accent mb-4">
             Uitnodigen
           </h1>
-        
-        <h2 className="text-base font-semibold text-stone-800 mb-1">
-            Nieuwe admin uitnodigen
-        </h2>
+
 
         <p className="text-sm text-stone-500 mb-4">
             Nodig iemand uit om een admin te worden. 
@@ -39,7 +37,9 @@ export default function InviteSection({ state, action, pending }: InviteProps) {
 
         {state.ok && (
           <p className="text-sm text-center text-green-300 mb-4">
-            Uitnodiging verstuurd!
+            {state.refreshed
+              ? 'Nieuwe uitnodigingslink verstuurd — de oude link is niet meer geldig.'
+              : 'Uitnodiging verstuurd!'}
           </p>
         )}
 

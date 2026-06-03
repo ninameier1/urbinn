@@ -47,6 +47,10 @@ export async function inviteUser(email: string) {
     Date.now() + 1000 * 60 * 60 * 24 * 2
   );
 
+  const existingInvite = await prisma.invite.findUnique({
+    where: { email: normalizedEmail },
+  });
+
   // create or refresh
   await prisma.invite.upsert({
     where: {
@@ -85,6 +89,8 @@ export async function inviteUser(email: string) {
   //   console.error("Resend error:", error);
   //   throw new Error("Uitnodiging kon niet worden verzonden");
   // }
+
+  return { refreshed: !!existingInvite };
 }
 
 // -------- VALIDATE INVITE TOKEN --------
