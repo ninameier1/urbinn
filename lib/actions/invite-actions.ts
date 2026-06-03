@@ -32,6 +32,7 @@ export async function inviteUser(email: string) {
   const existingUser = await prisma.user.findUnique({
     where: {
       email: normalizedEmail,
+      deletedAt: null, // ignore soft-deleted users
     },
   });
 
@@ -122,18 +123,23 @@ if (!invite) throw new Error('Ongeldige uitnodiging')
 if (invite.usedAt) throw new Error('Uitnodiging is al gebruikt')
 if (invite.expiresAt < new Date()) throw new Error('Uitnodiging verlopen')
 
-  await prisma.$transaction([
-    prisma.user.create({
-      data: {
-        email: invite.email,
-        username: cleanUsername,
-      },
-    }),
-    prisma.invite.update({
-      where: { token },
-      data: { usedAt: new Date() },
-    }),
-  ]);
+await prisma.$transaction([
+  prisma.user.upsert({
+    where: { email: invite.email },
+    update: {
+      username: cleanUsername,
+      deletedAt: null, // reactivate
+    },
+    create: {
+      email: invite.email,
+      username: cleanUsername,
+    },
+  }),
+  prisma.invite.update({
+    where: { token },
+    data: { usedAt: new Date() },
+  }),
+]);
 
   return { email: invite.email };
 }
