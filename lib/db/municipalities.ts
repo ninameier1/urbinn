@@ -51,7 +51,13 @@ export async function getAllMunicipalitiesCMS(
         name: 'asc',
       },
 
-    include: { creator: true },
+      include: { creator: {
+        select: {
+          username: true,
+          deletedAt: true,
+        }
+      } 
+    },
   });
 }
 

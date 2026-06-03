@@ -84,9 +84,10 @@ export default async function MunicipalitiesPage({ searchParams }: {
                   <td className="px-4 py-3 text-stone-500">
                     {formatDate(m.updated_at)}
                   </td>
-
                   <td className="px-4 py-3 text-stone-500">
-                    {m.creator.username}
+                    {m.creator.deletedAt
+                      ? `${m.creator.username} (verwijderd)`
+                      : m.creator.username}
                   </td>
                 </tr>
               ))}

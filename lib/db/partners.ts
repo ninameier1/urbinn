@@ -24,7 +24,14 @@ export async function getAllPartnersCMS(sort: string, query: string) {
         }
       : undefined,
     orderBy: orderMap[sort as keyof typeof orderMap] ?? { name: 'asc' },
-    include: { creator: true },
+    
+    include: { creator: {
+        select: {
+          username: true,
+          deletedAt: true,
+        }
+      } 
+    },
   });
 }
 

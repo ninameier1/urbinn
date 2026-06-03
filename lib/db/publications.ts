@@ -59,8 +59,12 @@ export async function getAllPublicationsCMS(
         title: 'asc',
       },
 
-    include: {
-      creator: true,
+    include: { creator: {
+        select: {
+          username: true,
+          deletedAt: true,
+        }
+      } 
     },
   });
 }

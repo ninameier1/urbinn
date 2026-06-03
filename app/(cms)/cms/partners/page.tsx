@@ -92,7 +92,9 @@ export default async function PartnersCMSPage({ searchParams }: { searchParams: 
                   </td>
 
                   <td className="px-4 py-3 text-stone-500">
-                    {p.creator.username}
+                    {p.creator.deletedAt
+                      ? `${p.creator.username} (verwijderd)`
+                      : p.creator.username}
                   </td>
                 </tr>
               ))}
