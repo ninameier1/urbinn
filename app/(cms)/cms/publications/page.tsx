@@ -14,8 +14,8 @@ export default async function PublicationsCMSPage({ searchParams }: {
     query?: string;
   }>;
 }) {
-const { sort, query = '' } = await searchParams;
-const activeSort = sort ?? (query ? 'title_asc' : 'created_desc');
+  const { sort, query = '' } = await searchParams;
+  const activeSort = sort ?? (query ? 'title_asc' : 'created_desc');
 
   const publications = await getAllPublicationsCMS(activeSort, query);
   
@@ -39,7 +39,7 @@ const activeSort = sort ?? (query ? 'title_asc' : 'created_desc');
 
       <SortBar 
       sortOptions={PUBLICATION_SORT_OPTIONS} 
-      defaultSort="updated_desc" 
+      defaultSort={activeSort} 
       placeholder="Zoek publicatie..." 
       />
 

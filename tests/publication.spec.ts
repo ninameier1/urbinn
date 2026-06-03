@@ -12,9 +12,9 @@ test.describe('publication CRUD', () => {
 // TC-008
   test('can create a publication', async ({ page }) => {
     await page.goto('/cms/publications/new')
-    await page.getByRole('textbox', { name: 'Titel *' }).fill(name)
-    await page.getByRole('textbox', { name: 'Auteur(s) *' }).fill(author)
-    await page.getByRole('textbox', { name: 'Publicatiedatum *' }).fill(`2025-04-26`)
+    await page.getByRole('textbox', { name: 'Titel' }).fill(name)
+    await page.getByRole('textbox', { name: 'Auteur(s)' }).fill(author)
+    await page.getByRole('textbox', { name: 'Publicatiedatum' }).fill(`2025-04-26`)
     await page.locator('textarea[name="description"]').fill(description)
 
 

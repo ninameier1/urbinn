@@ -114,10 +114,7 @@ export default function CreatePublicationForm({ municipalities }: CreatePublicat
 
               {/* PUBLISHED */}
               <div className="space-y-1.5">
-                <label
-                  htmlFor="published_at"
-                  className="text-xs font-medium tracking-wide uppercase text-accent block mb-1"
-                >
+                <label htmlFor="published_at" className="text-xs font-medium tracking-wide uppercase text-accent block mb-1">
                   Publicatiedatum <span className="text-destructive">*</span>
                 </label>
 
