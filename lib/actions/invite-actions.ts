@@ -147,7 +147,7 @@ export async function getInvites() {
   orderBy: { createdAt: 'desc' },
   include: {
     invitedBy: {
-      select: { username: true },
+      select: { username: true, deletedAt: true },
     },
   },
 })

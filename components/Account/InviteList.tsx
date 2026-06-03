@@ -54,7 +54,9 @@ export default async function InviteList() {
                   </td>
 
                   <td className="px-4 py-3 text-stone-500">
-                    {invite.invitedBy?.username ?? '—'}
+                    {invite.invitedBy?.deletedAt
+                      ? `${invite.invitedBy.username} (verwijderd)`
+                      : invite.invitedBy?.username ?? '—'}
                   </td>
 
                   <td className="px-4 py-3 text-stone-500">
