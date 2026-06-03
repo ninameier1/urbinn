@@ -21,7 +21,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       apiKey: process.env.RESEND_API_KEY,
       from: 'onboarding@resend.dev',
       async sendVerificationRequest({ url }) { // I cba going into my email all the time
-      console.log('MAGIC LINK:', url)},
+      console.log('MAGIC LINK:', url )},  // TODO: REMOVE BEFORE PRODUCTION!!!!!!!!!!!!!!!!
     }),
   ],
   callbacks: {
