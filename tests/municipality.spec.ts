@@ -18,7 +18,7 @@ test.describe('municipality CRUD', () => {
   const updatedFactor = `${factor}-updated`
 
 // TC-002
-  test('can create a municipality', async ({ page }) => {
+  test('TC-002: can create a municipality', async ({ page }) => {
     await page.goto('/cms/municipalities/new')
     await page.getByRole('textbox', { name: 'Naam gemeente *' }).fill(name)
 
@@ -46,7 +46,7 @@ test.describe('municipality CRUD', () => {
   })
 
 // TC-003
-  test('can update a municipality name', async ({ page }) => {
+  test('TC-003: can update a municipality name', async ({ page }) => {
     await page.goto('/cms/municipalities')
     await page.getByRole('link').filter({ hasText: name }).click()
 
@@ -60,7 +60,7 @@ test.describe('municipality CRUD', () => {
   })
 
 // TC-004
-  test('can update a municipality core element', async ({ page }) => {
+  test('TC-004: can update a municipality core element', async ({ page }) => {
     await page.goto('/cms/municipalities')
     await page.getByRole('link').filter({ hasText: updatedName }).click()
 
@@ -76,7 +76,7 @@ test.describe('municipality CRUD', () => {
   })
 
 // TC-005
-  test('can update a municipality mechanism', async ({ page }) => {
+  test('TC-005: can update a municipality mechanism', async ({ page }) => {
     await page.goto('/cms/municipalities')
     await page.getByRole('link').filter({ hasText: updatedName }).click()
 
@@ -95,7 +95,7 @@ test.describe('municipality CRUD', () => {
   })
 
 // TC-006
-  test('can update a municipality factor', async ({ page }) => {
+  test('TC-006: can update a municipality factor', async ({ page }) => {
     await page.goto('/cms/municipalities')
     await page.getByRole('link').filter({ hasText: updatedName }).click()
 
@@ -115,7 +115,7 @@ test.describe('municipality CRUD', () => {
   })
 
 // TC-007
-  test('can delete a municipality', async ({ page }) => {
+  test('TC-007: can delete a municipality', async ({ page }) => {
     await page.goto('/cms/municipalities')
     await page.getByRole('link').filter({ hasText: updatedName }).click()
     await page.getByRole('button', { name: 'Bewerken' }).click()

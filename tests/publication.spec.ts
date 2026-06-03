@@ -10,7 +10,7 @@ test.describe('publication CRUD', () => {
   const description = `Beschrijving-${timestamp}`
 
 // TC-008
-  test('can create a publication', async ({ page }) => {
+  test('TC-008: can create a publication', async ({ page }) => {
     await page.goto('/cms/publications/new')
     await page.getByRole('textbox', { name: 'Titel' }).fill(name)
     await page.getByRole('textbox', { name: 'Auteur(s)' }).fill(author)
@@ -25,7 +25,7 @@ test.describe('publication CRUD', () => {
   })
 
 // TC-009
-  test('can update a publication name', async ({ page }) => {
+  test('TC-009: can update a publication name', async ({ page }) => {
     await page.goto('/cms/publications')
     await page.getByRole('link').filter({ hasText: name }).click()
 
@@ -40,7 +40,7 @@ test.describe('publication CRUD', () => {
   })
 
 // TC-010
-  test('can delete a publication', async ({ page }) => {
+  test('TC-010: can delete a publication', async ({ page }) => {
     await page.goto('/cms/publications')
     await page.getByRole('link').filter({ hasText: updatedName }).click()
 

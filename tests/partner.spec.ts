@@ -12,7 +12,7 @@ test.describe('partner CRUD', () => {
   const role = `Rol-${timestamp}`
 
 // TC-011
-  test('can create a partner', async ({ page }) => {
+  test('TC-011: can create a partner', async ({ page }) => {
     await page.goto('/cms/partners/new')
     await page.locator('input[name="name"]').fill(name)
     await page.locator('input[name="website"]').fill(website)
@@ -28,7 +28,7 @@ test.describe('partner CRUD', () => {
   })
 
 // TC-012
-  test('can update a partner name', async ({ page }) => {
+  test('TC-012: can update a partner name', async ({ page }) => {
     await page.goto('/cms/partners')
     await page.getByRole('link').filter({ hasText: name }).click()
 
@@ -43,7 +43,7 @@ test.describe('partner CRUD', () => {
   })
 
 // TC-013
-  test('can delete a partner', async ({ page }) => {
+  test('TC-013: can delete a partner', async ({ page }) => {
     await page.goto('/cms/partners')
     await page.getByRole('link').filter({ hasText: updatedName }).click()
 
