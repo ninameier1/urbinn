@@ -8,6 +8,16 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+
+    env:
+      DATABASE_URL: mysql://root:NEWPASS@127.0.0.1:3306/urban_innovation_test
+      AUTH_SECRET: test-secret
+      AUTH_URL: http://localhost:3000
+      NEXT_PUBLIC_APP_URL: http://localhost:3000
+      APP_URL: http://localhost:3000
+      RESEND_API_KEY: test
+      AUTH_RESEND_KEY: test
+      
     services:
       mysql:
         image: mysql:8
@@ -25,16 +35,6 @@ jobs:
             echo "Waiting for MySQL..."
             sleep 2
           done
-
-      - name: Write .env
-        run: |
-          echo "DATABASE_URL=mysql://root:NEWPASS@127.0.0.1:3306/urban_innovation_test" >> .env
-          echo "AUTH_SECRET=test-secret" >> .env
-          echo "AUTH_URL=http://localhost:3000" >> .env
-          echo "NEXT_PUBLIC_APP_URL=http://localhost:3000" >> .env
-          echo "APP_URL=http://localhost:3000" >> .env
-          echo "RESEND_API_KEY=test" >> .env
-          echo "AUTH_RESEND_KEY=test" >> .env
 
       - name: Setup Node
         uses: actions/setup-node@v4
