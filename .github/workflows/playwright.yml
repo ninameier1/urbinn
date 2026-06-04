@@ -28,7 +28,7 @@ jobs:
 
       - name: Write .env
         run: |
-          echo "DATABASE_URL=mysql://root:NEWPASS@localhost:3306/urban_innovation_test" >> .env
+          echo "DATABASE_URL=mysql://root:NEWPASS@127.0.0.1:3306/urban_innovation_test" >> .env
           echo "AUTH_SECRET=test-secret" >> .env
           echo "AUTH_URL=http://localhost:3000" >> .env
           echo "NEXT_PUBLIC_APP_URL=http://localhost:3000" >> .env
@@ -60,7 +60,7 @@ jobs:
       - name: Build app
         run: npm run build
         env:
-          DATABASE_URL: mysql://root:NEWPASS@localhost:3306/urban_innovation_test
+          DATABASE_URL: mysql://root:NEWPASS@127.0.0.1:3306/urban_innovation_test
           AUTH_URL: http://localhost:3000
           NEXT_PUBLIC_APP_URL: http://localhost:3000
           APP_URL: http://localhost:3000
