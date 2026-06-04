@@ -11,14 +11,12 @@ jobs:
     runs-on: ubuntu-latest
 
     services:
-      services:
-        mysql:
-          image: mysql:8.0
-          env:
-            MYSQL_ROOT_PASSWORD: NEWPASS
-            MYSQL_DATABASE: urban_innovation_test
-          ports:
-            - 3306:3306
+      mysql:
+        image: mysql:8
+        env:
+          MYSQL_ROOT_PASSWORD: NEWPASS
+        ports:
+          - 3306:3306
 
     env:
       DATABASE_URL: mysql://root:NEWPASS@localhost:3306/urban_innovation_test
