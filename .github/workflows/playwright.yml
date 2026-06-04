@@ -11,6 +11,10 @@ jobs:
 
     env:
       DATABASE_URL: mysql://root:NEWPASS@127.0.0.1:3306/urban_innovation_test
+      DATABASE_HOST: 127.0.0.1
+      DATABASE_USER: root
+      DATABASE_PASSWORD: NEWPASS
+      DATABASE_NAME: urban_innovation_test
       AUTH_SECRET: test-secret
       AUTH_URL: http://localhost:3000
       NEXT_PUBLIC_APP_URL: http://localhost:3000
