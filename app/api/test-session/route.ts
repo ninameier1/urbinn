@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server'
 
 export async function POST(req: Request) {
 
-  if (process.env.NODE_ENV !== 'development') {
+  if (process.env.ENABLE_TEST_ROUTES !== 'true') {
     return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
   }
 

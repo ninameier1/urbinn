@@ -21,6 +21,7 @@ jobs:
       APP_URL: http://localhost:3000
       RESEND_API_KEY: test
       AUTH_RESEND_KEY: test
+      ENABLE_TEST_ROUTES: true
     
     services:
       mysql:
