@@ -1,5 +1,5 @@
 import Button from "@/components/Button";
-import AuthCard from "@/components/AuthCard";
+import AuthCard from "@/components/Account/AuthCard";
 
 export default async function AuthErrorPage({
   searchParams,
