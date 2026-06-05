@@ -78,7 +78,7 @@ async function seedCoreElements(
 }
 
 async function main() {
-  const adminEmail = "s1081087@student.windesheim.nl";
+  const adminEmail = "admin@admin.com";
 
   await prisma.$transaction(async (tx) => {
     await tx.publication.deleteMany()
@@ -90,13 +90,13 @@ async function main() {
   })
 
   await prisma.invite.upsert({
-    where: { email: 's1081087@student.windesheim.nl' },
+    where: { email: "admin@admin.com" },
     update: {
       token: crypto.randomBytes(32).toString('hex'),
       expiresAt: new Date(Date.now() + 1000 * 60 * 60 * 24 * 2),
     },
     create: {
-      email: 's1081087@student.windesheim.nl',
+      email: "admin@admin.com",
       token: crypto.randomBytes(32).toString('hex'),
       expiresAt: new Date(Date.now() + 1000 * 60 * 60 * 24 * 2),
     },
