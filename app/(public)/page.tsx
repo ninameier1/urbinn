@@ -136,18 +136,26 @@ return (
         </div>
 
         <div className="px-6 lg:px-12 py-14 flex justify-center gap-4 items-center">
-          <div className="w-40 h-28 rounded-2xl bg-primary/80 -rotate-2 overflow-hidden">
-            <Image src="/assets/images/header.jpg" alt="" fill className="object-cover opacity-60" unoptimized />
-          </div>
-          <div className="relative w-52 h-36 rounded-2xl bg-dark overflow-hidden z-10">
-            <Image src="/assets/images/header.jpg" alt="Stedelijke inclusiviteit" fill className="object-cover opacity-40" unoptimized />
-            <div className="absolute bottom-3 left-3 right-3 bg-white/10 rounded-xl p-3">
-              <p className="text-[10px] font-semibold text-background/70 uppercase tracking-widest">Almere · 2026</p>
-              <p className="text-sm font-semibold text-background mt-0.5">Stedelijke inclusiviteit</p>
+          <div className="relative w-40 h-28 rounded-2xl bg-primary/80 -rotate-2 overflow-hidden">
+            <Image src="/assets/images/header4.jpg" alt="" fill className="object-cover opacity-60" unoptimized />
+            <div className="absolute inset-0 flex flex-col justify-end p-3">
+              <p className="text-[9px] font-semibold text-white/70 uppercase tracking-widest">Micro</p>
+              <p className="text-xs font-semibold text-white leading-tight mt-0.5">Burgers & gemeenschappen</p>
             </div>
           </div>
-          <div className="w-40 h-28 rounded-2xl bg-accent/70 rotate-2 overflow-hidden">
-            <Image src="/assets/images/header.jpg" alt="" fill className="object-cover opacity-50" unoptimized />
+          <div className="relative w-52 h-36 rounded-2xl bg-dark overflow-hidden z-10">
+            <Image src="/assets/images/headernw.png" alt="" fill className="object-cover opacity-40" unoptimized />
+            <div className="absolute inset-0 flex flex-col justify-end p-3">
+              <p className="text-[9px] font-semibold text-white/70 uppercase tracking-widest">Meso</p>
+              <p className="text-sm font-semibold text-white leading-tight mt-0.5">Wijk- & professioneel netwerk</p>
+            </div>
+          </div>
+          <div className="relative w-40 h-28 rounded-2xl bg-accent/70 rotate-2 overflow-hidden">
+            <Image src="/assets/images/header2.jpg" alt="" fill className="object-cover opacity-50" unoptimized />
+            <div className="absolute inset-0 flex flex-col justify-end p-3">
+              <p className="text-[9px] font-semibold text-white/70 uppercase tracking-widest">Macro</p>
+              <p className="text-xs font-semibold text-white leading-tight mt-0.5">Organisatie- & beleidsniveau</p>
+            </div>
           </div>
         </div>
       </section>
@@ -265,15 +273,14 @@ return (
       <section className="px-6 lg:px-16 py-16 grid grid-cols-1 md:grid-cols-2 gap-5 ">
         <div className="bg-white border border-text/8 rounded-2xl p-7">
           <div className="flex justify-between">
-            <Tag label="Zwolle" href="/ontstaan" />
+            <Tag label="Ontstaan" href="/ontstaan" />
             <div className="w-10 h-10 rounded-xl bg-secondary/50 flex items-center justify-center mb-3">
               <Microscope />
             </div>
           </div>
-          <h3 className="font-serif text-xl font-bold text-dark mb-3">Eerste onderzoek: Zwolle Gezonde Stad</h3>
+          <h3 className="font-serif text-xl font-bold text-dark mb-3">De oorsprong van het onderzoek</h3>
           <p className="text-sm text-text/60 leading-relaxed">
-            Pionieren, vernieuwen, vooruitgaan. Steden in Flevoland doen het dagelijks, samen met het lectoraat Urban Innovation. 
-            Projecten van het lectoraat zijn circulair, gezond en nabij.
+            De aanpak van 'Zwolle Gezonde Stad' bewees zijn waarde: eerdere onderzoeken toonden aan dat het bijdroeg aan een gezondere omgeving, gezonder gedrag en het verkleinen van sociaal-economische gezondheidsverschillen.
           </p>
         </div>
         <div className="bg-white border border-text/8 rounded-2xl p-7">
@@ -285,7 +292,7 @@ return (
           </div>
           <h3 className="font-serif text-xl font-bold text-dark mb-3">Ook meewerken?</h3>
           <p className="text-sm text-text/60 leading-relaxed">
-            Consortium-XL verzamelt en initieert innovatievoorbeelden en -verhalen uit de nieuwe stad. 
+            GLOW verzamelt en initieert innovatievoorbeelden en -verhalen uit de nieuwe stad. 
             Met praktijkgericht onderzoek kunnen we leren, begrijpen en delen wat er gebeurt. 
             Zo dragen we bij aan welbevinden, welzijn en welvaart voor iedereen.
           </p>
