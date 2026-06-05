@@ -31,13 +31,6 @@ export default async function PublicationsPage({
 
   return (
     <>
-
-
-      {!publications.length ? (
-  <p className="mt-6 text-sm text-red-900">
-    Geen publicaties gevonden voor "{query}".
-  </p>
-) : (
   <section className="bg-white border border-stone-200 rounded-lg overflow-hidden">
     <div className="p-6 md:p-8 border-b border-stone-200">
             <span className="text-xs font-medium tracking-widest uppercase text-accent mb-4">
@@ -61,7 +54,13 @@ export default async function PublicationsPage({
                             placeholder="Zoek publicatie..."
                           />
                 </div>
-    {publications.map((p, index) => {
+
+
+      {!publications.length ? (
+        <p className="mt-6 p-4 text-sm text-red-900">
+          Geen publicaties gevonden voor "{query}".
+        </p>
+      ) : publications.map((p, index) => {
       const alternate = index % 2 === 1;
       return (
         <Link
@@ -120,7 +119,7 @@ export default async function PublicationsPage({
       );
     })}
   </section>
-)}
+
     </>
   );
 }
