@@ -25,10 +25,7 @@ export default async function OriginPage() {
             </h1>
 
             <p className="max-w-3xl text-sm text-stone-500 leading-7">
-              Hier komt een korte introductie over hoe het onderzoek is
-              ontstaan, welke vraagstukken eraan ten grondslag liggen en
-              waarom het relevant is voor gemeenten en partners binnen
-              het netwerk.
+              De roots van GLOW-XL liggen in Zwolle. Sinds 2010 werkt de gemeente Zwolle samen met lokale en landelijke partners aan 'Zwolle Gezonde Stad': een integrale wijkgerichte aanpak gericht op bewoners met gezondheidsachterstanden in wijken als Diezerpoort, Holtenbroek en Aa-landen. Bewoners in deze wijken kampen naast gezondheidsproblemen ook vaker met werkloosheid en armoede. De aanpak bewees zijn waarde: eerdere onderzoeken toonden aan dat het bijdroeg aan een gezondere omgeving, gezonder gedrag en het verkleinen van sociaal-economische gezondheidsverschillen.
             </p>
           </div>
 
@@ -52,7 +49,7 @@ export default async function OriginPage() {
             <div className="lg:col-span-4">
               <div className="relative h-64 rounded-lg overflow-hidden border border-stone-200">
                 <Image
-                  src="/assets/images/origin-1.jpg"
+                  src="/assets/images/zwolle1.jpg"
                   alt="Oorsprong van het onderzoek"
                   fill
                   sizes="500px"
@@ -66,15 +63,8 @@ export default async function OriginPage() {
                 Achtergrond
               </span>
 
-              <h2 className="text-2xl font-semibold text-primary mt-3 mb-4">
-                Hoe het onderzoek begon
-              </h2>
-
               <p className="text-sm leading-7 text-stone-600">
-                Beschrijf hier de aanleiding van het onderzoek. Welke
-                ontwikkelingen, uitdagingen of kansen vormden de basis
-                voor het project? Wat maakte dat deze onderzoeksvraag
-                relevant werd?
+                Tussen 2018 en 2022 deed het lectoraat Gezonde Samenleving, met subsidie van ZonMw, vervolgonderzoek naar twaalf jaar Zwolle Gezonde Stad. Dit onderzoek keek zowel terug als vooruit: wat was er concreet gedaan op het niveau van organisatie en implementatie dat bijdroeg aan het succes, en hoe kon de samenwerking met de doelgroepen (ouders, kinderen en senioren) worden verbeterd? De leerpunten waren bedoeld om te delen met andere gemeenten en onderwijsinstellingen.
               </p>
             </div>
           </div>
@@ -86,7 +76,7 @@ export default async function OriginPage() {
             <div className="lg:order-2 lg:col-span-4">
               <div className="relative h-64 rounded-lg overflow-hidden border border-stone-200">
                 <Image
-                  src="/assets/images/origin-2.jpg"
+                  src="/assets/images/zwoll2.jpg"
                   alt="Onderzoeksontwikkeling"
                   fill
                   sizes="500px"
@@ -100,14 +90,8 @@ export default async function OriginPage() {
                 Ontwikkeling
               </span>
 
-              <h2 className="text-2xl font-semibold text-primary mt-3 mb-4">
-                Van idee naar onderzoeksprogramma
-              </h2>
-
               <p className="text-sm leading-7 text-stone-600">
-                Leg hier uit hoe het oorspronkelijke idee verder werd
-                uitgewerkt. Welke organisaties waren betrokken? Welke
-                stappen hebben geleid tot het huidige onderzoek?
+                Die inzichten vormden het vertrekpunt voor GLOW-XL. Wat werkte in Zwolle moest breder worden onderzocht en toegepast, niet als projectmatig initiatief, maar als structureel verankerd preventie-ecosysteem. GLOW-XL bouwt voort op deze werkzame elementen en vertaalt ze naar een bestuurs- en implementatiekader dat gemeenten in heel Flevoland, en uiteindelijk heel Nederland, in staat stelt om geïntegreerde preventie duurzaam te implementeren en op te schalen.
               </p>
             </div>
           </div>
