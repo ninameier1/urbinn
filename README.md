@@ -65,7 +65,7 @@ cp .env.example .env
 Create a MySQL database:
 
 ```sql
-CREATE DATABASE urbinn;
+CREATE DATABASE urban_innovation;
 ```
 
 Run Prisma migrations:
