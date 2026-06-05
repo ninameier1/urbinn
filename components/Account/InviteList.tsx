@@ -6,7 +6,7 @@ export default async function InviteList() {
 
   return (
     <section className="mt-8">
-      <h2 className="text-xl font-semibold text-primary">
+      <h2 className="text-xl font-semibold text-dark">
         Verstuurde uitnodigingen
       </h2>
 
@@ -49,7 +49,7 @@ export default async function InviteList() {
                   key={invite.id}
                   className="transition-colors hover:bg-stone-50"
                 >
-                  <td className="px-4 py-3 font-medium text-primary">
+                  <td className="px-4 py-3 font-medium text-secondary">
                     {invite.email}
                   </td>
 

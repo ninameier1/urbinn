@@ -7,7 +7,7 @@ type ButtonProps = {
   children: React.ReactNode;
   href?: string;
   type?: "button" | "submit" | "reset";
-  variant?: 'primary' | 'secondary' | 'small' | 'cancel' | 'delete' | 'logout';
+  variant?: 'primary' | 'secondary' | 'small' | 'cancel' | 'delete' | 'accent' | 'logout';
   className?: string;
   disabled?: boolean;
   loading?: boolean;
@@ -30,12 +30,12 @@ export default function Button({
   "inline-flex items-center justify-center gap-2  transition uppercase cursor-pointer";
 
   const variants = {
-    main:
-      "bg-main text-white shadow-sm hover:bg-dark hover:text-white rounded-xl px-6 py-3",
+    accent:
+      "bg-accent text-dark shadow-sm hover:bg-dark hover:text-white rounded-xl px-6 py-3",
     primary:
       "bg-primary text-dark shadow-sm hover:bg-main hover:text-white rounded-xl px-6 py-3",
     secondary:
-      "bg-secondary text-white shadow-sm hover:bg-accent hover:text-dark rounded-xl px-6 py-3",
+      "bg-secondary text-white shadow-sm hover:bg-primary hover:text-dark rounded-xl px-6 py-3",
     small: 
       "bg-main text-white text-xs shadow-sm hover:bg-accent hover:text-dark rounded-lg px-4 py-2",
     cancel: 

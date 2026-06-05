@@ -33,7 +33,7 @@ return (
       <div className="relative flex-1">
         <div className="absolute inset-0 z-0">
                     <Image
-                        src="/assets/images/headernw.png"
+                        src="/assets/images/header3.png"
                         alt="Gezonde Stad"
                         fill
                         priority
@@ -41,7 +41,7 @@ return (
                         className="object-cover"
 
                     />
-          <div className="absolute inset-0 bg-white/60" />
+          <div className="absolute inset-0 bg-white/30" />
       </div>
 
       <div className="absolute inset-0 z-10 pointer-events-none">
@@ -66,7 +66,7 @@ return (
                 Let's
               </span>
 
-              <h1 className="font-serif text-[clamp(8rem,16vw,18rem)] font-bold tracking-tight text-main text-main py-16">
+              <h1 className="font-serif text-[clamp(8rem,16vw,18rem)] font-bold tracking-tight text-main text-primary py-16">
                 <em className="not-italic">GLOW</em>
               </h1>
 
@@ -75,16 +75,16 @@ return (
               </span>
             </div>
 
-            <p className="text-base text-text/60 leading-relaxed max-w-md mx-auto mb-10">
+            <p className="text-base text-text leading-relaxed max-w-md mx-auto mb-10">
             Hoe kunnen gemeenten geïntegreerde preventiestrategieën duurzaam implementeren en opschalen? Dat onderzoeken wij.
             </p>
 
             <div className="flex gap-3 justify-center flex-wrap">
-            <Button href="/onderzoek" variant="primary">
+            <Button href="/onderzoek" variant="secondary">
                 Ontdek het onderzoek
             </Button>
 
-            <Button href="/gemeenten" variant="secondary">
+            <Button href="/gemeenten" variant="accent">
                 Bekijk gemeenten →
             </Button>
             </div>

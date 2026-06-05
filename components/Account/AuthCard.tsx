@@ -14,10 +14,6 @@ export default function AuthCard({ children }: { children: React.ReactNode }) {
               alt="GLOW Logo"
               className="h-36 w-auto mb-2"
             />
-
-            {/* <h1 className="text-2xl text-center tracking-widest text-white font-medium uppercase">
-              
-            </h1> */}
           </Link>
 
         </div>

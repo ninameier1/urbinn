@@ -38,7 +38,7 @@ export default async function CoreElementPage({ params }: CoreElementProps) {
   const factors = element.factors;
 
   return (
-    <div className="relative w-full h-[90vh]">
+    <div className="relative w-full h-[90vh] mt-2">
 
       <BreadcrumbOverride label={element.title} />
       <div className="relative w-full h-screen">
