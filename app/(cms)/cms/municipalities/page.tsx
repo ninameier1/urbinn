@@ -71,7 +71,7 @@ export default async function MunicipalitiesPage({ searchParams }: {
                   <td className="px-4 py-3 font-medium uppercase">
                     <Link
                       href={`/cms/municipalities/${m.id}`}
-                      className="text-primary hover:text-accent transition-colors"
+                      className="text-secondary hover:text-accent transition-colors"
                     >
                       {m.name}
                     </Link>

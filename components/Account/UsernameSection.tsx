@@ -66,7 +66,7 @@ export default function UsernameSection({
         />
 
         <Button 
-        variant="primary"
+        variant="small"
         type="submit"
         loading={isPending}
         >

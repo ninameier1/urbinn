@@ -19,7 +19,7 @@ export default function ConsortiumDropdown({ partners }: DropdownProps) {
   const pathname = usePathname();
 
   const links = [
-    { href: "/consortium", label: "Consortium-XL" },
+    { href: "/consortium", label: "Gezond Samenleven in Flevoland" },
     ...partners.map((p) => ({
       href: `/consortium/${slugify(p.name)}`,
       label: p.name,
@@ -39,7 +39,7 @@ export default function ConsortiumDropdown({ partners }: DropdownProps) {
         <Link
           href="/consortium"
           className={`relative px-4 h-full flex items-center gap-1 text-sm uppercase font-medium
-            ${isActive ? "text-white" : "text-text hover:text-white"}`}
+            ${isActive ? "text-dark" : "text-white hover:text-dark"}`}
         >
           <span
             className={`absolute bottom-0 left-0 h-[2px] w-full bg-accent transition-all duration-200

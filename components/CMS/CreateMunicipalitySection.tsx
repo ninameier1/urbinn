@@ -51,7 +51,7 @@ export default function CreateMunicipalitySection({ value, onChange, uploading, 
           <p className="text-xs text-muted-foreground">Maximaal 100 tekens.</p>
         </div>
 
-          <details className="bg-accent/10 border border-accent rounded-lg overflow-hidden group">
+          <details className="bg-secondary/10 border border-secondary rounded-lg overflow-hidden group">
             <summary className="cursor-pointer list-none px-6 py-4 flex items-center justify-between">
               <div>
                 <p className="text-xs font-medium tracking-widest uppercase text-accent mb-1">

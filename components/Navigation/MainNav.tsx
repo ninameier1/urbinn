@@ -17,9 +17,8 @@ import { prisma } from '@/lib/prisma';
         baseHref="/onderzoek"
         links={[
           { href: "/onderzoek", label: "GLOW", },
-          { href: "/onderzoek/themas", label: "Onderzoeksthema's", },
           { href: "/onderzoek/publicaties", label: "Publicaties", },
-          { href: "/onderzoek/ontstaan", label: "Ontstaan", },
+          { href: "/onderzoek/ontstaan", label: "Zwolle Gezonde Stad", },
         ]}
       />
         <ConsortiumDropdown partners={partners} />

@@ -2,18 +2,19 @@
 
 /* :root {
 --background: #F1EEE8;
---primary: #acc8e8;
---secondary: #241D31;
---accent: #7BDAF1;
+--primary: #4F6E8A; 
+--secondary: #868DC1; 
+--accent: #926D8F; 
 --dark: #031352;
 --text: #241D31;
 } */
 
 :root {
 --background: #F1EEE8;
---primary: #4F6E8A; 
---secondary: #868DC1; 
---accent: #926D8F; 
+--main: #626b8e;
+--primary: #ffd300; 
+--secondary: #009cd8; 
+--accent: #ce0060; 
 --dark: #031352;
 --text: #241D31;
 }
@@ -21,6 +22,7 @@
 
 @theme {
   --color-background: var(--background);
+  --color-main: var(--main);
   --color-primary: var(--primary);
   --color-secondary: var(--secondary);
   --color-accent: var(--accent);

@@ -166,7 +166,7 @@ export default function UpdateMunicipalitySection({ municipality }: { municipali
 
         {/* EDIT MODE */}
         {isEditing && (
-        <section className="bg-accent/10 border border-accent rounded-lg p-6">
+        <section className="bg-secondary/10 border border-secondary rounded-lg p-6">
           <div className="space-y-4">
             <div className="flex items-start justify-between">
               <div>

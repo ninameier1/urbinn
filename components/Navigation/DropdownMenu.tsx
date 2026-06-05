@@ -18,7 +18,7 @@ export default function DropdownMenu({ trigger, children, width = "w-56", align 
       <div
         className={`
           absolute top-full z-50 overflow-hidden
-          border border-white/10 bg-secondary shadow-xl
+          border border-white/10 bg-main/80 shadow-xl
           transition-all duration-200
           ${width}
           ${align === "right" ? "right-0" : "left-0"}

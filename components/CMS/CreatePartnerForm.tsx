@@ -244,7 +244,7 @@ function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
           </div>
 
           {/* IMAGES */}
-          <details className="group overflow-hidden rounded-lg border border-accent bg-accent/10">
+          <details className="group overflow-hidden rounded-lg border border-secondary bg-secondary/10">
             <summary className="flex cursor-pointer items-center justify-between px-6 py-4 list-none">
               <div>
                 <p className="mb-1 text-xs font-medium uppercase tracking-widest text-accent">

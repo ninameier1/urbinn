@@ -61,7 +61,7 @@ export default async function GLOWPage() {
                 Achtergrond
               </span>
 
-              <h2 className="text-2xl font-semibold text-primary mt-3 mb-4">
+              <h2 className="text-2xl font-semibold text-main mt-3 mb-4">
                 Hoe het onderzoek begon
               </h2>
 
@@ -95,7 +95,7 @@ export default async function GLOWPage() {
                 Ontwikkeling
               </span>
 
-              <h2 className="text-2xl font-semibold text-primary mt-3 mb-4">
+              <h2 className="text-2xl font-semibold text-main mt-3 mb-4">
                 Van idee naar onderzoeksprogramma
               </h2>
 

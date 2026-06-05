@@ -278,7 +278,7 @@ const initialData = {
 
         {/* EDIT MODE */}
         {isEditing && (
-          <section className="space-y-4 rounded-lg border border-accent bg-accent/10 p-6">
+          <section className="space-y-4 rounded-lg border border-secondary bg-secondary/10 p-6">
             <div className="flex items-center justify-between">
                 <div>
               <p className="text-xs font-medium uppercase tracking-widest text-accent mb-2">

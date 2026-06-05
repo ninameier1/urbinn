@@ -15,13 +15,6 @@ import MunicipalityCard from "@/components/MunicipalityCard";
 
 export const revalidate = 60;
 
-const themes = [
-  { icon: HouseHeart, label: "Wonen", description: "Betaalbaar, toegankelijk en divers" },
-  { icon: Leaf, label: "Duurzaamheid", description: "Energie, groen en klimaatadaptatie" },
-  { icon: HeartHandshake, label: "Inclusiviteit", description: "Kansen en participatie voor iedereen" },
-  { icon: Heart, label: "Welzijn", description: "Gezondheid, veiligheid en cohesie" },
-];
-
 const stats = [
   { icon: Building2, label: "Gemeenten geanalyseerd", value: "5 gemeenten" },
   { icon: Cog, label: "Kernelementen onderzocht", value: "40+ kernelementen" },
@@ -36,19 +29,20 @@ export default async function HomePage() {
 
 return (
   <>
-    <section className="relative overflow-hidden -mt-8">
-      <div className="absolute inset-0 z-0">
-                  <Image
-                      src="/assets/images/headernw.png"
-                      alt="Gezonde Stad"
-                      fill
-                      priority
-                      sizes="100vw"
-                      className="object-cover"
+    <section className="relative overflow-hidden -mt-8 min-h-[calc(100vh-4rem)] flex flex-col">
+      <div className="relative flex-1">
+        <div className="absolute inset-0 z-0">
+                    <Image
+                        src="/assets/images/headernw.png"
+                        alt="Gezonde Stad"
+                        fill
+                        priority
+                        sizes="100vw"
+                        className="object-cover"
 
-                  />
-        <div className="absolute inset-0 bg-white/60" />
-     </div>
+                    />
+          <div className="absolute inset-0 bg-white/60" />
+      </div>
 
       <div className="absolute inset-0 z-10 pointer-events-none">
         <div className="relative h-[850px] w-[500px] left-0 top-1/2 -translate-y-1/2 opacity-50 absolute">
@@ -62,9 +56,9 @@ return (
         </div>
       </div>
 
-    <div className="relative z-10 px-6 lg:px-16 pt-16 pb-16 max-w-3xl mx-auto text-center">
-            <p className="text-xs font-semibold tracking-[.18em] uppercase text-primary mb-5">
-            Consortium-XL · Flevoland
+      <div className="relative z-10 px-6 lg:px-16 pt-16 max-w-3xl mx-auto text-center">
+            <p className="text-xs font-semibold tracking-[.18em] uppercase text-accent mb-5">
+            Gezond Samenleven in Flevoland
             </p>
 
             <div className="relative leading-none select-none min-h-[18rem] flex items-center justify-center mb-6 mt-4">
@@ -72,7 +66,7 @@ return (
                 Let's
               </span>
 
-              <h1 className="font-serif text-[clamp(8rem,16vw,18rem)] font-bold tracking-tight text-primary text-center py-16">
+              <h1 className="font-serif text-[clamp(8rem,16vw,18rem)] font-bold tracking-tight text-main text-main py-16">
                 <em className="not-italic">GLOW</em>
               </h1>
 
@@ -82,9 +76,7 @@ return (
             </div>
 
             <p className="text-base text-text/60 leading-relaxed max-w-md mx-auto mb-10">
-            Een samenwerking tussen Windesheim, de VU, ROC Flevoland en Flever.
-            Samen onderzoeken we hoe steden in Flevoland inclusiever, veiliger
-            en duurzamer worden.
+            Hoe kunnen gemeenten geïntegreerde preventiestrategieën duurzaam implementeren en opschalen? Dat onderzoeken wij.
             </p>
 
             <div className="flex gap-3 justify-center flex-wrap">
@@ -97,10 +89,10 @@ return (
             </Button>
             </div>
         </div>
-      </section>
+      </div>
 
-      <div className="bg-white border-y border-text/10 py-6 px-6 lg:px-16 text-center">
-        <Tag label="Consortiumpartners" href="/consortium" />
+      <div className="bg-white border-y border-text/10 py-6 px-6 lg:px-16 text-center z-20">
+        <Tag label="Partners" href="/consortium" />
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 max-w-2xl mx-auto">
           {partners.map((p) => (
             <Link
@@ -130,23 +122,16 @@ return (
           ))}
         </div>
       </div>
+      </section>
 
       <section className="grid grid-cols-1 lg:grid-cols-2 border-b border-text/10">
         <div className="px-6 lg:px-12 py-14 lg:border-r border-text/10">
-        <Tag label="Over Ons" href="/over-ons" />
+        <Tag label="consortium" href="/consortium" />
           <h2 className="font-serif text-2xl font-bold text-dark leading-snug mb-5">
-            Praktijkgericht onderzoek in Flevolandse steden
+            Gezond Samenleven in Flevoland
           </h2>
           <p className="text-sm text-text/58 leading-relaxed">
-            In de stad en de stedelijke regio liggen de grote uitdagingen van de toekomst.
-            Er spelen economische en sociale vraagstukken en tegelijkertijd staan steden voor
-            grote opgaven op het gebied van bouwen en duurzaamheid. Met een participatieve en
-            ontwerpgerichte aanpak worden innovatieve toepassingen direct in de praktijk getest.
-        
-            Gezonde Stad brengt onderzoekers, studenten, gemeenten en bewoners
-            samen om te werken aan concrete vraagstukken: betaalbaar wonen,
-            sociale inclusie, duurzaamheid en welzijn. De resultaten worden
-            direct teruggekoppeld aan beleidsmakers en inwoners.
+            Het Consortium 'Gezond Samenleven in Flevoland' wil met het project Flevoland GLOW-XL een basis leggen voor een structurele transitie van gefragmenteerde, projectmatige preventie naar ingebedde, gelaagde preventie-ecosystemen binnen de 6 Flevolandse gemeenten, waarbij doorvertaling naar en toepassing in andere Nederlandse gemeenten mogelijk wordt gemaakt.
           </p>
         </div>
 
@@ -185,7 +170,6 @@ return (
               image={featured.image}
               href={`/gemeenten/${featured.name.toLowerCase()}`}
               featured
-              tags={["Wonen", "Inclusiviteit", "Welzijn"]}
               description={featured.description}
             />
           )}
@@ -196,7 +180,6 @@ return (
               name={municipality.name}
               image={municipality.image}
               href={`/gemeenten/${municipality.name.toLowerCase()}`}
-              tags={["Veiligheid", "Duurzaamheid"]}
             />
           ))}
         </div>
@@ -204,7 +187,7 @@ return (
 
       <hr className="border-text/10" />
 
-      <section className="px-6 lg:px-16 py-14">
+      {/* <section className="px-6 lg:px-16 py-14">
         <div className="flex justify-between items-end mb-7">
           <div>
             <Tag label="Onderzoeksthema's" href="/onderzoek/themas" />
@@ -228,16 +211,16 @@ return (
             );
           })}
         </div>
-      </section>
+      </section> */}
 
-      <hr className="border-text/10" />
+      {/* <hr className="border-text/10" /> */}
 
 
       <section className="px-6 lg:px-16 py-16 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         {publication && (
         <div className="flex flex-col items-start">
         <Tag label="Publicaties" href="/onderzoek/publicaties" />
-          <span className="inline-block bg-primary/10 text-primary text-[10px] font-bold tracking-wide uppercase rounded px-2.5 py-1 mb-5">
+          <span className="inline-block bg-secondary/10 text-secondary text-[10px] font-bold tracking-wide uppercase rounded px-2.5 py-1 mb-5">
             Nieuw rapport · {publication.published_at ? formatDateShort(publication.published_at) : new Date().getFullYear()}
           </span>
           <h2 className="font-serif text-[1.75rem] font-bold text-dark leading-snug mb-4">
@@ -246,7 +229,7 @@ return (
           <p className="text-sm text-text/60 leading-relaxed mb-7">
             {publication.description ?? 'De professors, lectoren en onderzoekers van het Consortium-XL publiceren met regelmaat over hun onderzoek. Hun publicaties zijn van grote waarde voor de maatschappelijke, economische ontwikkeling van Nederland. Publicaties worden met regelmaat gepubliceerd op basis van open access. Dit geeft vrije toegang tot alle resultaten van en handvatten uit ons praktijkgericht onderzoek. Iedereen kan die informatie (her)gebruiken.'}
           </p>
-          <Button href="/onderzoek/publicaties" variant="secondary">
+          <Button href="/onderzoek/publicaties" variant="primary">
             Bekijk alle Publicaties →
           </Button>
         </div>
@@ -282,29 +265,29 @@ return (
       <section className="px-6 lg:px-16 py-16 grid grid-cols-1 md:grid-cols-2 gap-5 ">
         <div className="bg-white border border-text/8 rounded-2xl p-7">
           <div className="flex justify-between">
-            <Tag label="Het Consortium" href="/consortium" />
-            <div className="w-10 h-10 rounded-xl bg-secondary/50 flex items-center justify-center mb-3">
-              <NotebookPen />
-            </div>
-          </div>
-          <h3 className="font-serif text-xl font-bold text-dark mb-3">Wie zijn wij?</h3>
-          <p className="text-sm text-text/60 leading-relaxed">
-            Consortium-XL verzamelt en initieert innovatievoorbeelden en -verhalen uit de nieuwe stad. 
-            Met praktijkgericht onderzoek kunnen we leren, begrijpen en delen wat er gebeurt. 
-            Zo dragen we bij aan welbevinden, welzijn en welvaart voor iedereen.
-          </p>
-        </div>
-        <div className="bg-white border border-text/8 rounded-2xl p-7">
-          <div className="flex justify-between">
-            <Tag label="Het Onderzoek" href="/onderzoek" />
+            <Tag label="Zwolle" href="/ontstaan" />
             <div className="w-10 h-10 rounded-xl bg-secondary/50 flex items-center justify-center mb-3">
               <Microscope />
             </div>
           </div>
-          <h3 className="font-serif text-xl font-bold text-dark mb-3">Wat doen wij?</h3>
+          <h3 className="font-serif text-xl font-bold text-dark mb-3">Eerste onderzoek: Zwolle Gezonde Stad</h3>
           <p className="text-sm text-text/60 leading-relaxed">
             Pionieren, vernieuwen, vooruitgaan. Steden in Flevoland doen het dagelijks, samen met het lectoraat Urban Innovation. 
             Projecten van het lectoraat zijn circulair, gezond en nabij.
+          </p>
+        </div>
+        <div className="bg-white border border-text/8 rounded-2xl p-7">
+          <div className="flex justify-between">
+            <Tag label="Contact" href="/contact" />
+            <div className="w-10 h-10 rounded-xl bg-secondary/50 flex items-center justify-center mb-3">
+              <NotebookPen />
+            </div>
+          </div>
+          <h3 className="font-serif text-xl font-bold text-dark mb-3">Ook meewerken?</h3>
+          <p className="text-sm text-text/60 leading-relaxed">
+            Consortium-XL verzamelt en initieert innovatievoorbeelden en -verhalen uit de nieuwe stad. 
+            Met praktijkgericht onderzoek kunnen we leren, begrijpen en delen wat er gebeurt. 
+            Zo dragen we bij aan welbevinden, welzijn en welvaart voor iedereen.
           </p>
         </div>
       </section>

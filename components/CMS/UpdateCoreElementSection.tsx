@@ -105,7 +105,7 @@ export default function CoreElementSection({ coreElement }: { coreElement: CoreE
       {/* HEADER */}
       <div className="flex items-start justify-between gap-3">
         <button onClick={() => setIsExpanded((v) => !v)} className="text-left cursor-pointer">
-          <p className="text-lg font-semibold text-primary">
+          <p className="text-lg font-semibold text-main">
             {isExpanded ? '▾' : '▸'} {title || 'Ongetiteld kernelement'}
           </p>
         </button>
@@ -139,7 +139,7 @@ export default function CoreElementSection({ coreElement }: { coreElement: CoreE
 
           {/* EDIT MODE */}
           {isEditing && (
-          <div className="bg-accent/10 border border-accent rounded-lg p-6">
+          <div className="bg-secondary/10 border border-secondary rounded-lg p-6">
             <div className="space-y-4">
               <div className="flex items-start justify-between">
                 <div>

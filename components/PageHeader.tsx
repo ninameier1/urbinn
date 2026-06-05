@@ -20,8 +20,8 @@ export default function PageHeader({ nav }: { nav: React.ReactNode }) {
   return (
     <header className={`fixed top-0 left-0 right-0 z-50
         ${scrolled
-          ? "bg-primary/80 backdrop-blur-md border-b border-white/10 shadow-sm"
-          : "bg-primary"
+          ? "bg-main/80 backdrop-blur-md border-b border-white/10 shadow-sm"
+          : "bg-main"
         }`}>
      
       <div className="mx-auto flex h-16 divide-x divide-secondary">

@@ -25,7 +25,7 @@ export default function ResearchDropdown() {
         <Link
           href="/onderzoek"
           className={`relative px-4 h-full flex items-center gap-1 text-sm uppercase font-medium
-            ${isActive ? "text-white" : "text-text hover:text-white"}`}
+            ${isActive ? "text-dark" : "text-white hover:text-accent"}`}
         >
           <span
             className={`absolute bottom-0 left-0 h-[2px] w-full bg-accent transition-all duration-200

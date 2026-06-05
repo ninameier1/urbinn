@@ -87,7 +87,7 @@ export default async function PublicationsCMSPage({ searchParams }: {
                   <td className="px-4 py-3 font-medium">
                     <Link
                       href={`/cms/publications/${p.id}`}
-                      className="text-primary hover:text-accent transition-colors"
+                      className="text-secondary hover:text-accent transition-colors"
                     >
                       {p.title}
                     </Link>

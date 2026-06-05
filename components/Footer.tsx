@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className="w-full border-t border-white/10 bg-primary backdrop-blur-md">
+    <footer className="w-full border-t border-white/10 bg-main backdrop-blur-md">
       <div className="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-4 gap-8 text-sm">
 
         <div>
@@ -17,7 +17,6 @@ export default function Footer() {
           <ul className="space-y-1 text-white/60">
             <li><a href="/onderzoek" className="hover:text-white transition">GLOW</a></li>
             <li><a href="/gemeenten" className="hover:text-white transition">Gemeenten</a></li>
-            <li><a href="/onderzoek/themas" className="hover:text-white transition">Onderzoeksthema's</a></li>
             <li><a href="/onderzoek/publicaties" className="hover:text-white transition">Publicaties</a></li>
             <li><a href="/onderzoek/ontstaan" className="hover:text-white transition">Ontstaan</a></li>
 

@@ -85,7 +85,7 @@ export default function InviteSection({ state, action, pending }: InviteProps) {
 
             <Button
                 type="submit"
-                variant="secondary"
+                variant="small"
                 disabled={pending || !ack || !isAllowed}
                 >
             {pending ? 'Versturen...' : 'Stuur uitnodiging'}

@@ -25,7 +25,7 @@ export default async function ConsortiumPage() {
           Consortium 
         </h1>
             <h1 className="text-3xl font-serif font-semibold text-dark mb-4">
-            Ons netwerk van partners: Consortium-XL
+            Gezond Samenleven in Flevoland
             </h1>
             <p className="max-w-3xl text-sm text-stone-500 leading-7">
             Het onderzoek wordt uitgevoerd in samenwerking met partners uit
@@ -105,7 +105,7 @@ export default async function ConsortiumPage() {
                     Partner
                   </span>
 
-                  <h2 className="text-2xl font-semibold text-primary mt-3 mb-4 group-hover:text-accent transition-colors">
+                  <h2 className="text-2xl font-semibold text-main mt-3 mb-4 group-hover:text-primary transition-colors">
                     {partner.name}
                   </h2>
 

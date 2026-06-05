@@ -80,7 +80,7 @@ export default async function PublicationsPage({
                       Publicatie
                     </p>
 
-                    <h2 className="text-xl font-semibold text-primary transition-colors group-hover:text-accent">
+                    <h2 className="text-xl font-semibold text-main transition-colors group-hover:text-primary">
                       {p.title}
                     </h2>
 
@@ -104,7 +104,7 @@ export default async function PublicationsPage({
                   {/* RIGHT */}
                   <div className="flex shrink-0 flex-row gap-6 lg:flex-col lg:items-end">
                     <div>
-                      <span className="inline-block bg-primary/10 text-primary text-[10px] font-bold tracking-wide uppercase rounded px-2.5 py-1 mb-5">
+                      <span className="inline-block bg-secondary/10 text-main text-[10px] font-bold tracking-wide uppercase rounded px-2.5 py-1 mb-5">
                         {formatDateShort(p.published_at)}
                       </span>
                     </div>
