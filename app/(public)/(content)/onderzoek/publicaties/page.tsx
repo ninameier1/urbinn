@@ -42,10 +42,7 @@ export default async function PublicationsPage({
                     </h1>
         
                     <p className="max-w-7xl text-sm text-stone-500 leading-7">
-                      Hier komt een korte introductie over hoe het onderzoek is
-                      ontstaan, welke vraagstukken eraan ten grondslag liggen en
-                      waarom het relevant is voor gemeenten en partners binnen
-                      het netwerk.
+                      Onderzoekspublicaties die gepubliceerd zijn door het consortium zijn hier zichtbaar.
                     </p>
                   </div>
                                             <SortBar
