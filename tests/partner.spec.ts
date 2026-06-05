@@ -30,7 +30,7 @@ test.describe('partner CRUD', () => {
 // TC-012
   test('TC-012: can update a partner name', async ({ page }) => {
     await page.goto('/cms/partners')
-    await page.getByRole('link').filter({ hasText: name }).click()
+    await page.getByRole('table').getByRole('link', { name: name, exact: true }).click()
 
     await page.getByRole('button', { name: 'Bewerken' }).click()
 
@@ -45,7 +45,7 @@ test.describe('partner CRUD', () => {
 // TC-013
   test('TC-013: can delete a partner', async ({ page }) => {
     await page.goto('/cms/partners')
-    await page.getByRole('link').filter({ hasText: updatedName }).click()
+    await page.getByRole('table').getByRole('link', { name: updatedName, exact: true }).click()
 
     await page.getByRole('button', { name: 'Bewerken' }).click()
 
@@ -54,6 +54,7 @@ test.describe('partner CRUD', () => {
 
     await expect(page).toHaveURL(/\/cms\/partners$/)
     await expect(page.getByRole('main')).toContainText('Partners')
+    await page.reload()
     await expect(page.getByRole('main').locator('span').filter({ hasText: updatedName })).not.toBeVisible()
     await expect(page.getByRole('link').filter({ hasText: updatedName })).toHaveCount(0)
   })
